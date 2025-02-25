@@ -9,6 +9,8 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
 import java.text.SimpleDateFormat;
+import java.text.ParseException;
+import java.util.Date;
 
 /**
  *
@@ -1711,8 +1713,13 @@ public class AdminDashboard extends javax.swing.JFrame {
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         // TODO add your handling code here:
+        int response = JOptionPane.showConfirmDialog(null, "Are you sure you want to proceed?", "Confirmation", JOptionPane.YES_NO_OPTION);
+        if (response == JOptionPane.YES_OPTION){
+        admin.deleteEmployee(Integer.parseInt(jTextFieldEmpNum.getText()));
+        JOptionPane.showMessageDialog(null, " Record deleted successfully\n Please refresh to update database");
+        } else{}
     }//GEN-LAST:event_deleteButtonActionPerformed
-
+        
     private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
        // TODO add your handling code here:
         createRecord.setVisible(true);
@@ -1797,7 +1804,7 @@ public class AdminDashboard extends javax.swing.JFrame {
         jTextFieldEmpNum.setText(model.getValueAt(SelectedRowIndex, 0).toString());
         jTextFieldLastName.setText(model.getValueAt(SelectedRowIndex, 1).toString());
         jTextFieldFirstName.setText(model.getValueAt(SelectedRowIndex, 2).toString());
-        jTextFieldPhoneNum.setText(model.getValueAt(SelectedRowIndex, 3).toString());
+        jTextFieldPhoneNum.setText(model.getValueAt(SelectedRowIndex, 5).toString());
         jAreaSalaryAddress1.setText(model.getValueAt(SelectedRowIndex, 4).toString());
         jTextFieldSupervisor.setText(model.getValueAt(SelectedRowIndex, 12).toString());
         jTextFieldPosition.setText(model.getValueAt(SelectedRowIndex, 11).toString());
@@ -1808,7 +1815,36 @@ public class AdminDashboard extends javax.swing.JFrame {
          jTextFieldEditEmpNum.setText(jTextFieldEmpNum.getText());
          String[] infoToUpdate = admin.searchUserData(employeeDatabase,jTextFieldEmpNum.getText() );
          
-         jTextFieldEditFirstName.setText(infoToUpdate[1]);
+         jTextFieldEditFirstName.setText(infoToUpdate[2]);
+         jTextFieldEditLastName.setText(infoToUpdate[1]);
+         jTextFieldEditAddress.setText(infoToUpdate[4]);
+         jTextFieldEditPhoneNum.setText(infoToUpdate[5]);
+         jTextFieldEditSSSNum.setText(infoToUpdate[6]);
+         jTextFieldEditPhilHealthNum.setText(infoToUpdate[7]);
+         jTextFieldEditTINNum.setText(infoToUpdate[8]);
+         jTextFieldEditPagibigNum.setText(infoToUpdate[9]);
+         jComboBoxEditStatus.setSelectedItem(infoToUpdate[10]);
+         jComboBoxEditPosition.setSelectedItem(infoToUpdate[11]);
+         jComboBoxEditSupervisor.setSelectedItem(infoToUpdate[12]);
+         jTextFieldEditBasicSalary.setText(infoToUpdate[13]);
+         jTextFieldEditRiceSubsidy.setText(infoToUpdate[14]);
+         jTextFieldEditPhoneAllowance.setText(infoToUpdate[15]);
+         jTextFieldEditClothingAllowance.setText(infoToUpdate[16]);
+         jTextFieldEditGrossSemiMonthly.setText(infoToUpdate[17]);
+         jTextFieldEditHourlyRateAllowance.setText(infoToUpdate[18]);
+         
+         String birthday = infoToUpdate[3];
+            SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+            Date birthdayDate;
+                   try {
+                       birthdayDate = sdf.parse(birthday);
+                   } catch (ParseException e) {
+                       // handle parsing error
+                       JOptionPane.showMessageDialog(this, "Error parsing birthday: " + e.getMessage());
+                       return;
+                   }
+            jCalendarBirthday.setDate(birthdayDate);
+                jCalendarBirthday.repaint();
          
         //dito cj
          
