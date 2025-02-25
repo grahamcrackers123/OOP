@@ -21,9 +21,7 @@ public class AdminDashboard extends javax.swing.JFrame {
     public AdminDashboard(Admin admin) {
         initComponents();
         this.admin=admin;
-        
-        this.leaveDatabase = admin.loadCSV("LeaveManagement.csv");
-  
+
         jTextDashboardEmpNo.setText(admin.getEmployeeId());
         jTextDashboardFirstName.setText(admin.getFirstName());
         jTextDashboardLastName.setText(admin.getLastName());
@@ -44,7 +42,11 @@ public class AdminDashboard extends javax.swing.JFrame {
         jTextDashboardGrossSemiMonthlyRate.setText(Double.toString(admin.getGrossSemiMonthlyRate()));
         jTextDashboardBasicSalary.setText(Double.toString(admin.getBasicSalary()));
         
-
+        populateTable("LeaveManagement.csv");
+        
+    }
+    
+    private void populateTable(String file) {
         String[] columnNames = {"Request #", "ID", "First Name","Last Name","Position","Leave Type","Start Date","End Date","Status"};
         
         DefaultTableModel model = new DefaultTableModel(columnNames, 0) {
@@ -62,8 +64,6 @@ public class AdminDashboard extends javax.swing.JFrame {
 
 
             jTableLeaveManagement.setModel(model);
-        
-        
     }
 
         
@@ -1703,7 +1703,7 @@ public class AdminDashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_jTableLeaveManagementMouseClicked
 
     private void jButtonRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRefreshActionPerformed
-
+        populateTable("LeaveManagement.csv");
     }//GEN-LAST:event_jButtonRefreshActionPerformed
 
     private void jButtonApproveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonApproveActionPerformed
