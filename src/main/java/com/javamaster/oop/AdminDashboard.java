@@ -5,6 +5,8 @@
 package com.javamaster.oop;
 
 import java.awt.Color;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -12,13 +14,35 @@ import java.awt.Color;
  */
 public class AdminDashboard extends javax.swing.JFrame {
     Admin admin;
+    private List<String[]> leaveDatabase;
     /**
      * Creates new form AdminDashboard
      */
     public AdminDashboard(Admin admin) {
         initComponents();
         this.admin=admin;
+        
+        this.leaveDatabase = admin.loadCSV("LeaveManagement.csv");
   
+        
+
+        String[] columnNames = {"Request #", "ID", "First Name","Last Name","Position","Leave Type","Start Date","End Date","Status"};
+        
+        DefaultTableModel model = new DefaultTableModel(columnNames, 0) {
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                    return false; // This causes all cells to be uneditable
+                }
+        };
+
+            // Add existing data to the model
+            for (String[] row : leaveDatabase) {
+                model.addRow(row);
+            }
+
+
+
+            jTableLeaveManagement.setModel(model);
         
         
     }
@@ -1665,6 +1689,7 @@ public class AdminDashboard extends javax.swing.JFrame {
 
     private void jButtonApproveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonApproveActionPerformed
         // TODO add your handling code here:
+        
 
     }//GEN-LAST:event_jButtonApproveActionPerformed
 
