@@ -2,7 +2,7 @@
 
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
-    <Container class="javax.swing.JFrame" name="jFrame1">
+    <Container class="javax.swing.JFrame" name="CreateRecord">
       <Properties>
         <Property name="title" type="java.lang.String" value="Create Employee Record"/>
         <Property name="alwaysOnTop" type="boolean" value="true"/>
@@ -574,7 +574,7 @@
         </Container>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JFrame" name="jFrame2">
+    <Container class="javax.swing.JFrame" name="EditRecord">
       <Properties>
         <Property name="title" type="java.lang.String" value="Edit Employee Record"/>
         <Property name="alwaysOnTop" type="boolean" value="true"/>

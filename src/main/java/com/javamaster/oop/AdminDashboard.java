@@ -103,7 +103,7 @@ public class AdminDashboard extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jFrame1 = new javax.swing.JFrame();
+        CreateRecord = new javax.swing.JFrame();
         jScrollPane7 = new javax.swing.JScrollPane();
         jPanel4 = new javax.swing.JPanel();
         jTextFieldEmpNum1 = new javax.swing.JTextField();
@@ -145,7 +145,7 @@ public class AdminDashboard extends javax.swing.JFrame {
         jLabel100 = new javax.swing.JLabel();
         saveCreateButton = new javax.swing.JButton();
         cancelCreateButton = new javax.swing.JButton();
-        jFrame2 = new javax.swing.JFrame();
+        EditRecord = new javax.swing.JFrame();
         jScrollPane8 = new javax.swing.JScrollPane();
         jPanel5 = new javax.swing.JPanel();
         jLabel88 = new javax.swing.JLabel();
@@ -347,11 +347,11 @@ public class AdminDashboard extends javax.swing.JFrame {
         jButtonReject1 = new javax.swing.JButton();
         jLabel66 = new javax.swing.JLabel();
 
-        jFrame1.setTitle("Create Employee Record");
-        jFrame1.setAlwaysOnTop(true);
-        jFrame1.setBackground(new java.awt.Color(51, 51, 51));
-        jFrame1.setLocation(new java.awt.Point(0, 0));
-        jFrame1.setSize(new java.awt.Dimension(750, 620));
+        CreateRecord.setTitle("Create Employee Record");
+        CreateRecord.setAlwaysOnTop(true);
+        CreateRecord.setBackground(new java.awt.Color(51, 51, 51));
+        CreateRecord.setLocation(new java.awt.Point(0, 0));
+        CreateRecord.setSize(new java.awt.Dimension(750, 620));
 
         jScrollPane7.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
         jScrollPane7.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
@@ -522,12 +522,12 @@ public class AdminDashboard extends javax.swing.JFrame {
 
         jScrollPane7.setViewportView(jPanel4);
 
-        jFrame1.getContentPane().add(jScrollPane7, java.awt.BorderLayout.CENTER);
+        CreateRecord.getContentPane().add(jScrollPane7, java.awt.BorderLayout.CENTER);
 
-        jFrame2.setTitle("Edit Employee Record");
-        jFrame2.setAlwaysOnTop(true);
-        jFrame2.setBackground(new java.awt.Color(51, 51, 51));
-        jFrame2.setSize(new java.awt.Dimension(750, 620));
+        EditRecord.setTitle("Edit Employee Record");
+        EditRecord.setAlwaysOnTop(true);
+        EditRecord.setBackground(new java.awt.Color(51, 51, 51));
+        EditRecord.setSize(new java.awt.Dimension(750, 620));
 
         jScrollPane8.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
         jScrollPane8.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
@@ -709,7 +709,7 @@ public class AdminDashboard extends javax.swing.JFrame {
 
         jScrollPane8.setViewportView(jPanel5);
 
-        jFrame2.getContentPane().add(jScrollPane8, java.awt.BorderLayout.CENTER);
+        EditRecord.getContentPane().add(jScrollPane8, java.awt.BorderLayout.CENTER);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -1693,9 +1693,9 @@ public class AdminDashboard extends javax.swing.JFrame {
 
     private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
        // TODO add your handling code here:
-        jFrame1.setVisible(true);
-        jFrame1.pack();
-        jFrame1.setLocationRelativeTo(this);
+        CreateRecord.setVisible(true);
+        CreateRecord.pack();
+        CreateRecord.setLocationRelativeTo(this);
     }//GEN-LAST:event_createButtonActionPerformed
 
     private void jTextFieldStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldStatusActionPerformed
@@ -1728,9 +1728,9 @@ public class AdminDashboard extends javax.swing.JFrame {
 
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
         // TODO add your handling code here:
-        jFrame2.setVisible(true);
-        jFrame2.pack();
-        jFrame2.setLocationRelativeTo(this);
+        EditRecord.setVisible(true);
+        EditRecord.pack();
+        EditRecord.setLocationRelativeTo(this);
     }//GEN-LAST:event_editButtonActionPerformed
 
     private void jTableLeaveManagementMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableLeaveManagementMouseClicked
@@ -1771,7 +1771,7 @@ public class AdminDashboard extends javax.swing.JFrame {
         model = (DefaultTableModel) jTableDatabase.getModel();
         int SelectedRowIndex = jTableDatabase.getSelectedRow();
         
-        jTextFieldEmpNum.setText(model.getValueAt(SelectedRowIndex, 0));
+        //jTextFieldEmpNum.setText(model.getValueAt(SelectedRowIndex, 0));
         
     }//GEN-LAST:event_jTableDatabaseMouseClicked
 
@@ -1797,11 +1797,17 @@ public class AdminDashboard extends javax.swing.JFrame {
 
     private void saveCreateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveCreateButtonActionPerformed
         // TODO add your handling code here:
+    /*    admin.createEmployee(jTextFieldEmpNum1.getText(), jTextFieldFirstName2.getText(), lastName, birthday, address, phoneNum,
+                            sssNum, philHealthNum, tinNum, pagibigNum, status, position, 
+                            supervisor, basicSalary, riceSubsidy, phoneAllowance, clothingAllowance);
+    */    
+    
+    //dito cj
     }//GEN-LAST:event_saveCreateButtonActionPerformed
 
     private void cancelCreateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelCreateButtonActionPerformed
         // TODO add your handling code here:
-        jFrame1.setVisible(false);
+        CreateRecord.setVisible(false);
     }//GEN-LAST:event_cancelCreateButtonActionPerformed
 
     private void jTextFieldEmpNum3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldEmpNum3ActionPerformed
@@ -1834,7 +1840,7 @@ public class AdminDashboard extends javax.swing.JFrame {
 
     private void cancelEditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelEditButtonActionPerformed
         // TODO add your handling code here:
-        jFrame2.setVisible(false);
+        EditRecord.setVisible(false);
     }//GEN-LAST:event_cancelEditButtonActionPerformed
 
     private void saveEditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveEditButtonActionPerformed
@@ -1891,6 +1897,8 @@ public class AdminDashboard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JFrame CreateRecord;
+    private javax.swing.JFrame EditRecord;
     private javax.swing.JPanel adminDashboard;
     private javax.swing.JPanel adminDashboardMenu;
     private javax.swing.JPanel adminDatabase;
@@ -1922,8 +1930,6 @@ public class AdminDashboard extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBoxStatus2;
     private javax.swing.JComboBox<String> jComboBoxSupervisor;
     private javax.swing.JComboBox<String> jComboBoxSupervisor2;
-    private javax.swing.JFrame jFrame1;
-    private javax.swing.JFrame jFrame2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel100;
