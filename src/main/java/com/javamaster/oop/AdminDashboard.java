@@ -9,6 +9,8 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
 import java.text.SimpleDateFormat;
+import java.text.ParseException;
+import java.util.Date;
 
 /**
  *
@@ -55,8 +57,8 @@ public class AdminDashboard extends javax.swing.JFrame {
         jTextFieldEmpNum1.setText(Integer.toString(ID));
         
         
-       //int SelectedRowIndex = databaseModel.get();//
-        
+       //
+       
     }
     
     private void populateLeaveTable(String file) {
@@ -159,43 +161,43 @@ public class AdminDashboard extends javax.swing.JFrame {
         jScrollPane8 = new javax.swing.JScrollPane();
         jPanel5 = new javax.swing.JPanel();
         jLabel88 = new javax.swing.JLabel();
-        jTextFieldEmpNum3 = new javax.swing.JTextField();
+        jTextFieldEditEmpNum = new javax.swing.JTextField();
         jLabel89 = new javax.swing.JLabel();
-        jTextFieldFirstName4 = new javax.swing.JTextField();
+        jTextFieldEditFirstName = new javax.swing.JTextField();
         jLabel90 = new javax.swing.JLabel();
-        jTextFieldLastName3 = new javax.swing.JTextField();
+        jTextFieldEditLastName = new javax.swing.JTextField();
         jCalendarBirthday2 = new com.toedter.calendar.JCalendar();
         jLabel91 = new javax.swing.JLabel();
         jLabel92 = new javax.swing.JLabel();
-        jTextFieldAddress2 = new javax.swing.JTextField();
-        jTextFieldPhoneNum3 = new javax.swing.JTextField();
+        jTextFieldEditAddress = new javax.swing.JTextField();
+        jTextFieldEditPhoneNum = new javax.swing.JTextField();
         jLabel93 = new javax.swing.JLabel();
         jLabel118 = new javax.swing.JLabel();
         jLabel119 = new javax.swing.JLabel();
         jLabel120 = new javax.swing.JLabel();
-        jComboBoxSupervisor2 = new javax.swing.JComboBox<>();
-        jComboBoxStatus2 = new javax.swing.JComboBox<>();
-        jComboBoxPosition2 = new javax.swing.JComboBox<>();
+        jComboBoxEditSupervisor = new javax.swing.JComboBox<>();
+        jComboBoxEditStatus = new javax.swing.JComboBox<>();
+        jComboBoxEditPosition = new javax.swing.JComboBox<>();
         jLabel94 = new javax.swing.JLabel();
         jLabel95 = new javax.swing.JLabel();
-        jTextFieldSSSNum2 = new javax.swing.JTextField();
-        jTextFieldPhilHealthNum2 = new javax.swing.JTextField();
-        jTextFieldTINNum2 = new javax.swing.JTextField();
+        jTextFieldEditSSSNum = new javax.swing.JTextField();
+        jTextFieldEditPhilHealthNum = new javax.swing.JTextField();
+        jTextFieldEditTINNum = new javax.swing.JTextField();
         jLabel102 = new javax.swing.JLabel();
         jLabel103 = new javax.swing.JLabel();
-        jTextFieldPagibigNum2 = new javax.swing.JTextField();
+        jTextFieldEditPagibigNum = new javax.swing.JTextField();
         jLabel121 = new javax.swing.JLabel();
-        jTextFieldPhoneAllowance3 = new javax.swing.JTextField();
+        jTextFieldEditPhoneAllowance = new javax.swing.JTextField();
         jLabel122 = new javax.swing.JLabel();
-        jTextFieldRiceSubsidy3 = new javax.swing.JTextField();
-        jTextFieldClothingAllowance5 = new javax.swing.JTextField();
+        jTextFieldEditRiceSubsidy = new javax.swing.JTextField();
+        jTextFieldEditClothingAllowance = new javax.swing.JTextField();
         jLabel123 = new javax.swing.JLabel();
         jLabel124 = new javax.swing.JLabel();
-        jTextFieldBasicSalary3 = new javax.swing.JTextField();
-        jTextFieldGrossSemiMonthly6 = new javax.swing.JTextField();
+        jTextFieldEditBasicSalary = new javax.swing.JTextField();
+        jTextFieldEditGrossSemiMonthly = new javax.swing.JTextField();
         jLabel125 = new javax.swing.JLabel();
         jLabel126 = new javax.swing.JLabel();
-        jTextFieldHourlyRateAllowance7 = new javax.swing.JTextField();
+        jTextFieldEditHourlyRateAllowance = new javax.swing.JTextField();
         cancelEditButton = new javax.swing.JButton();
         jLabel127 = new javax.swing.JLabel();
         saveEditButton = new javax.swing.JButton();
@@ -550,35 +552,35 @@ public class AdminDashboard extends javax.swing.JFrame {
         jLabel88.setText("Employee No. :");
         jPanel5.add(jLabel88, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 110, 20));
 
-        jTextFieldEmpNum3.setEditable(false);
-        jTextFieldEmpNum3.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldEditEmpNum.setEditable(false);
+        jTextFieldEditEmpNum.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldEmpNum3ActionPerformed(evt);
+                jTextFieldEditEmpNumActionPerformed(evt);
             }
         });
-        jPanel5.add(jTextFieldEmpNum3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, 80, -1));
+        jPanel5.add(jTextFieldEditEmpNum, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, 80, -1));
 
         jLabel89.setForeground(new java.awt.Color(255, 255, 255));
         jLabel89.setText("First Name :");
         jPanel5.add(jLabel89, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 70, 20));
 
-        jTextFieldFirstName4.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldEditFirstName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldFirstName4ActionPerformed(evt);
+                jTextFieldEditFirstNameActionPerformed(evt);
             }
         });
-        jPanel5.add(jTextFieldFirstName4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, 210, -1));
+        jPanel5.add(jTextFieldEditFirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, 210, -1));
 
         jLabel90.setForeground(new java.awt.Color(255, 255, 255));
         jLabel90.setText("Last Name :");
         jPanel5.add(jLabel90, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 80, 20));
 
-        jTextFieldLastName3.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldEditLastName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldLastName3ActionPerformed(evt);
+                jTextFieldEditLastNameActionPerformed(evt);
             }
         });
-        jPanel5.add(jTextFieldLastName3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 160, 210, -1));
+        jPanel5.add(jTextFieldEditLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 160, 210, -1));
 
         jCalendarBirthday2.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         jPanel5.add(jCalendarBirthday2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, 210, 140));
@@ -590,14 +592,14 @@ public class AdminDashboard extends javax.swing.JFrame {
         jLabel92.setForeground(new java.awt.Color(255, 255, 255));
         jLabel92.setText(" Address :");
         jPanel5.add(jLabel92, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 70, 20));
-        jPanel5.add(jTextFieldAddress2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 340, 210, 20));
+        jPanel5.add(jTextFieldEditAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 340, 210, 20));
 
-        jTextFieldPhoneNum3.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldEditPhoneNum.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldPhoneNum3ActionPerformed(evt);
+                jTextFieldEditPhoneNumActionPerformed(evt);
             }
         });
-        jPanel5.add(jTextFieldPhoneNum3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 370, 210, -1));
+        jPanel5.add(jTextFieldEditPhoneNum, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 370, 210, -1));
 
         jLabel93.setForeground(new java.awt.Color(255, 255, 255));
         jLabel93.setText("Phone No. :");
@@ -615,24 +617,24 @@ public class AdminDashboard extends javax.swing.JFrame {
         jLabel120.setText("Supervisor :");
         jPanel5.add(jLabel120, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 460, 100, 20));
 
-        jComboBoxSupervisor2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "Garcia Manuel III", "Lim Antonio", "Aquino Bianca Sofia", "Reyes Isabella", "Alvaro Roderick", "Villanueva Andrea Mae", "Romualdez Fredrick", "Salcedo Anthony", "De Leon Selena", "Mata Christian", "San Jose Brad" }));
-        jPanel5.add(jComboBoxSupervisor2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 460, 210, -1));
+        jComboBoxEditSupervisor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "Garcia Manuel III", "Lim Antonio", "Aquino Bianca Sofia", "Reyes Isabella", "Alvaro Roderick", "Villanueva Andrea Mae", "Romualdez Fredrick", "Salcedo Anthony", "De Leon Selena", "Mata Christian", "San Jose Brad" }));
+        jPanel5.add(jComboBoxEditSupervisor, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 460, 210, -1));
 
-        jComboBoxStatus2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Regular", "Probationary", " " }));
-        jComboBoxStatus2.addActionListener(new java.awt.event.ActionListener() {
+        jComboBoxEditStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Regular", "Probationary", " " }));
+        jComboBoxEditStatus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxStatus2ActionPerformed(evt);
+                jComboBoxEditStatusActionPerformed(evt);
             }
         });
-        jPanel5.add(jComboBoxStatus2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 430, 210, -1));
+        jPanel5.add(jComboBoxEditStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 430, 210, -1));
 
-        jComboBoxPosition2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Chief Executive Officer", "Chief Operating Officer", "Chief Finance Officer", "Chief Marketing Officer", "Account Manager", "IT Operations and Systems", "HR Manager", "Accounting Head", "Sales & Marketing", "Supply Chain and Logistics", "Customer Service and Relations", "Payroll Manager", "HR Team Leader", "Account Team Leader", "Payroll Team Leader", "Account Rank and File", "Payroll Rank and File", "HR Rank and File" }));
-        jComboBoxPosition2.addActionListener(new java.awt.event.ActionListener() {
+        jComboBoxEditPosition.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Chief Executive Officer", "Chief Operating Officer", "Chief Finance Officer", "Chief Marketing Officer", "Account Manager", "IT Operations and Systems", "HR Manager", "Accounting Head", "Sales & Marketing", "Supply Chain and Logistics", "Customer Service and Relations", "Payroll Manager", "HR Team Leader", "Account Team Leader", "Payroll Team Leader", "Account Rank and File", "Payroll Rank and File", "HR Rank and File" }));
+        jComboBoxEditPosition.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxPosition2ActionPerformed(evt);
+                jComboBoxEditPositionActionPerformed(evt);
             }
         });
-        jPanel5.add(jComboBoxPosition2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 400, 210, -1));
+        jPanel5.add(jComboBoxEditPosition, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 400, 210, -1));
 
         jLabel94.setForeground(new java.awt.Color(255, 255, 255));
         jLabel94.setText("SSS No. :");
@@ -641,9 +643,9 @@ public class AdminDashboard extends javax.swing.JFrame {
         jLabel95.setForeground(new java.awt.Color(255, 255, 255));
         jLabel95.setText("PhilHealth No. :");
         jPanel5.add(jLabel95, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 160, 100, 20));
-        jPanel5.add(jTextFieldSSSNum2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 130, 180, -1));
-        jPanel5.add(jTextFieldPhilHealthNum2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 160, 180, -1));
-        jPanel5.add(jTextFieldTINNum2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 190, 180, -1));
+        jPanel5.add(jTextFieldEditSSSNum, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 130, 180, -1));
+        jPanel5.add(jTextFieldEditPhilHealthNum, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 160, 180, -1));
+        jPanel5.add(jTextFieldEditTINNum, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 190, 180, -1));
 
         jLabel102.setForeground(new java.awt.Color(255, 255, 255));
         jLabel102.setText("TIN :");
@@ -652,24 +654,24 @@ public class AdminDashboard extends javax.swing.JFrame {
         jLabel103.setForeground(new java.awt.Color(255, 255, 255));
         jLabel103.setText("Pag-IBIG No. :");
         jPanel5.add(jLabel103, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 220, 100, 20));
-        jPanel5.add(jTextFieldPagibigNum2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 220, 180, -1));
+        jPanel5.add(jTextFieldEditPagibigNum, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 220, 180, -1));
 
         jLabel121.setForeground(new java.awt.Color(255, 255, 255));
         jLabel121.setText("Phone Allowance :");
         jPanel5.add(jLabel121, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 270, -1, 20));
-        jPanel5.add(jTextFieldPhoneAllowance3, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 270, 180, -1));
+        jPanel5.add(jTextFieldEditPhoneAllowance, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 270, 180, -1));
 
         jLabel122.setForeground(new java.awt.Color(255, 255, 255));
         jLabel122.setText("Rice Subsidy :");
         jPanel5.add(jLabel122, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 300, -1, 20));
-        jPanel5.add(jTextFieldRiceSubsidy3, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 300, 180, -1));
+        jPanel5.add(jTextFieldEditRiceSubsidy, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 300, 180, -1));
 
-        jTextFieldClothingAllowance5.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldEditClothingAllowance.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldClothingAllowance5ActionPerformed(evt);
+                jTextFieldEditClothingAllowanceActionPerformed(evt);
             }
         });
-        jPanel5.add(jTextFieldClothingAllowance5, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 330, 180, -1));
+        jPanel5.add(jTextFieldEditClothingAllowance, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 330, 180, -1));
 
         jLabel123.setForeground(new java.awt.Color(255, 255, 255));
         jLabel123.setText("Clothing Allowance :");
@@ -678,14 +680,14 @@ public class AdminDashboard extends javax.swing.JFrame {
         jLabel124.setForeground(new java.awt.Color(255, 255, 255));
         jLabel124.setText("Basic Salary :");
         jPanel5.add(jLabel124, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 400, 80, 20));
-        jPanel5.add(jTextFieldBasicSalary3, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 400, 180, -1));
+        jPanel5.add(jTextFieldEditBasicSalary, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 400, 180, -1));
 
-        jTextFieldGrossSemiMonthly6.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldEditGrossSemiMonthly.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldGrossSemiMonthly6ActionPerformed(evt);
+                jTextFieldEditGrossSemiMonthlyActionPerformed(evt);
             }
         });
-        jPanel5.add(jTextFieldGrossSemiMonthly6, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 430, 180, -1));
+        jPanel5.add(jTextFieldEditGrossSemiMonthly, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 430, 180, -1));
 
         jLabel125.setForeground(new java.awt.Color(255, 255, 255));
         jLabel125.setText("Gross Semi-monthly :");
@@ -695,12 +697,12 @@ public class AdminDashboard extends javax.swing.JFrame {
         jLabel126.setText("Hourly Rate :");
         jPanel5.add(jLabel126, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 460, -1, 20));
 
-        jTextFieldHourlyRateAllowance7.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldEditHourlyRateAllowance.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldHourlyRateAllowance7ActionPerformed(evt);
+                jTextFieldEditHourlyRateAllowanceActionPerformed(evt);
             }
         });
-        jPanel5.add(jTextFieldHourlyRateAllowance7, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 460, 180, -1));
+        jPanel5.add(jTextFieldEditHourlyRateAllowance, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 460, 180, -1));
 
         cancelEditButton.setBackground(new java.awt.Color(51, 51, 51));
         cancelEditButton.setForeground(new java.awt.Color(255, 255, 255));
@@ -1711,8 +1713,13 @@ public class AdminDashboard extends javax.swing.JFrame {
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         // TODO add your handling code here:
+        int response = JOptionPane.showConfirmDialog(null, "Are you sure you want to proceed?", "Confirmation", JOptionPane.YES_NO_OPTION);
+        if (response == JOptionPane.YES_OPTION){
+        admin.deleteEmployee(Integer.parseInt(jTextFieldEmpNum.getText()));
+        JOptionPane.showMessageDialog(null, " Record deleted successfully\n Please refresh to update database");
+        } else{}
     }//GEN-LAST:event_deleteButtonActionPerformed
-
+        
     private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
        // TODO add your handling code here:
         createRecord.setVisible(true);
@@ -1789,19 +1796,58 @@ public class AdminDashboard extends javax.swing.JFrame {
         clearButton.setEnabled(true);
         deleteButton.setEnabled(true);
         
-        
+        //Initialize Table and get the Index of the selected row
         model = (DefaultTableModel) jTableDatabase.getModel();
         int SelectedRowIndex = jTableDatabase.getSelectedRow();
         
+        //Populate the rest of the Fields based on the selected row
         jTextFieldEmpNum.setText(model.getValueAt(SelectedRowIndex, 0).toString());
         jTextFieldLastName.setText(model.getValueAt(SelectedRowIndex, 1).toString());
         jTextFieldFirstName.setText(model.getValueAt(SelectedRowIndex, 2).toString());
-        jTextFieldPhoneNum.setText(model.getValueAt(SelectedRowIndex, 3).toString());
+        jTextFieldPhoneNum.setText(model.getValueAt(SelectedRowIndex, 5).toString());
         jAreaSalaryAddress1.setText(model.getValueAt(SelectedRowIndex, 4).toString());
         jTextFieldSupervisor.setText(model.getValueAt(SelectedRowIndex, 12).toString());
         jTextFieldPosition.setText(model.getValueAt(SelectedRowIndex, 11).toString());
         jTextFieldStatus.setText(model.getValueAt(SelectedRowIndex, 10).toString());
         
+        
+        //Once a row has been selected, populate the Edit Employee page
+         jTextFieldEditEmpNum.setText(jTextFieldEmpNum.getText());
+         String[] infoToUpdate = admin.searchUserData(employeeDatabase,jTextFieldEmpNum.getText() );
+         
+         jTextFieldEditFirstName.setText(infoToUpdate[2]);
+         jTextFieldEditLastName.setText(infoToUpdate[1]);
+         jTextFieldEditAddress.setText(infoToUpdate[4]);
+         jTextFieldEditPhoneNum.setText(infoToUpdate[5]);
+         jTextFieldEditSSSNum.setText(infoToUpdate[6]);
+         jTextFieldEditPhilHealthNum.setText(infoToUpdate[7]);
+         jTextFieldEditTINNum.setText(infoToUpdate[8]);
+         jTextFieldEditPagibigNum.setText(infoToUpdate[9]);
+         jComboBoxEditStatus.setSelectedItem(infoToUpdate[10]);
+         jComboBoxEditPosition.setSelectedItem(infoToUpdate[11]);
+         jComboBoxEditSupervisor.setSelectedItem(infoToUpdate[12]);
+         jTextFieldEditBasicSalary.setText(infoToUpdate[13]);
+         jTextFieldEditRiceSubsidy.setText(infoToUpdate[14]);
+         jTextFieldEditPhoneAllowance.setText(infoToUpdate[15]);
+         jTextFieldEditClothingAllowance.setText(infoToUpdate[16]);
+         jTextFieldEditGrossSemiMonthly.setText(infoToUpdate[17]);
+         jTextFieldEditHourlyRateAllowance.setText(infoToUpdate[18]);
+         
+         String birthday = infoToUpdate[3];
+            SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+            Date birthdayDate;
+                   try {
+                       birthdayDate = sdf.parse(birthday);
+                   } catch (ParseException e) {
+                       // handle parsing error
+                       JOptionPane.showMessageDialog(this, "Error parsing birthday: " + e.getMessage());
+                       return;
+                   }
+            jCalendarBirthday.setDate(birthdayDate);
+                jCalendarBirthday.repaint();
+         
+        //dito cj
+         
     }//GEN-LAST:event_jTableDatabaseMouseClicked
 
     private void jTextFieldEmpNum1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldEmpNum1ActionPerformed
@@ -1847,33 +1893,33 @@ public class AdminDashboard extends javax.swing.JFrame {
         createRecord.setVisible(false);
     }//GEN-LAST:event_cancelCreateButtonActionPerformed
 
-    private void jTextFieldEmpNum3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldEmpNum3ActionPerformed
+    private void jTextFieldEditEmpNumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldEditEmpNumActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldEmpNum3ActionPerformed
+    }//GEN-LAST:event_jTextFieldEditEmpNumActionPerformed
 
-    private void jTextFieldFirstName4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldFirstName4ActionPerformed
+    private void jTextFieldEditFirstNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldEditFirstNameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldFirstName4ActionPerformed
+    }//GEN-LAST:event_jTextFieldEditFirstNameActionPerformed
 
-    private void jComboBoxStatus2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxStatus2ActionPerformed
+    private void jComboBoxEditStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxEditStatusActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBoxStatus2ActionPerformed
+    }//GEN-LAST:event_jComboBoxEditStatusActionPerformed
 
-    private void jComboBoxPosition2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxPosition2ActionPerformed
+    private void jComboBoxEditPositionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxEditPositionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBoxPosition2ActionPerformed
+    }//GEN-LAST:event_jComboBoxEditPositionActionPerformed
 
-    private void jTextFieldClothingAllowance5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldClothingAllowance5ActionPerformed
+    private void jTextFieldEditClothingAllowanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldEditClothingAllowanceActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldClothingAllowance5ActionPerformed
+    }//GEN-LAST:event_jTextFieldEditClothingAllowanceActionPerformed
 
-    private void jTextFieldGrossSemiMonthly6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldGrossSemiMonthly6ActionPerformed
+    private void jTextFieldEditGrossSemiMonthlyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldEditGrossSemiMonthlyActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldGrossSemiMonthly6ActionPerformed
+    }//GEN-LAST:event_jTextFieldEditGrossSemiMonthlyActionPerformed
 
-    private void jTextFieldHourlyRateAllowance7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldHourlyRateAllowance7ActionPerformed
+    private void jTextFieldEditHourlyRateAllowanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldEditHourlyRateAllowanceActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldHourlyRateAllowance7ActionPerformed
+    }//GEN-LAST:event_jTextFieldEditHourlyRateAllowanceActionPerformed
 
     private void cancelEditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelEditButtonActionPerformed
         // TODO add your handling code here:
@@ -1884,11 +1930,11 @@ public class AdminDashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         
-        admin.updateEmployee(jTextFieldEmpNum3.getText(), jTextFieldFirstName4.getText(), jTextFieldLastName3.getText(),(jCalendarBirthday2.getDate()), 
-        jTextFieldAddress2.getText(), jTextFieldPhoneNum3.getText(), jTextFieldSSSNum2.getText(), jTextFieldPhilHealthNum2.getText(), jTextFieldTINNum2.getText(), 
-        jTextFieldPagibigNum2.getText(), jComboBoxStatus2.getSelectedItem().toString(), jComboBoxPosition2.getSelectedItem().toString(), jComboBoxSupervisor2.getSelectedItem().toString(), jTextFieldBasicSalary3.getText(),
-        jTextFieldRiceSubsidy3.getText(), jTextFieldPhoneAllowance3.getText(), jTextFieldClothingAllowance5.getText(), jTextFieldGrossSemiMonthly6.getText(), 
-        jTextFieldHourlyRateAllowance7.getText(), editRecord);
+        admin.updateEmployee(jTextFieldEditEmpNum.getText(), jTextFieldEditFirstName.getText(), jTextFieldEditLastName.getText(),(jCalendarBirthday2.getDate()), 
+        jTextFieldEditAddress.getText(), jTextFieldEditPhoneNum.getText(), jTextFieldEditSSSNum.getText(), jTextFieldEditPhilHealthNum.getText(), jTextFieldEditTINNum.getText(), 
+        jTextFieldEditPagibigNum.getText(), jComboBoxEditStatus.getSelectedItem().toString(), jComboBoxEditPosition.getSelectedItem().toString(), jComboBoxEditSupervisor.getSelectedItem().toString(), jTextFieldEditBasicSalary.getText(),
+        jTextFieldEditRiceSubsidy.getText(), jTextFieldEditPhoneAllowance.getText(), jTextFieldEditClothingAllowance.getText(), jTextFieldEditGrossSemiMonthly.getText(), 
+        jTextFieldEditHourlyRateAllowance.getText(), editRecord);
     }//GEN-LAST:event_saveEditButtonActionPerformed
 
     private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
@@ -1901,13 +1947,13 @@ public class AdminDashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldEmpNumActionPerformed
 
-    private void jTextFieldLastName3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldLastName3ActionPerformed
+    private void jTextFieldEditLastNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldEditLastNameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldLastName3ActionPerformed
+    }//GEN-LAST:event_jTextFieldEditLastNameActionPerformed
 
-    private void jTextFieldPhoneNum3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPhoneNum3ActionPerformed
+    private void jTextFieldEditPhoneNumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldEditPhoneNumActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldPhoneNum3ActionPerformed
+    }//GEN-LAST:event_jTextFieldEditPhoneNumActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1975,13 +2021,13 @@ public class AdminDashboard extends javax.swing.JFrame {
     private javax.swing.JButton jButtonReject1;
     private com.toedter.calendar.JCalendar jCalendarBirthday;
     private com.toedter.calendar.JCalendar jCalendarBirthday2;
+    private javax.swing.JComboBox<String> jComboBoxEditPosition;
+    private javax.swing.JComboBox<String> jComboBoxEditStatus;
+    private javax.swing.JComboBox<String> jComboBoxEditSupervisor;
     private javax.swing.JComboBox<String> jComboBoxMonth;
     private javax.swing.JComboBox<String> jComboBoxPosition;
-    private javax.swing.JComboBox<String> jComboBoxPosition2;
     private javax.swing.JComboBox<String> jComboBoxStatus;
-    private javax.swing.JComboBox<String> jComboBoxStatus2;
     private javax.swing.JComboBox<String> jComboBoxSupervisor;
-    private javax.swing.JComboBox<String> jComboBoxSupervisor2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel100;
@@ -2132,51 +2178,51 @@ public class AdminDashboard extends javax.swing.JFrame {
     private javax.swing.JTextField jTextDashboardTinNum;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextFieldAddress;
-    private javax.swing.JTextField jTextFieldAddress2;
     private javax.swing.JTextField jTextFieldBasicSalary;
     private javax.swing.JTextField jTextFieldBasicSalary1;
-    private javax.swing.JTextField jTextFieldBasicSalary3;
     private javax.swing.JTextField jTextFieldClothingAllowance;
     private javax.swing.JTextField jTextFieldClothingAllowance1;
-    private javax.swing.JTextField jTextFieldClothingAllowance5;
+    private javax.swing.JTextField jTextFieldEditAddress;
+    private javax.swing.JTextField jTextFieldEditBasicSalary;
+    private javax.swing.JTextField jTextFieldEditClothingAllowance;
+    private javax.swing.JTextField jTextFieldEditEmpNum;
+    private javax.swing.JTextField jTextFieldEditFirstName;
+    private javax.swing.JTextField jTextFieldEditGrossSemiMonthly;
+    private javax.swing.JTextField jTextFieldEditHourlyRateAllowance;
+    private javax.swing.JTextField jTextFieldEditLastName;
+    private javax.swing.JTextField jTextFieldEditPagibigNum;
+    private javax.swing.JTextField jTextFieldEditPhilHealthNum;
+    private javax.swing.JTextField jTextFieldEditPhoneAllowance;
+    private javax.swing.JTextField jTextFieldEditPhoneNum;
+    private javax.swing.JTextField jTextFieldEditRiceSubsidy;
+    private javax.swing.JTextField jTextFieldEditSSSNum;
+    private javax.swing.JTextField jTextFieldEditTINNum;
     private javax.swing.JTextField jTextFieldEmpNum;
     private javax.swing.JTextField jTextFieldEmpNum1;
-    private javax.swing.JTextField jTextFieldEmpNum3;
     private javax.swing.JTextField jTextFieldFirstName;
     private javax.swing.JTextField jTextFieldFirstName2;
-    private javax.swing.JTextField jTextFieldFirstName4;
     private javax.swing.JTextField jTextFieldGrossPay;
-    private javax.swing.JTextField jTextFieldGrossSemiMonthly6;
     private javax.swing.JTextField jTextFieldGrossSemiMonthlyRate;
     private javax.swing.JTextField jTextFieldHourlyRate;
-    private javax.swing.JTextField jTextFieldHourlyRateAllowance7;
     private javax.swing.JTextField jTextFieldLastName;
     private javax.swing.JTextField jTextFieldLastName1;
-    private javax.swing.JTextField jTextFieldLastName3;
     private javax.swing.JTextField jTextFieldNetPay;
     private javax.swing.JTextField jTextFieldPagIBIGContribution;
     private javax.swing.JTextField jTextFieldPagibigNum;
-    private javax.swing.JTextField jTextFieldPagibigNum2;
     private javax.swing.JTextField jTextFieldPhilHealthContribution;
     private javax.swing.JTextField jTextFieldPhilHealthNum;
-    private javax.swing.JTextField jTextFieldPhilHealthNum2;
     private javax.swing.JTextField jTextFieldPhoneAllowance;
     private javax.swing.JTextField jTextFieldPhoneAllowance1;
-    private javax.swing.JTextField jTextFieldPhoneAllowance3;
     private javax.swing.JTextField jTextFieldPhoneNum;
     private javax.swing.JTextField jTextFieldPhoneNum1;
-    private javax.swing.JTextField jTextFieldPhoneNum3;
     private javax.swing.JTextField jTextFieldPosition;
     private javax.swing.JTextField jTextFieldRiceSubsidy;
     private javax.swing.JTextField jTextFieldRiceSubsidy1;
-    private javax.swing.JTextField jTextFieldRiceSubsidy3;
     private javax.swing.JTextField jTextFieldSSSContribution;
     private javax.swing.JTextField jTextFieldSSSNum;
-    private javax.swing.JTextField jTextFieldSSSNum2;
     private javax.swing.JTextField jTextFieldStatus;
     private javax.swing.JTextField jTextFieldSupervisor;
     private javax.swing.JTextField jTextFieldTINNum;
-    private javax.swing.JTextField jTextFieldTINNum2;
     private javax.swing.JTextField jTextSalaryBirthday;
     private javax.swing.JTextField jTextSalaryEmpNo;
     private javax.swing.JTextField jTextSalaryFirstName;
