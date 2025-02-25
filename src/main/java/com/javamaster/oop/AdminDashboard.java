@@ -1771,7 +1771,14 @@ public class AdminDashboard extends javax.swing.JFrame {
         model = (DefaultTableModel) jTableDatabase.getModel();
         int SelectedRowIndex = jTableDatabase.getSelectedRow();
         
-        jTextFieldEmpNum.setText(model.getValueAt(SelectedRowIndex, 0));
+        jTextFieldEmpNum.setText(model.getValueAt(SelectedRowIndex, 0).toString());
+        jTextFieldLastName.setText(model.getValueAt(SelectedRowIndex, 1).toString());
+        jTextFieldFirstName.setText(model.getValueAt(SelectedRowIndex, 2).toString());
+        jTextFieldPhoneNum.setText(model.getValueAt(SelectedRowIndex, 3).toString());
+        jAreaSalaryAddress1.setText(model.getValueAt(SelectedRowIndex, 4).toString());
+        jTextFieldSupervisor.setText(model.getValueAt(SelectedRowIndex, 12).toString());
+        jTextFieldPosition.setText(model.getValueAt(SelectedRowIndex, 11).toString());
+        jTextFieldStatus.setText(model.getValueAt(SelectedRowIndex, 10).toString());
         
     }//GEN-LAST:event_jTableDatabaseMouseClicked
 
