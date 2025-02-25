@@ -43,12 +43,12 @@ public class EmployeeDashboard extends javax.swing.JFrame {
         jTextDashboardPhilhealthNum.setText(emp.getPhilhealthNumber());
         jTextDashboardPagibigNum.setText(emp.getPagIbigNumber());
         jTextDashboardTinNum.setText(emp.getTinNumber());
-        jTextDashboardRiceSubsidy.setText(emp.getRiceSubsidy() + "");
-        jTextDashboardPhoneAllowance.setText(emp.getPhoneNumber() + "");
-        jTextDashboardClothingAllowance.setText(emp.getClothingAllowance() + "");
-        jTextDashboardHourlyRate.setText(emp.getHourlyRate() + "");
-        jTextDashboardGrossSemiMonthlyRate.setText(emp.getGrossSemiMonthlyRate() + "");
-        jTextDashboardBasicSalary.setText(emp.getBasicSalary() + "");
+        jTextDashboardRiceSubsidy.setText(Double.toString(emp.getRiceSubsidy()));
+        jTextDashboardPhoneAllowance.setText(Double.toString(emp.getPhoneAllowance()));
+        jTextDashboardClothingAllowance.setText(Double.toString(emp.getClothingAllowance()));
+        jTextDashboardHourlyRate.setText(Double.toString(emp.getHourlyRate()));
+        jTextDashboardGrossSemiMonthlyRate.setText(Double.toString(emp.getGrossSemiMonthlyRate()));
+        jTextDashboardBasicSalary.setText(Double.toString(emp.getBasicSalary()));
         
         // set text for request details
         jTextLeaveEmpNo.setText(emp.getEmployeeId());
@@ -78,7 +78,7 @@ public class EmployeeDashboard extends javax.swing.JFrame {
   
     }
   
-    
+    //comment sa branch
     
     /**
      * This method is called from within the constructor to initialize the form.

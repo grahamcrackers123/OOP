@@ -24,6 +24,28 @@ public class AdminDashboard extends javax.swing.JFrame {
         initComponents();
         this.admin=admin;
 
+        jTextDashboardEmpNo.setText(admin.getEmployeeId());
+        jTextDashboardFirstName.setText(admin.getFirstName());
+        jTextDashboardLastName.setText(admin.getLastName());
+        jAreaDashboardAddress.setText(admin.getAddress());
+        jTextDashboardBirthday.setText(admin.getBirthday());
+        jTextDashboardPhoneNo.setText(admin.getPhoneNumber());
+        jTextDashboardStatus.setText(admin.getStatus());
+        jTextDashboardPosition.setText(admin.getPosition());
+        jTextDashboardSupervisor.setText(admin.getImmediateSupervisor());
+        jTextDashboardSssNum.setText(admin.getSssNumber());
+        jTextDashboardPhilhealthNum.setText(admin.getPhilhealthNumber());
+        jTextDashboardPagibigNum.setText(admin.getPagIbigNumber());
+        jTextDashboardTinNum.setText(admin.getTinNumber());
+        jTextDashboardRiceSubsidy.setText(Double.toString(admin.getRiceSubsidy()));
+        jTextDashboardPhoneAllowance.setText(Double.toString(admin.getPhoneAllowance()));
+        jTextDashboardClothingAllowance.setText(Double.toString(admin.getClothingAllowance()));
+        jTextDashboardHourlyRate.setText(Double.toString(admin.getHourlyRate()));
+        jTextDashboardGrossSemiMonthlyRate.setText(Double.toString(admin.getGrossSemiMonthlyRate()));
+        jTextDashboardBasicSalary.setText(Double.toString(admin.getBasicSalary()));
+        
+
+
         populateTable("LeaveManagement.csv");
  
     }
