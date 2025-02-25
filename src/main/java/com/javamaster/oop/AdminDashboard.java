@@ -16,7 +16,9 @@ import javax.swing.JOptionPane;
 public class AdminDashboard extends javax.swing.JFrame {
     Admin admin;
     private List<String[]> leaveDatabase;
+    private List<String[]> employeeDatabase;
     private DefaultTableModel model;
+    private DefaultTableModel DatabaseModel;
     /**
      * Creates new form AdminDashboard
      */
@@ -44,11 +46,12 @@ public class AdminDashboard extends javax.swing.JFrame {
         jTextDashboardGrossSemiMonthlyRate.setText(Double.toString(admin.getGrossSemiMonthlyRate()));
         jTextDashboardBasicSalary.setText(Double.toString(admin.getBasicSalary()));
         
-        populateTable("LeaveManagement.csv");
+        populateLeaveTable("LeaveManagement.csv");
+        populateDatabaseTable("MotorPH.csv");
         
     }
     
-    private void populateTable(String file) {
+    private void populateLeaveTable(String file) {
         leaveDatabase = admin.loadCSV(file);
         String[] columnNames = {"Request #", "ID", "First Name","Last Name","Position","Leave Type","Start Date","End Date","Status"};
         
@@ -69,7 +72,27 @@ public class AdminDashboard extends javax.swing.JFrame {
             jTableLeaveManagement.setModel(model);
     }
 
-        
+    private void populateDatabaseTable(String file) {
+        employeeDatabase = admin.loadCSV(file);
+       String[] columnNames = {"ID", "Last Name", "First Name", "Birthday", "Address", "Phone Number", "SSS #", "Philhealth #", "TIN #", "Pag-ibig #", "Status", "Position", "Immediate Supervisor", "Basic Salary", "Rice Subsidy", "Phone Allowance", "Clothing Allowance", "Gross Semi-monthly Rate", "Hourly Rate"};
+
+         model = new DefaultTableModel(columnNames, 0) {
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                    return false; // This causes all cells to be uneditable
+                }
+        };
+
+            // Add existing data to the model
+            for (String[] row : employeeDatabase) {
+                model.addRow(row);
+            }
+
+
+
+            jTableDatabase.setModel(model);
+    }
+
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -1304,6 +1327,11 @@ public class AdminDashboard extends javax.swing.JFrame {
         adminDatabase.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTextFieldEmpNum.setEditable(false);
+        jTextFieldEmpNum.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldEmpNumActionPerformed(evt);
+            }
+        });
         adminDatabase.add(jTextFieldEmpNum, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, 70, 30));
 
         jLabel36.setForeground(new java.awt.Color(255, 255, 255));
@@ -1458,6 +1486,8 @@ public class AdminDashboard extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTableDatabase.setMaximumSize(new java.awt.Dimension(0, 0));
+        jTableDatabase.setMinimumSize(new java.awt.Dimension(0, 0));
         jTableDatabase.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTableDatabaseMouseClicked(evt);
@@ -1465,12 +1495,17 @@ public class AdminDashboard extends javax.swing.JFrame {
         });
         jScrollPane6.setViewportView(jTableDatabase);
 
-        adminDatabase.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 80, 560, 570));
+        adminDatabase.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 80, 550, 540));
 
         refreshButton.setBackground(new java.awt.Color(51, 51, 51));
         refreshButton.setForeground(new java.awt.Color(255, 255, 255));
         refreshButton.setText("Refresh");
         refreshButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        refreshButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshButtonActionPerformed(evt);
+            }
+        });
         adminDatabase.add(refreshButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 490, 160, 40));
 
         jPanelParent.add(adminDatabase, "card4");
@@ -1706,7 +1741,7 @@ public class AdminDashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_jTableLeaveManagementMouseClicked
 
     private void jButtonRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRefreshActionPerformed
-        populateTable("LeaveManagement.csv");
+        populateLeaveTable("LeaveManagement.csv");
     }//GEN-LAST:event_jButtonRefreshActionPerformed
 
     private void jButtonApproveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonApproveActionPerformed
@@ -1731,6 +1766,13 @@ public class AdminDashboard extends javax.swing.JFrame {
         editButton.setEnabled(true);
         clearButton.setEnabled(true);
         deleteButton.setEnabled(true);
+        
+        
+        model = (DefaultTableModel) jTableDatabase.getModel();
+        int SelectedRowIndex = jTableDatabase.getSelectedRow();
+        
+        jTextFieldEmpNum.setText(model.getValueAt(SelectedRowIndex, 0));
+        
     }//GEN-LAST:event_jTableDatabaseMouseClicked
 
     private void jTextFieldEmpNum1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldEmpNum1ActionPerformed
@@ -1798,6 +1840,16 @@ public class AdminDashboard extends javax.swing.JFrame {
     private void saveEditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveEditButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_saveEditButtonActionPerformed
+
+    private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
+        // TODO add your handling code here:
+        
+        
+    }//GEN-LAST:event_refreshButtonActionPerformed
+
+    private void jTextFieldEmpNumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldEmpNumActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldEmpNumActionPerformed
 
     /**
      * @param args the command line arguments
