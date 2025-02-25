@@ -19,7 +19,7 @@ public class AdminDashboard extends javax.swing.JFrame {
     private List<String[]> leaveDatabase;
     private List<String[]> employeeDatabase;
     private DefaultTableModel model;
-    private DefaultTableModel DatabaseModel;
+    private DefaultTableModel databaseModel;
     /**
      * Creates new form AdminDashboard
      */
@@ -54,6 +54,9 @@ public class AdminDashboard extends javax.swing.JFrame {
         int ID = employeeDatabase.size() + 1;
         jTextFieldEmpNum1.setText(Integer.toString(ID));
         
+        
+       //int SelectedRowIndex = databaseModel.get();//
+        
     }
     
     private void populateLeaveTable(String file) {
@@ -81,7 +84,7 @@ public class AdminDashboard extends javax.swing.JFrame {
         employeeDatabase = admin.loadCSV(file);
        String[] columnNames = {"ID", "Last Name", "First Name", "Birthday", "Address", "Phone Number", "SSS #", "Philhealth #", "TIN #", "Pag-ibig #", "Status", "Position", "Immediate Supervisor", "Basic Salary", "Rice Subsidy", "Phone Allowance", "Clothing Allowance", "Gross Semi-monthly Rate", "Hourly Rate"};
 
-         model = new DefaultTableModel(columnNames, 0) {
+         databaseModel = new DefaultTableModel(columnNames, 0) {
                 @Override
                 public boolean isCellEditable(int row, int column) {
                     return false; // This causes all cells to be uneditable
@@ -90,12 +93,12 @@ public class AdminDashboard extends javax.swing.JFrame {
 
             // Add existing data to the model
             for (String[] row : employeeDatabase) {
-                model.addRow(row);
+                databaseModel.addRow(row);
             }
 
 
 
-            jTableDatabase.setModel(model);
+            jTableDatabase.setModel(databaseModel);
     }
     
   
@@ -189,10 +192,10 @@ public class AdminDashboard extends javax.swing.JFrame {
         jLabel123 = new javax.swing.JLabel();
         jLabel124 = new javax.swing.JLabel();
         jTextFieldBasicSalary3 = new javax.swing.JTextField();
-        jTextFieldClothingAllowance6 = new javax.swing.JTextField();
+        jTextFieldGrossSemiMonthly6 = new javax.swing.JTextField();
         jLabel125 = new javax.swing.JLabel();
         jLabel126 = new javax.swing.JLabel();
-        jTextFieldClothingAllowance7 = new javax.swing.JTextField();
+        jTextFieldHourlyRateAllowance7 = new javax.swing.JTextField();
         cancelEditButton = new javax.swing.JButton();
         jLabel127 = new javax.swing.JLabel();
         saveEditButton = new javax.swing.JButton();
@@ -569,6 +572,12 @@ public class AdminDashboard extends javax.swing.JFrame {
         jLabel90.setForeground(new java.awt.Color(255, 255, 255));
         jLabel90.setText("Last Name :");
         jPanel5.add(jLabel90, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 80, 20));
+
+        jTextFieldLastName3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldLastName3ActionPerformed(evt);
+            }
+        });
         jPanel5.add(jTextFieldLastName3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 160, 210, -1));
 
         jCalendarBirthday2.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
@@ -582,6 +591,12 @@ public class AdminDashboard extends javax.swing.JFrame {
         jLabel92.setText(" Address :");
         jPanel5.add(jLabel92, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 70, 20));
         jPanel5.add(jTextFieldAddress2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 340, 210, 20));
+
+        jTextFieldPhoneNum3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldPhoneNum3ActionPerformed(evt);
+            }
+        });
         jPanel5.add(jTextFieldPhoneNum3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 370, 210, -1));
 
         jLabel93.setForeground(new java.awt.Color(255, 255, 255));
@@ -665,12 +680,12 @@ public class AdminDashboard extends javax.swing.JFrame {
         jPanel5.add(jLabel124, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 400, 80, 20));
         jPanel5.add(jTextFieldBasicSalary3, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 400, 180, -1));
 
-        jTextFieldClothingAllowance6.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldGrossSemiMonthly6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldClothingAllowance6ActionPerformed(evt);
+                jTextFieldGrossSemiMonthly6ActionPerformed(evt);
             }
         });
-        jPanel5.add(jTextFieldClothingAllowance6, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 430, 180, -1));
+        jPanel5.add(jTextFieldGrossSemiMonthly6, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 430, 180, -1));
 
         jLabel125.setForeground(new java.awt.Color(255, 255, 255));
         jLabel125.setText("Gross Semi-monthly :");
@@ -680,12 +695,12 @@ public class AdminDashboard extends javax.swing.JFrame {
         jLabel126.setText("Hourly Rate :");
         jPanel5.add(jLabel126, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 460, -1, 20));
 
-        jTextFieldClothingAllowance7.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldHourlyRateAllowance7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldClothingAllowance7ActionPerformed(evt);
+                jTextFieldHourlyRateAllowance7ActionPerformed(evt);
             }
         });
-        jPanel5.add(jTextFieldClothingAllowance7, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 460, 180, -1));
+        jPanel5.add(jTextFieldHourlyRateAllowance7, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 460, 180, -1));
 
         cancelEditButton.setBackground(new java.awt.Color(51, 51, 51));
         cancelEditButton.setForeground(new java.awt.Color(255, 255, 255));
@@ -1852,13 +1867,13 @@ public class AdminDashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldClothingAllowance5ActionPerformed
 
-    private void jTextFieldClothingAllowance6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldClothingAllowance6ActionPerformed
+    private void jTextFieldGrossSemiMonthly6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldGrossSemiMonthly6ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldClothingAllowance6ActionPerformed
+    }//GEN-LAST:event_jTextFieldGrossSemiMonthly6ActionPerformed
 
-    private void jTextFieldClothingAllowance7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldClothingAllowance7ActionPerformed
+    private void jTextFieldHourlyRateAllowance7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldHourlyRateAllowance7ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldClothingAllowance7ActionPerformed
+    }//GEN-LAST:event_jTextFieldHourlyRateAllowance7ActionPerformed
 
     private void cancelEditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelEditButtonActionPerformed
         // TODO add your handling code here:
@@ -1867,6 +1882,13 @@ public class AdminDashboard extends javax.swing.JFrame {
 
     private void saveEditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveEditButtonActionPerformed
         // TODO add your handling code here:
+        
+        
+        admin.updateEmployee(jTextFieldEmpNum3.getText(), jTextFieldFirstName4.getText(), jTextFieldLastName3.getText(),(jCalendarBirthday2.getDate()), 
+        jTextFieldAddress2.getText(), jTextFieldPhoneNum3.getText(), jTextFieldSSSNum2.getText(), jTextFieldPhilHealthNum2.getText(), jTextFieldTINNum2.getText(), 
+        jTextFieldPagibigNum2.getText(), jComboBoxStatus2.getSelectedItem().toString(), jComboBoxPosition2.getSelectedItem().toString(), jComboBoxSupervisor2.getSelectedItem().toString(), jTextFieldBasicSalary3.getText(),
+        jTextFieldRiceSubsidy3.getText(), jTextFieldPhoneAllowance3.getText(), jTextFieldClothingAllowance5.getText(), jTextFieldGrossSemiMonthly6.getText(), 
+        jTextFieldHourlyRateAllowance7.getText(), editRecord);
     }//GEN-LAST:event_saveEditButtonActionPerformed
 
     private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
@@ -1878,6 +1900,14 @@ public class AdminDashboard extends javax.swing.JFrame {
     private void jTextFieldEmpNumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldEmpNumActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldEmpNumActionPerformed
+
+    private void jTextFieldLastName3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldLastName3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLastName3ActionPerformed
+
+    private void jTextFieldPhoneNum3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPhoneNum3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldPhoneNum3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -2109,8 +2139,6 @@ public class AdminDashboard extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldClothingAllowance;
     private javax.swing.JTextField jTextFieldClothingAllowance1;
     private javax.swing.JTextField jTextFieldClothingAllowance5;
-    private javax.swing.JTextField jTextFieldClothingAllowance6;
-    private javax.swing.JTextField jTextFieldClothingAllowance7;
     private javax.swing.JTextField jTextFieldEmpNum;
     private javax.swing.JTextField jTextFieldEmpNum1;
     private javax.swing.JTextField jTextFieldEmpNum3;
@@ -2118,8 +2146,10 @@ public class AdminDashboard extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldFirstName2;
     private javax.swing.JTextField jTextFieldFirstName4;
     private javax.swing.JTextField jTextFieldGrossPay;
+    private javax.swing.JTextField jTextFieldGrossSemiMonthly6;
     private javax.swing.JTextField jTextFieldGrossSemiMonthlyRate;
     private javax.swing.JTextField jTextFieldHourlyRate;
+    private javax.swing.JTextField jTextFieldHourlyRateAllowance7;
     private javax.swing.JTextField jTextFieldLastName;
     private javax.swing.JTextField jTextFieldLastName1;
     private javax.swing.JTextField jTextFieldLastName3;

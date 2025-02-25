@@ -134,7 +134,7 @@ public class Admin extends User{
             phoneNum.trim().isEmpty() || sssNum.trim().isEmpty() || philHealthNum.trim().isEmpty() ||
             tinNum.trim().isEmpty() || pagibigNum.trim().isEmpty() || basicSalary.trim().isEmpty() ||
             riceSubsidy.trim().isEmpty() || phoneAllowance.trim().isEmpty() || clothingAllowance.trim().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Please fill in all fields");
+            JOptionPane.showMessageDialog(parent, "Please fill in all fields");
             
             return;
         }
@@ -381,9 +381,9 @@ public class Admin extends User{
             // Write updated data back to CSV
             try {
                 csva.updateCSV(csvArrayList, "MotorPH.csv");
-                JOptionPane.showMessageDialog(null, "Updated Successfully\n Please click the refresh button to view changes.");
+                JOptionPane.showMessageDialog(parent, "Updated Successfully\n Please click the refresh button to view changes.");
             } catch (IOException e) {
-                JOptionPane.showMessageDialog(null, "Error writing to file: " + e.getMessage());
+                JOptionPane.showMessageDialog(parent, "Error writing to file: " + e.getMessage());
             }
 
             employeeFound = true;
@@ -393,7 +393,7 @@ public class Admin extends User{
 
     // If employee not found, display a message
     if (!employeeFound) {
-        JOptionPane.showMessageDialog(null, "Employee not found.");
+        JOptionPane.showMessageDialog(parent, "Employee not found.");
     }
 }
    
