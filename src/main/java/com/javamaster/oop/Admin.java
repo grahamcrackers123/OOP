@@ -15,7 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
-
+import javax.swing.JFrame;
 /*
 *
  *
@@ -115,14 +115,18 @@ public class Admin extends User{
     
 //CRUD ACTIONS   
     //------------------------------------C R E A T E -- E M P L O Y E E-----------------------------------------
+    private boolean isValid;
+   
+   
     
+
      public void createEmployee(String empNum, String firstName, String lastName, String birthday, String address,
                                 String phoneNum, String sssNum, String philHealthNum, String tinNum,
                                 String pagibigNum, String status, String position, String supervisor,
                                 String basicSalary, String riceSubsidy, String phoneAllowance,
-                                String clothingAllowance) {
+                                String clothingAllowance, JFrame parent) {
         
-        boolean isValid = true;
+        isValid = true;
         String[] newRow = new String[19];
 
         // Validate inputs
@@ -137,9 +141,12 @@ public class Admin extends User{
 
         Validator validator = new Validator();
         newRow[0] = empNum;
+        
+            
+            
 
         if (!validator.isValidString(lastName)) {
-            JOptionPane.showMessageDialog(null, "Please input valid Last Name");
+            JOptionPane.showMessageDialog(parent, "Please input valid Last Name");
             isValid = false;
             return;
         } else {
@@ -147,7 +154,7 @@ public class Admin extends User{
         }
 
         if (!validator.isValidString(firstName)) {
-            JOptionPane.showMessageDialog(null, "Please input valid First Name");
+            JOptionPane.showMessageDialog(parent, "Please input valid First Name");
             isValid = false;
             return;
         } else {
@@ -157,7 +164,7 @@ public class Admin extends User{
         newRow[3] = birthday; // Assuming birthday is already formatted
 
         if (!validator.isValidAddress(address)) {
-            JOptionPane.showMessageDialog(null, "Please exclude using commas in Address");
+            JOptionPane.showMessageDialog(parent, "Please exclude using commas in Address");
             isValid = false;
             return;
         } else {
@@ -165,7 +172,7 @@ public class Admin extends User{
         }
 
         if (!validator.isValidPhoneNumber(phoneNum)) {
-            JOptionPane.showMessageDialog(null, "Please input valid Phone Number (xxx-xxx-xxx)");
+            JOptionPane.showMessageDialog(parent, "Please input valid Phone Number (xxx-xxx-xxx)");
             isValid = false;
             return;
         } else {
@@ -173,7 +180,7 @@ public class Admin extends User{
         }
 
         if (!validator.isValidSssNumber(sssNum)) {
-            JOptionPane.showMessageDialog(null, "Please format SSS as xx-xxxxxxx-x");
+            JOptionPane.showMessageDialog(parent, "Please format SSS as xx-xxxxxxx-x");
             isValid = false;
             return;
         } else {
@@ -181,7 +188,7 @@ public class Admin extends User{
         }
 
         if (!validator.isValidPhilhealthNumber(philHealthNum)) {
-            JOptionPane.showMessageDialog(null, "Please format PhilHealth as xxxxxxxxxxxx (12 digits)");
+            JOptionPane.showMessageDialog(parent, "Please format PhilHealth as xxxxxxxxxxxx (12 digits)");
             isValid = false;
             return;
         } else {
@@ -189,7 +196,7 @@ public class Admin extends User{
         }
 
         if (!validator.isValidTin(tinNum)) {
-            JOptionPane.showMessageDialog(null, "Please format TIN as xxx-xxx-xxx-xxx");
+            JOptionPane.showMessageDialog(parent, "Please format TIN as xxx-xxx-xxx-xxx");
             isValid = false;
             return;
         } else {
@@ -197,7 +204,7 @@ public class Admin extends User{
         }
 
         if (!validator.isValidPagibigNumber(pagibigNum)) {
-            JOptionPane.showMessageDialog(null, "Please format Pagibig as xxxxxxxxxxxx (12 digits)");
+            JOptionPane.showMessageDialog(parent, "Please format Pagibig as xxxxxxxxxxxx (12 digits)");
             isValid = false;
             return;
         } else {
@@ -209,7 +216,7 @@ public class Admin extends User{
         newRow[12] = supervisor;
 
         if (!validator.isValidNumber(basicSalary)) {
-            JOptionPane.showMessageDialog(null, "Please input valid Basic Salary");
+            JOptionPane.showMessageDialog(parent, "Please input valid Basic Salary");
             isValid = false;
             return;
         } else {
@@ -217,7 +224,7 @@ public class Admin extends User{
         }
 
         if (!validator.isValidNumber(riceSubsidy)) {
-            JOptionPane.showMessageDialog(null, "Please input valid Rice Subsidy");
+            JOptionPane.showMessageDialog(parent, "Please input valid Rice Subsidy");
             isValid = false;
             return;
         } else {
@@ -225,7 +232,7 @@ public class Admin extends User{
         }
 
         if (!validator.isValidNumber(phoneAllowance)) {
-            JOptionPane.showMessageDialog(null, "Please input valid Phone Allowance");
+            JOptionPane.showMessageDialog(parent, "Please input valid Phone Allowance");
             isValid = false;
             return;
         } else {
@@ -233,7 +240,7 @@ public class Admin extends User{
         }
 
         if (!validator.isValidNumber(clothingAllowance)) {
-            JOptionPane.showMessageDialog(null, "Please input valid Clothing Allowance");
+            JOptionPane.showMessageDialog(parent, "Please input valid Clothing Allowance");
             isValid = false;
             return;
         } else {
@@ -248,14 +255,18 @@ public class Admin extends User{
            try{
                 csvArrayList.add(newRow);
                 updateCSV(csvArrayList, "MotorPH.csv");
-                JOptionPane.showMessageDialog(null, "Updated Successfully\n Please click the refresh Button to view changes ");
+                JOptionPane.showMessageDialog(parent, "Updated Successfully\n Please click the refresh Button to view changes ");
         
            }catch(IOException e){
-               JOptionPane.showMessageDialog(null, "Error Writing to File");
+               JOptionPane.showMessageDialog(parent, "Error Writing to File");
                e.printStackTrace();
            }
            
        }   
+     }
+     
+     public boolean isInputValid(){
+         return isValid;
      }
      //--------------------------------E D I T -- E M P L O Y E E-------------------------------------------
    public void updateEmployee(String employeeID, String firstName, String lastName, Date birthday,
@@ -263,83 +274,83 @@ public class Admin extends User{
                            String tinNum, String pagibigNum, String status, String position,
                            String supervisor, String basicSalary, String riceSubsidy,
                            String phoneAllowance, String clothingAllowance, String grossSemiMonthly,
-                           String hourlyRate) {
+                           String hourlyRate, JFrame parent) {
 
     Validator validator = new Validator();
 
     // Validate inputs
     if (firstName.trim().isEmpty()) {
-        JOptionPane.showMessageDialog(null, "First Name is required.");
+        JOptionPane.showMessageDialog(parent, "First Name is required.");
         return;
     }
 
     if (lastName.trim().isEmpty()) {
-        JOptionPane.showMessageDialog(null, "Last Name is required.");
+        JOptionPane.showMessageDialog(parent, "Last Name is required.");
         return;
     }
 
     if (address.trim().isEmpty()) {
-        JOptionPane.showMessageDialog(null, "Address is required.");
+        JOptionPane.showMessageDialog(parent, "Address is required.");
         return;
     }
 
     if (phoneNum.trim().isEmpty()) {
-        JOptionPane.showMessageDialog(null, "Phone Number is required.");
+        JOptionPane.showMessageDialog(parent, "Phone Number is required.");
         return;
     }
 
     if (!validator.isValidPhoneNumber(phoneNum)) {
-        JOptionPane.showMessageDialog(null, "Please input a valid Phone Number (xxx-xxx-xxx).");
+        JOptionPane.showMessageDialog(parent, "Please input a valid Phone Number (xxx-xxx-xxx).");
         return;
     }
 
     if (!validator.isValidSssNumber(sssNum)) {
-        JOptionPane.showMessageDialog(null, "Please format SSS as xx-xxxxxxx-x.");
+        JOptionPane.showMessageDialog(parent, "Please format SSS as xx-xxxxxxx-x.");
         return;
     }
 
     if (!validator.isValidPhilhealthNumber(philHealthNum)) {
-        JOptionPane.showMessageDialog(null, "Please format PhilHealth as xxxxxxxxxxxx (12 digits).");
+        JOptionPane.showMessageDialog(parent, "Please format PhilHealth as xxxxxxxxxxxx (12 digits).");
         return;
     }
 
     if (!validator.isValidTin(tinNum)) {
-        JOptionPane.showMessageDialog(null, "Please format TIN as xxx-xxx-xxx-xxx.");
+        JOptionPane.showMessageDialog(parent, "Please format TIN as xxx-xxx-xxx-xxx.");
         return;
     }
 
     if (!validator.isValidPagibigNumber(pagibigNum)) {
-        JOptionPane.showMessageDialog(null, "Please format Pagibig as xxxxxxxxxxxx (12 digits).");
+        JOptionPane.showMessageDialog(parent, "Please format Pagibig as xxxxxxxxxxxx (12 digits).");
         return;
     }
 
     if (!validator.isValidNumber(basicSalary)) {
-        JOptionPane.showMessageDialog(null, "Please input a valid Basic Salary.");
+        JOptionPane.showMessageDialog(parent, "Please input a valid Basic Salary.");
         return;
     }
 
     if (!validator.isValidNumber(riceSubsidy)) {
-        JOptionPane.showMessageDialog(null, "Please input a valid Rice Subsidy.");
+        JOptionPane.showMessageDialog(parent, "Please input a valid Rice Subsidy.");
         return;
     }
 
     if (!validator.isValidNumber(phoneAllowance)) {
-        JOptionPane.showMessageDialog(null, "Please input a valid Phone Allowance.");
+        JOptionPane.showMessageDialog(parent, "Please input a valid Phone Allowance.");
         return;
     }
 
     if (!validator.isValidNumber(clothingAllowance)) {
-        JOptionPane.showMessageDialog(null, "Please input a valid Clothing Allowance.");
+        JOptionPane.showMessageDialog(parent, "Please input a valid Clothing Allowance.");
         return;
     }
 
     if (!validator.isValidNumber(grossSemiMonthly)) {
-        JOptionPane.showMessageDialog(null, "Please input a valid Gross Semi Monthly.");
+        JOptionPane.showMessageDialog(parent, "Please input a valid Gross Semi Monthly.");
         return;
     }
 
     if (!validator.isValidNumber(hourlyRate)) {
-        JOptionPane.showMessageDialog(null, "Please input a valid Hourly Rate.");
+        JOptionPane.showMessageDialog(parent, "Please input a valid Hourly Rate.");
         return;
     }
 

@@ -97,6 +97,8 @@ public class AdminDashboard extends javax.swing.JFrame {
 
             jTableDatabase.setModel(model);
     }
+    
+  
 
     
     /**
@@ -1811,12 +1813,17 @@ public class AdminDashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
         
-        
+                
                 admin.createEmployee(jTextFieldEmpNum1.getText(), jTextFieldFirstName2.getText(), jTextFieldLastName1.getText(), 
                 sdf.format(jCalendarBirthday.getDate()), jTextFieldAddress.getText(), jTextFieldPhoneNum1.getText(), jTextFieldSSSNum.getText(), jTextFieldPhilHealthNum.getText(),
                 jTextFieldTINNum.getText(), jTextFieldPagibigNum.getText(), jComboBoxStatus.getSelectedItem().toString(), jComboBoxPosition.getSelectedItem().toString(),
                 jComboBoxSupervisor.getSelectedItem().toString(), jTextFieldBasicSalary1.getText(), jTextFieldRiceSubsidy1.getText(), 
-                jTextFieldPhoneAllowance1.getText(), jTextFieldClothingAllowance1.getText());
+                jTextFieldPhoneAllowance1.getText(), jTextFieldClothingAllowance1.getText(), createRecord);
+                
+                
+                if(admin.isInputValid()){
+                    createRecord.setVisible(false);
+                }
                   
     }//GEN-LAST:event_saveCreateButtonActionPerformed
 
@@ -1864,7 +1871,7 @@ public class AdminDashboard extends javax.swing.JFrame {
 
     private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
         // TODO add your handling code here:
-        
+        populateDatabaseTable("MotorPH.csv");
         
     }//GEN-LAST:event_refreshButtonActionPerformed
 
@@ -1924,7 +1931,7 @@ public class AdminDashboard extends javax.swing.JFrame {
     private javax.swing.JButton cancelEditButton;
     private javax.swing.JButton clearButton;
     private javax.swing.JButton createButton;
-    private javax.swing.JFrame createRecord;
+    public javax.swing.JFrame createRecord;
     private javax.swing.JButton deleteButton;
     private javax.swing.JButton editButton;
     private javax.swing.JFrame editRecord;
