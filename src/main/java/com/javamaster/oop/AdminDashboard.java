@@ -7,6 +7,7 @@ package com.javamaster.oop;
 import java.awt.Color;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -15,38 +16,36 @@ import javax.swing.table.DefaultTableModel;
 public class AdminDashboard extends javax.swing.JFrame {
     Admin admin;
     private List<String[]> leaveDatabase;
+    private DefaultTableModel model;
     /**
      * Creates new form AdminDashboard
      */
     public AdminDashboard(Admin admin) {
         initComponents();
         this.admin=admin;
-        
-        this.leaveDatabase = admin.loadCSV("LeaveManagement.csv");
-  
-        
 
-        String[] columnNames = {"Request #", "ID", "First Name","Last Name","Position","Leave Type","Start Date","End Date","Status"};
+        populateTable("LeaveManagement.csv");
+ 
+    }
+
+    private void populateTable(String file) {
+        leaveDatabase = admin.loadCSV(file);
+        String[] columnNames = {"Request #","ID", "First Name","Last Name","Position","Leave Type","Start Date","End Date","Status"};
         
-        DefaultTableModel model = new DefaultTableModel(columnNames, 0) {
+        this.model = new DefaultTableModel(columnNames, 0) {
                 @Override
                 public boolean isCellEditable(int row, int column) {
                     return false; // This causes all cells to be uneditable
                 }
         };
 
-            // Add existing data to the model
-            for (String[] row : leaveDatabase) {
-                model.addRow(row);
-            }
+        // Add existing data to the model
+        for (String[] row : leaveDatabase) {
+            model.addRow(row);
+        }
 
-
-
-            jTableLeaveManagement.setModel(model);
-        
-        
+        jTableLeaveManagement.setModel(model);
     }
-
         
     
     /**
@@ -1684,17 +1683,22 @@ public class AdminDashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_jTableLeaveManagementMouseClicked
 
     private void jButtonRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRefreshActionPerformed
-
+        populateTable("LeaveManagement.csv");
     }//GEN-LAST:event_jButtonRefreshActionPerformed
 
     private void jButtonApproveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonApproveActionPerformed
-        // TODO add your handling code here:
         
-
+        int selectedRowIndex = jTableLeaveManagement.getSelectedRow();
+        String employeeID = model.getValueAt(selectedRowIndex, 0).toString();
+        
+        admin.approveLeave(employeeID);
     }//GEN-LAST:event_jButtonApproveActionPerformed
 
     private void jButtonReject1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReject1ActionPerformed
-        // TODO add your handling code here:
+        int selectedRowIndex = jTableLeaveManagement.getSelectedRow();
+        String employeeID = model.getValueAt(selectedRowIndex, 0).toString();
+        
+        admin.denyLeave(employeeID);
 
     }//GEN-LAST:event_jButtonReject1ActionPerformed
 
