@@ -7,6 +7,7 @@ package com.javamaster.oop;
 import java.awt.Color;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -15,6 +16,7 @@ import javax.swing.table.DefaultTableModel;
 public class AdminDashboard extends javax.swing.JFrame {
     Admin admin;
     private List<String[]> leaveDatabase;
+    private DefaultTableModel model;
     /**
      * Creates new form AdminDashboard
      */
@@ -47,6 +49,7 @@ public class AdminDashboard extends javax.swing.JFrame {
     }
     
     private void populateTable(String file) {
+        leaveDatabase = admin.loadCSV(file);
         String[] columnNames = {"Request #", "ID", "First Name","Last Name","Position","Leave Type","Start Date","End Date","Status"};
         
         DefaultTableModel model = new DefaultTableModel(columnNames, 0) {
@@ -1707,13 +1710,18 @@ public class AdminDashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonRefreshActionPerformed
 
     private void jButtonApproveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonApproveActionPerformed
-        // TODO add your handling code here:
+        int selectedRowIndex = jTableLeaveManagement.getSelectedRow();
+        String employeeID = model.getValueAt(selectedRowIndex, 0).toString();
         
-
+        admin.approveLeave(employeeID);
+        
     }//GEN-LAST:event_jButtonApproveActionPerformed
 
     private void jButtonReject1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReject1ActionPerformed
-        // TODO add your handling code here:
+        int selectedRowIndex = jTableLeaveManagement.getSelectedRow();
+        String employeeID = model.getValueAt(selectedRowIndex, 0).toString();
+        
+        admin.denyLeave(employeeID);
 
     }//GEN-LAST:event_jButtonReject1ActionPerformed
 
