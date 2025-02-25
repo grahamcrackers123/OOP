@@ -1,0 +1,459 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.javamaster.oop;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import javax.swing.JOptionPane;
+
+/*
+*
+ *
+ * @author zach malonjao
+ */
+public class Admin extends User{
+    public Admin(String employeeId, String lastName, String firstName, String birthday, String address,
+                    String phoneNumber, String sssNumber, String philhealthNumber, String tinNumber,
+                    String pagIbigNumber, String status, String position, String immediateSupervisor,
+                    double basicSalary, double riceSubsidy, double phoneAllowance, double clothingAllowance,
+                    double grossSemiMonthlyRate, double hourlyRate) {
+        super(employeeId, lastName, firstName, birthday, address, phoneNumber, sssNumber, philhealthNumber,
+              tinNumber, pagIbigNumber, status, position, immediateSupervisor, basicSalary, riceSubsidy,
+              phoneAllowance, clothingAllowance, grossSemiMonthlyRate, hourlyRate);
+    }
+    private List<String[]> csvArrayList;
+    CSVAccessor csva = new CSVAccessor();
+    
+    private List<String[]> leaveArrayList = csva.loadCSV("LeaveManagement.csv");
+    
+    
+//-----------------------------------------------------------------
+//ACCESS ROLES
+    
+    void accessDatabase(){
+        Database db = new Database();
+        db.setVisible(true);
+    }
+    
+
+    @Override
+    public void accessLeave(User user){
+        //beware FL has no parameters
+        FileManagement fm = new FileManagement();
+        fm.setVisible(true);
+    }
+    
+   @Override
+    public void accessDashboard(User admin){
+        AdminDashboard adb = new AdminDashboard((Admin)admin);
+           adb.setVisible(true);
+    }
+    
+    @Override
+    public void accessSalaryCalculation(User user) {
+        
+        AdminSalaryCalculation asc = new AdminSalaryCalculation((Admin)user);
+            asc.setVisible(true);
+       
+    }
+    
+//-----------------------------------------------------------------
+//CSV Tools
+    //Para magbasa ng csv, use this method.
+   
+    public List<String[]> loadCSV(String csvFile){
+       return csva.loadCSV(csvFile);
+    }
+    
+    //Para magupdate, use this method
+
+    public void updateCSV(List<String[]> csvArrayList, String file)throws IOException{
+        csva.updateCSV(csvArrayList, file);
+    }
+    
+    //Para magsearch, use this method
+
+    public String[] searchUserData(List<String[]> csvArrayList, String index){
+        return csva.searchUserData(csvArrayList, index);
+    }
+    
+ //Stuff only they can do
+    
+     protected void setBasicSalary(double basicSalary) {
+        this.basicSalary = basicSalary;
+    }
+     
+      protected void setRiceSubsidy(double riceSubsidy) {
+        this.riceSubsidy = riceSubsidy;
+    }
+      
+     protected void setPhoneAllowance(double phoneAllowance) {
+    this.phoneAllowance = phoneAllowance;
+}
+     
+     protected void setGrossSemiMonthlyRate(double grossSemiMonthlyRate) {
+    this.grossSemiMonthlyRate = grossSemiMonthlyRate;
+}
+    protected void setClothingAllowance(double clothingAllowance) {
+    this.clothingAllowance = clothingAllowance;
+}
+    
+    protected void setHourlyRate(double hourlyRate) {
+    this.hourlyRate = hourlyRate;
+}
+    
+    
+//CRUD ACTIONS   
+    //------------------------------------C R E A T E -- E M P L O Y E E-----------------------------------------
+    
+     public void createEmployee(String empNum, String firstName, String lastName, String birthday, String address,
+                                String phoneNum, String sssNum, String philHealthNum, String tinNum,
+                                String pagibigNum, String status, String position, String supervisor,
+                                String basicSalary, String riceSubsidy, String phoneAllowance,
+                                String clothingAllowance) {
+        
+        boolean isValid = true;
+        String[] newRow = new String[19];
+
+        // Validate inputs
+        if (firstName.trim().isEmpty() || lastName.trim().isEmpty() || address.trim().isEmpty() ||
+            phoneNum.trim().isEmpty() || sssNum.trim().isEmpty() || philHealthNum.trim().isEmpty() ||
+            tinNum.trim().isEmpty() || pagibigNum.trim().isEmpty() || basicSalary.trim().isEmpty() ||
+            riceSubsidy.trim().isEmpty() || phoneAllowance.trim().isEmpty() || clothingAllowance.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Please fill in all fields");
+            
+            return;
+        }
+
+        Validator validator = new Validator();
+        newRow[0] = empNum;
+
+        if (!validator.isValidString(lastName)) {
+            JOptionPane.showMessageDialog(null, "Please input valid Last Name");
+            isValid = false;
+            return;
+        } else {
+            newRow[1] = lastName;
+        }
+
+        if (!validator.isValidString(firstName)) {
+            JOptionPane.showMessageDialog(null, "Please input valid First Name");
+            isValid = false;
+            return;
+        } else {
+            newRow[2] = firstName;
+        }
+
+        newRow[3] = birthday; // Assuming birthday is already formatted
+
+        if (!validator.isValidAddress(address)) {
+            JOptionPane.showMessageDialog(null, "Please exclude using commas in Address");
+            isValid = false;
+            return;
+        } else {
+            newRow[4] = address;
+        }
+
+        if (!validator.isValidPhoneNumber(phoneNum)) {
+            JOptionPane.showMessageDialog(null, "Please input valid Phone Number (xxx-xxx-xxx)");
+            isValid = false;
+            return;
+        } else {
+            newRow[5] = phoneNum;
+        }
+
+        if (!validator.isValidSssNumber(sssNum)) {
+            JOptionPane.showMessageDialog(null, "Please format SSS as xx-xxxxxxx-x");
+            isValid = false;
+            return;
+        } else {
+            newRow[6] = sssNum;
+        }
+
+        if (!validator.isValidPhilhealthNumber(philHealthNum)) {
+            JOptionPane.showMessageDialog(null, "Please format PhilHealth as xxxxxxxxxxxx (12 digits)");
+            isValid = false;
+            return;
+        } else {
+            newRow[7] = philHealthNum;
+        }
+
+        if (!validator.isValidTin(tinNum)) {
+            JOptionPane.showMessageDialog(null, "Please format TIN as xxx-xxx-xxx-xxx");
+            isValid = false;
+            return;
+        } else {
+            newRow[8] = tinNum;
+        }
+
+        if (!validator.isValidPagibigNumber(pagibigNum)) {
+            JOptionPane.showMessageDialog(null, "Please format Pagibig as xxxxxxxxxxxx (12 digits)");
+            isValid = false;
+            return;
+        } else {
+            newRow[9] = pagibigNum;
+        }
+
+        newRow[10] = status;
+        newRow[11] = position;
+        newRow[12] = supervisor;
+
+        if (!validator.isValidNumber(basicSalary)) {
+            JOptionPane.showMessageDialog(null, "Please input valid Basic Salary");
+            isValid = false;
+            return;
+        } else {
+            newRow[13] = basicSalary;
+        }
+
+        if (!validator.isValidNumber(riceSubsidy)) {
+            JOptionPane.showMessageDialog(null, "Please input valid Rice Subsidy");
+            isValid = false;
+            return;
+        } else {
+            newRow[14] = riceSubsidy;
+        }
+
+        if (!validator.isValidNumber(phoneAllowance)) {
+            JOptionPane.showMessageDialog(null, "Please input valid Phone Allowance");
+            isValid = false;
+            return;
+        } else {
+            newRow[15] = phoneAllowance;
+        }
+
+        if (!validator.isValidNumber(clothingAllowance)) {
+            JOptionPane.showMessageDialog(null, "Please input valid Clothing Allowance");
+            isValid = false;
+            return;
+        } else {
+            newRow[16] = clothingAllowance;
+        }
+
+        newRow[17] = String.valueOf(Double.parseDouble(basicSalary) / 2);
+        newRow[18] = String.valueOf((Double.parseDouble(basicSalary) / 2) / 84);
+
+       if (isValid) {
+           
+           try{
+                csvArrayList.add(newRow);
+                updateCSV(csvArrayList, "MotorPH.csv");
+                JOptionPane.showMessageDialog(null, "Updated Successfully\n Please click the refresh Button to view changes ");
+        
+           }catch(IOException e){
+               JOptionPane.showMessageDialog(null, "Error Writing to File");
+               e.printStackTrace();
+           }
+       }   
+     }
+     //--------------------------------E D I T -- E M P L O Y E E-------------------------------------------
+   public void updateEmployee(String employeeID, String firstName, String lastName, Date birthday,
+                           String address, String phoneNum, String sssNum, String philHealthNum,
+                           String tinNum, String pagibigNum, String status, String position,
+                           String supervisor, String basicSalary, String riceSubsidy,
+                           String phoneAllowance, String clothingAllowance, String grossSemiMonthly,
+                           String hourlyRate) {
+
+    Validator validator = new Validator();
+
+    // Validate inputs
+    if (firstName.trim().isEmpty()) {
+        JOptionPane.showMessageDialog(null, "First Name is required.");
+        return;
+    }
+
+    if (lastName.trim().isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Last Name is required.");
+        return;
+    }
+
+    if (address.trim().isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Address is required.");
+        return;
+    }
+
+    if (phoneNum.trim().isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Phone Number is required.");
+        return;
+    }
+
+    if (!validator.isValidPhoneNumber(phoneNum)) {
+        JOptionPane.showMessageDialog(null, "Please input a valid Phone Number (xxx-xxx-xxx).");
+        return;
+    }
+
+    if (!validator.isValidSssNumber(sssNum)) {
+        JOptionPane.showMessageDialog(null, "Please format SSS as xx-xxxxxxx-x.");
+        return;
+    }
+
+    if (!validator.isValidPhilhealthNumber(philHealthNum)) {
+        JOptionPane.showMessageDialog(null, "Please format PhilHealth as xxxxxxxxxxxx (12 digits).");
+        return;
+    }
+
+    if (!validator.isValidTin(tinNum)) {
+        JOptionPane.showMessageDialog(null, "Please format TIN as xxx-xxx-xxx-xxx.");
+        return;
+    }
+
+    if (!validator.isValidPagibigNumber(pagibigNum)) {
+        JOptionPane.showMessageDialog(null, "Please format Pagibig as xxxxxxxxxxxx (12 digits).");
+        return;
+    }
+
+    if (!validator.isValidNumber(basicSalary)) {
+        JOptionPane.showMessageDialog(null, "Please input a valid Basic Salary.");
+        return;
+    }
+
+    if (!validator.isValidNumber(riceSubsidy)) {
+        JOptionPane.showMessageDialog(null, "Please input a valid Rice Subsidy.");
+        return;
+    }
+
+    if (!validator.isValidNumber(phoneAllowance)) {
+        JOptionPane.showMessageDialog(null, "Please input a valid Phone Allowance.");
+        return;
+    }
+
+    if (!validator.isValidNumber(clothingAllowance)) {
+        JOptionPane.showMessageDialog(null, "Please input a valid Clothing Allowance.");
+        return;
+    }
+
+    if (!validator.isValidNumber(grossSemiMonthly)) {
+        JOptionPane.showMessageDialog(null, "Please input a valid Gross Semi Monthly.");
+        return;
+    }
+
+    if (!validator.isValidNumber(hourlyRate)) {
+        JOptionPane.showMessageDialog(null, "Please input a valid Hourly Rate.");
+        return;
+    }
+
+    // Find and update the employee record
+    boolean employeeFound = false;
+    for (String[] employee : csvArrayList) {
+        if (employee[0].equals(employeeID)) {
+            employee[1] = lastName;
+            employee[2] = firstName;
+            SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+            employee[3] = sdf.format(birthday);
+            employee[4] = address;
+            employee[5] = phoneNum;
+            employee[6] = sssNum;
+            employee[7] = philHealthNum;
+            employee[8] = tinNum;
+            employee[9] = pagibigNum;
+            employee[10] = status;
+            employee[11] = position;
+            employee[12] = supervisor;
+            employee[13] = basicSalary;
+            employee[14] = riceSubsidy;
+            employee[15] = phoneAllowance;
+            employee[16] = clothingAllowance;
+            employee[17] = grossSemiMonthly;
+            employee[18] = hourlyRate;
+
+            // Write updated data back to CSV
+            try {
+                csva.updateCSV(csvArrayList, "MotorPH.csv");
+                JOptionPane.showMessageDialog(null, "Updated Successfully\n Please click the refresh button to view changes.");
+            } catch (IOException e) {
+                JOptionPane.showMessageDialog(null, "Error writing to file: " + e.getMessage());
+            }
+
+            employeeFound = true;
+            break; // Exit the loop after updating
+        }
+    }
+
+    // If employee not found, display a message
+    if (!employeeFound) {
+        JOptionPane.showMessageDialog(null, "Employee not found.");
+    }
+}
+   
+   
+   public void deleteEmployee(int index){
+        for (int i = 0; i < csvArrayList.size(); i++) {
+                String[] record = csvArrayList.get(i);
+
+                if (record[0].equals(String.valueOf(index))) {
+                    csvArrayList.remove(i);
+
+                    break;
+                }
+            }
+        try{
+            updateCSV(csvArrayList, "MotorPH.csv");
+       }catch(IOException e){
+          JOptionPane.showMessageDialog(null, "Error Writing to file");
+          e.printStackTrace();
+      }
+   }
+
+  //------------------------------L E A V E----------------------------------------------------
+    public void approveLeave(String index){
+        leaveArrayList = csva.loadCSV("LeaveManagement.csv");
+        String[] empLeaveData = csva.searchUserData(leaveArrayList, index);
+                if (empLeaveData != null) {
+                     empLeaveData[8] = "Approved";
+                     
+                     try{
+                         csva.updateCSV(leaveArrayList,"LeaveManagement.csv" );
+                     }catch(IOException e){
+                         JOptionPane.showMessageDialog(null, "Error Writing File");
+                         e.printStackTrace();
+                     }
+                     
+                     //Denise, palitan mo ng pangalan ng approve button yung "null"
+                    JOptionPane.showMessageDialog(null, "Succesfully Approved! Please Refresh");
+                    
+                } else {
+                    // handle the case where employeeData is null
+                    JOptionPane.showMessageDialog(null, "Employee not found!");
+                } 
+        
+    }
+    
+    public void denyLeave(String index){
+        leaveArrayList = csva.loadCSV("LeaveManagement.csv");
+        String[] empLeaveData = csva.searchUserData(leaveArrayList, index);
+                if (empLeaveData != null) {
+                     empLeaveData[8] = "Denied";
+                     
+                     try{
+                         csva.updateCSV(leaveArrayList,"LeaveManagement.csv" );
+                     }catch(IOException e){
+                         JOptionPane.showMessageDialog(null, "Error Writing File");
+                         e.printStackTrace();
+                     }
+                     
+                     //Denise, palitan mo ng pangalan ng approve button yung "null"
+                    JOptionPane.showMessageDialog(null, "Succesfully Denied! Please Refresh");
+                    
+                } else {
+                    // handle the case where employeeData is null
+                    JOptionPane.showMessageDialog(null, "Employee not found!");
+                } 
+        
+    }
+   
+     
+     
+     
+}
+   
+
+    
