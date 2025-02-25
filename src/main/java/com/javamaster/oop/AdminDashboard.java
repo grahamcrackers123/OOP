@@ -8,6 +8,7 @@ import java.awt.Color;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
+import java.text.SimpleDateFormat;
 
 /**
  *
@@ -48,6 +49,10 @@ public class AdminDashboard extends javax.swing.JFrame {
         
         populateLeaveTable("LeaveManagement.csv");
         populateDatabaseTable("MotorPH.csv");
+        
+        employeeDatabase = admin.loadCSV("MotorPH.csv");
+        int ID = employeeDatabase.size() + 1;
+        jTextFieldEmpNum1.setText(Integer.toString(ID));
         
     }
     
@@ -103,7 +108,7 @@ public class AdminDashboard extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jFrame1 = new javax.swing.JFrame();
+        createRecord = new javax.swing.JFrame();
         jScrollPane7 = new javax.swing.JScrollPane();
         jPanel4 = new javax.swing.JPanel();
         jTextFieldEmpNum1 = new javax.swing.JTextField();
@@ -145,7 +150,7 @@ public class AdminDashboard extends javax.swing.JFrame {
         jLabel100 = new javax.swing.JLabel();
         saveCreateButton = new javax.swing.JButton();
         cancelCreateButton = new javax.swing.JButton();
-        jFrame2 = new javax.swing.JFrame();
+        editRecord = new javax.swing.JFrame();
         jScrollPane8 = new javax.swing.JScrollPane();
         jPanel5 = new javax.swing.JPanel();
         jLabel88 = new javax.swing.JLabel();
@@ -347,11 +352,11 @@ public class AdminDashboard extends javax.swing.JFrame {
         jButtonReject1 = new javax.swing.JButton();
         jLabel66 = new javax.swing.JLabel();
 
-        jFrame1.setTitle("Create Employee Record");
-        jFrame1.setAlwaysOnTop(true);
-        jFrame1.setBackground(new java.awt.Color(51, 51, 51));
-        jFrame1.setLocation(new java.awt.Point(0, 0));
-        jFrame1.setSize(new java.awt.Dimension(750, 620));
+        createRecord.setTitle("Create Employee Record");
+        createRecord.setAlwaysOnTop(true);
+        createRecord.setBackground(new java.awt.Color(51, 51, 51));
+        createRecord.setLocation(new java.awt.Point(0, 0));
+        createRecord.setSize(new java.awt.Dimension(750, 620));
 
         jScrollPane7.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
         jScrollPane7.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
@@ -522,12 +527,12 @@ public class AdminDashboard extends javax.swing.JFrame {
 
         jScrollPane7.setViewportView(jPanel4);
 
-        jFrame1.getContentPane().add(jScrollPane7, java.awt.BorderLayout.CENTER);
+        createRecord.getContentPane().add(jScrollPane7, java.awt.BorderLayout.CENTER);
 
-        jFrame2.setTitle("Edit Employee Record");
-        jFrame2.setAlwaysOnTop(true);
-        jFrame2.setBackground(new java.awt.Color(51, 51, 51));
-        jFrame2.setSize(new java.awt.Dimension(750, 620));
+        editRecord.setTitle("Edit Employee Record");
+        editRecord.setAlwaysOnTop(true);
+        editRecord.setBackground(new java.awt.Color(51, 51, 51));
+        editRecord.setSize(new java.awt.Dimension(750, 620));
 
         jScrollPane8.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
         jScrollPane8.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
@@ -709,7 +714,7 @@ public class AdminDashboard extends javax.swing.JFrame {
 
         jScrollPane8.setViewportView(jPanel5);
 
-        jFrame2.getContentPane().add(jScrollPane8, java.awt.BorderLayout.CENTER);
+        editRecord.getContentPane().add(jScrollPane8, java.awt.BorderLayout.CENTER);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -1693,9 +1698,9 @@ public class AdminDashboard extends javax.swing.JFrame {
 
     private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
        // TODO add your handling code here:
-        jFrame1.setVisible(true);
-        jFrame1.pack();
-        jFrame1.setLocationRelativeTo(this);
+        createRecord.setVisible(true);
+        createRecord.pack();
+        createRecord.setLocationRelativeTo(this);
     }//GEN-LAST:event_createButtonActionPerformed
 
     private void jTextFieldStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldStatusActionPerformed
@@ -1728,9 +1733,9 @@ public class AdminDashboard extends javax.swing.JFrame {
 
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
         // TODO add your handling code here:
-        jFrame2.setVisible(true);
-        jFrame2.pack();
-        jFrame2.setLocationRelativeTo(this);
+        editRecord.setVisible(true);
+        editRecord.pack();
+        editRecord.setLocationRelativeTo(this);
     }//GEN-LAST:event_editButtonActionPerformed
 
     private void jTableLeaveManagementMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableLeaveManagementMouseClicked
@@ -1804,11 +1809,20 @@ public class AdminDashboard extends javax.swing.JFrame {
 
     private void saveCreateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveCreateButtonActionPerformed
         // TODO add your handling code here:
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+        
+        
+                admin.createEmployee(jTextFieldEmpNum1.getText(), jTextFieldFirstName2.getText(), jTextFieldLastName1.getText(), 
+                sdf.format(jCalendarBirthday.getDate()), jTextFieldAddress.getText(), jTextFieldPhoneNum1.getText(), jTextFieldSSSNum.getText(), jTextFieldPhilHealthNum.getText(),
+                jTextFieldTINNum.getText(), jTextFieldPagibigNum.getText(), jComboBoxStatus.getSelectedItem().toString(), jComboBoxPosition.getSelectedItem().toString(),
+                jComboBoxSupervisor.getSelectedItem().toString(), jTextFieldBasicSalary1.getText(), jTextFieldRiceSubsidy1.getText(), 
+                jTextFieldPhoneAllowance1.getText(), jTextFieldClothingAllowance1.getText());
+                  
     }//GEN-LAST:event_saveCreateButtonActionPerformed
 
     private void cancelCreateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelCreateButtonActionPerformed
         // TODO add your handling code here:
-        jFrame1.setVisible(false);
+        createRecord.setVisible(false);
     }//GEN-LAST:event_cancelCreateButtonActionPerformed
 
     private void jTextFieldEmpNum3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldEmpNum3ActionPerformed
@@ -1841,7 +1855,7 @@ public class AdminDashboard extends javax.swing.JFrame {
 
     private void cancelEditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelEditButtonActionPerformed
         // TODO add your handling code here:
-        jFrame2.setVisible(false);
+        editRecord.setVisible(false);
     }//GEN-LAST:event_cancelEditButtonActionPerformed
 
     private void saveEditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveEditButtonActionPerformed
@@ -1910,8 +1924,10 @@ public class AdminDashboard extends javax.swing.JFrame {
     private javax.swing.JButton cancelEditButton;
     private javax.swing.JButton clearButton;
     private javax.swing.JButton createButton;
+    private javax.swing.JFrame createRecord;
     private javax.swing.JButton deleteButton;
     private javax.swing.JButton editButton;
+    private javax.swing.JFrame editRecord;
     private javax.swing.JTextArea jAreaDashboardAddress;
     private javax.swing.JTextArea jAreaSalaryAddress;
     private javax.swing.JTextArea jAreaSalaryAddress1;
@@ -1929,8 +1945,6 @@ public class AdminDashboard extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBoxStatus2;
     private javax.swing.JComboBox<String> jComboBoxSupervisor;
     private javax.swing.JComboBox<String> jComboBoxSupervisor2;
-    private javax.swing.JFrame jFrame1;
-    private javax.swing.JFrame jFrame2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel100;
