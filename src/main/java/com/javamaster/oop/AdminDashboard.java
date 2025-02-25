@@ -52,7 +52,7 @@ public class AdminDashboard extends javax.swing.JFrame {
         leaveDatabase = admin.loadCSV(file);
         String[] columnNames = {"Request #", "ID", "First Name","Last Name","Position","Leave Type","Start Date","End Date","Status"};
         
-        DefaultTableModel model = new DefaultTableModel(columnNames, 0) {
+         model = new DefaultTableModel(columnNames, 0) {
                 @Override
                 public boolean isCellEditable(int row, int column) {
                     return false; // This causes all cells to be uneditable
