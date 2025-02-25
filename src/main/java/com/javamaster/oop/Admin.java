@@ -30,9 +30,9 @@ public class Admin extends User{
               tinNumber, pagIbigNumber, status, position, immediateSupervisor, basicSalary, riceSubsidy,
               phoneAllowance, clothingAllowance, grossSemiMonthlyRate, hourlyRate);
     }
-    private List<String[]> csvArrayList;
-    CSVAccessor csva = new CSVAccessor();
     
+    CSVAccessor csva = new CSVAccessor();
+    private List<String[]> csvArrayList = csva.loadCSV("MotorPH.csv");
     private List<String[]> leaveArrayList = csva.loadCSV("LeaveManagement.csv");
     
     
