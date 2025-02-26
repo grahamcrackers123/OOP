@@ -12,10 +12,6 @@ import java.text.SimpleDateFormat;
 import java.text.ParseException;
 import java.util.Date;
 
-/**
- *
- * @author zach malonjao
- */
 public class AdminDashboard extends javax.swing.JFrame {
     Admin admin;
     private List<String[]> leaveDatabase;
@@ -66,41 +62,38 @@ public class AdminDashboard extends javax.swing.JFrame {
         String[] columnNames = {"Request #", "ID", "First Name","Last Name","Position","Leave Type","Start Date","End Date","Status"};
         
          model = new DefaultTableModel(columnNames, 0) {
-                @Override
-                public boolean isCellEditable(int row, int column) {
-                    return false; // This causes all cells to be uneditable
-                }
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false; // makes cells uneditable
+            }
         };
 
-            // Add existing data to the model
-            for (String[] row : leaveDatabase) {
-                model.addRow(row);
-            }
+        // Add existing data to the model
+        for (String[] row : leaveDatabase) {
+            model.addRow(row);
+        }
 
-
-
-            jTableLeaveManagement.setModel(model);
+        jTableLeaveManagement.setModel(model);
     }
 
     private void populateDatabaseTable(String file) {
         employeeDatabase = admin.loadCSV(file);
-       String[] columnNames = {"ID", "Last Name", "First Name", "Birthday", "Address", "Phone Number", "SSS #", "Philhealth #", "TIN #", "Pag-ibig #", "Status", "Position", "Immediate Supervisor", "Basic Salary", "Rice Subsidy", "Phone Allowance", "Clothing Allowance", "Gross Semi-monthly Rate", "Hourly Rate"};
+        String[] columnNames = {"ID", "Last Name", "First Name", "Birthday", "Address", "Phone Number", "SSS #", "Philhealth #", "TIN #", "Pag-ibig #", "Status", 
+           "Position", "Immediate Supervisor", "Basic Salary", "Rice Subsidy", "Phone Allowance", "Clothing Allowance", "Gross Semi-monthly Rate", "Hourly Rate"};
 
-         databaseModel = new DefaultTableModel(columnNames, 0) {
-                @Override
-                public boolean isCellEditable(int row, int column) {
-                    return false; // This causes all cells to be uneditable
-                }
+        databaseModel = new DefaultTableModel(columnNames, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false; // makes cells uneditable
+            }
         };
 
-            // Add existing data to the model
-            for (String[] row : employeeDatabase) {
-                databaseModel.addRow(row);
-            }
+        // Add existing data to the model
+        for (String[] row : employeeDatabase) {
+            databaseModel.addRow(row);
+        }
 
-
-
-            jTableDatabase.setModel(databaseModel);
+        jTableDatabase.setModel(databaseModel);
     }
     
   
@@ -1715,8 +1708,8 @@ public class AdminDashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
         int response = JOptionPane.showConfirmDialog(null, "Are you sure you want to proceed?", "Confirmation", JOptionPane.YES_NO_OPTION);
         if (response == JOptionPane.YES_OPTION){
-        admin.deleteEmployee(Integer.parseInt(jTextFieldEmpNum.getText()));
-        JOptionPane.showMessageDialog(null, " Record deleted successfully\n Please refresh to update database");
+            admin.deleteEmployee(Integer.parseInt(jTextFieldEmpNum.getText()));
+            JOptionPane.showMessageDialog(null, " Record deleted successfully.\n Please refresh to update database.");
         } else{}
     }//GEN-LAST:event_deleteButtonActionPerformed
         
@@ -1834,17 +1827,17 @@ public class AdminDashboard extends javax.swing.JFrame {
          jTextFieldEditHourlyRateAllowance.setText(infoToUpdate[18]);
          
          String birthday = infoToUpdate[3];
-            SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-            Date birthdayDate;
-                   try {
-                       birthdayDate = sdf.parse(birthday);
-                   } catch (ParseException e) {
-                       // handle parsing error
-                       JOptionPane.showMessageDialog(this, "Error parsing birthday: " + e.getMessage());
-                       return;
-                   }
-            jCalendarBirthday.setDate(birthdayDate);
-                jCalendarBirthday.repaint();
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+        Date birthdayDate;
+        try {
+            birthdayDate = sdf.parse(birthday);
+        } catch (ParseException e) {
+            // handle parsing error
+            JOptionPane.showMessageDialog(this, "Error parsing birthday: " + e.getMessage());
+            return;
+        }
+        jCalendarBirthday.setDate(birthdayDate);
+        jCalendarBirthday.repaint();
          
         //dito cj
          
@@ -1874,17 +1867,16 @@ public class AdminDashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
         
-                
-                admin.createEmployee(jTextFieldEmpNum1.getText(), jTextFieldFirstName2.getText(), jTextFieldLastName1.getText(), 
-                sdf.format(jCalendarBirthday.getDate()), jTextFieldAddress.getText(), jTextFieldPhoneNum1.getText(), jTextFieldSSSNum.getText(), jTextFieldPhilHealthNum.getText(),
-                jTextFieldTINNum.getText(), jTextFieldPagibigNum.getText(), jComboBoxStatus.getSelectedItem().toString(), jComboBoxPosition.getSelectedItem().toString(),
+        admin.createEmployee(jTextFieldEmpNum1.getText(), jTextFieldFirstName2.getText(), jTextFieldLastName1.getText(),
+                sdf.format(jCalendarBirthday.getDate()), jTextFieldAddress.getText(), jTextFieldPhoneNum1.getText(), jTextFieldSSSNum.getText(), jTextFieldPhilHealthNum.getText(), 
+                jTextFieldTINNum.getText(), jTextFieldPagibigNum.getText(), jComboBoxStatus.getSelectedItem().toString(), jComboBoxPosition.getSelectedItem().toString(), 
                 jComboBoxSupervisor.getSelectedItem().toString(), jTextFieldBasicSalary1.getText(), jTextFieldRiceSubsidy1.getText(), 
                 jTextFieldPhoneAllowance1.getText(), jTextFieldClothingAllowance1.getText(), createRecord);
-                
-                
-                if(admin.isInputValid()){
-                    createRecord.setVisible(false);
-                }
+
+
+        if(admin.isInputValid()){
+            createRecord.setVisible(false);
+        }
                   
     }//GEN-LAST:event_saveCreateButtonActionPerformed
 
@@ -1928,13 +1920,13 @@ public class AdminDashboard extends javax.swing.JFrame {
 
     private void saveEditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveEditButtonActionPerformed
         // TODO add your handling code here:
-        
-        
-        admin.updateEmployee(jTextFieldEditEmpNum.getText(), jTextFieldEditFirstName.getText(), jTextFieldEditLastName.getText(),(jCalendarBirthday2.getDate()), 
-        jTextFieldEditAddress.getText(), jTextFieldEditPhoneNum.getText(), jTextFieldEditSSSNum.getText(), jTextFieldEditPhilHealthNum.getText(), jTextFieldEditTINNum.getText(), 
-        jTextFieldEditPagibigNum.getText(), jComboBoxEditStatus.getSelectedItem().toString(), jComboBoxEditPosition.getSelectedItem().toString(), jComboBoxEditSupervisor.getSelectedItem().toString(), jTextFieldEditBasicSalary.getText(),
-        jTextFieldEditRiceSubsidy.getText(), jTextFieldEditPhoneAllowance.getText(), jTextFieldEditClothingAllowance.getText(), jTextFieldEditGrossSemiMonthly.getText(), 
-        jTextFieldEditHourlyRateAllowance.getText(), editRecord);
+
+        admin.updateEmployee(jTextFieldEditEmpNum.getText(), jTextFieldEditFirstName.getText(), jTextFieldEditLastName.getText(),(jCalendarBirthday2.getDate()),
+                jTextFieldEditAddress.getText(), jTextFieldEditPhoneNum.getText(), jTextFieldEditSSSNum.getText(), jTextFieldEditPhilHealthNum.getText(), jTextFieldEditTINNum.getText(), 
+                jTextFieldEditPagibigNum.getText(), jComboBoxEditStatus.getSelectedItem().toString(), jComboBoxEditPosition.getSelectedItem().toString(), 
+                jComboBoxEditSupervisor.getSelectedItem().toString(), jTextFieldEditBasicSalary.getText(), 
+                jTextFieldEditRiceSubsidy.getText(), jTextFieldEditPhoneAllowance.getText(), jTextFieldEditClothingAllowance.getText(), jTextFieldEditGrossSemiMonthly.getText(), 
+                jTextFieldEditHourlyRateAllowance.getText(), editRecord);
     }//GEN-LAST:event_saveEditButtonActionPerformed
 
     private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
