@@ -12,12 +12,15 @@ import java.text.SimpleDateFormat;
 import java.text.ParseException;
 import java.util.Date;
 
+
 public class AdminDashboard extends javax.swing.JFrame {
     Admin admin;
     private List<String[]> leaveDatabase;
     private List<String[]> employeeDatabase;
     private DefaultTableModel model;
     private DefaultTableModel databaseModel;
+    private Employee employeeToCompute;
+
     /**
      * Creates new form AdminDashboard
      */
@@ -95,8 +98,43 @@ public class AdminDashboard extends javax.swing.JFrame {
 
         jTableDatabase.setModel(databaseModel);
     }
-    
-  
+    //Used in Admin Salary Page to search ID and return an Object
+    private Employee setEmployeeData(String employeeID){
+    //Search user data and store in Array
+        String[] userData=admin.searchUserData(employeeDatabase, employeeID);
+        //Populate the array into an employee object
+        if (userData == null) {
+            JOptionPane.showMessageDialog(jButtonSearchID, "User with that ID does not exist");
+            throw new IllegalArgumentException("User data not found for index: " + employeeID);
+        }else{
+            Employee emp = new Employee(
+            userData[0], // employeeId
+            userData[1], // lastName
+            userData[2], // firstName
+            userData[3], // birthday
+            userData[4], // address
+            userData[5], // phoneNumber
+            userData[6], // sssNumber
+            userData[7], // philhealthNumber
+            userData[8], // tinNumber
+            userData[9], // pagIbigNumber
+            userData[10], // status
+            userData[11], // position
+            userData[12], // immediateSupervisor
+            Double.parseDouble(userData[13]), // basicSalary
+            Double.parseDouble(userData[14]), // riceSubsidy
+            Double.parseDouble(userData[15]), // phoneAllowance
+            Double.parseDouble(userData[16]), // clothingAllowance
+            Double.parseDouble(userData[17]), // grossSemiMonthlyRate
+            Double.parseDouble(userData[18]) // hourlyRate
+        );
+        return emp;
+    }
+
+
+    }
+
+
 
     
     /**
@@ -316,8 +354,8 @@ public class AdminDashboard extends javax.swing.JFrame {
         jLabel34 = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
         jButtonComputeSalary = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel85 = new javax.swing.JLabel();
+        jTextFieldIDtoSearch = new javax.swing.JTextField();
+        jButtonSearchID = new javax.swing.JButton();
         adminDatabase = new javax.swing.JPanel();
         jTextFieldEmpNum = new javax.swing.JTextField();
         jLabel36 = new javax.swing.JLabel();
@@ -1331,12 +1369,21 @@ public class AdminDashboard extends javax.swing.JFrame {
             }
         });
         adminSalaryCalculation.add(jButtonComputeSalary, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 600, 160, 40));
-        adminSalaryCalculation.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 60, 40, -1));
 
-        jLabel85.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel85.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel85.setText("Search Employee ID");
-        adminSalaryCalculation.add(jLabel85, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, 20));
+        jTextFieldIDtoSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldIDtoSearchActionPerformed(evt);
+            }
+        });
+        adminSalaryCalculation.add(jTextFieldIDtoSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 40, -1));
+
+        jButtonSearchID.setText("Search Employee ID");
+        jButtonSearchID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSearchIDActionPerformed(evt);
+            }
+        });
+        adminSalaryCalculation.add(jButtonSearchID, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, -1, -1));
 
         jPanelParent.add(adminSalaryCalculation, "card3");
 
@@ -1702,6 +1749,13 @@ public class AdminDashboard extends javax.swing.JFrame {
 
     private void jButtonComputeSalaryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonComputeSalaryActionPerformed
         // TODO add your handling code here:
+        
+        if(employeeToCompute!=null){
+            double[] payrollData= admin.CalculatePayroll(employeeToCompute, (String)jComboBoxMonth.getSelectedItem());
+            jTextFieldNetPay.setText(Double.toString(payrollData[9]));
+        }else{
+             JOptionPane.showMessageDialog(this, "Employee searched does not exist");
+        }
     }//GEN-LAST:event_jButtonComputeSalaryActionPerformed
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
@@ -1947,6 +2001,23 @@ public class AdminDashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldEditPhoneNumActionPerformed
 
+    private void jTextFieldIDtoSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldIDtoSearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldIDtoSearchActionPerformed
+
+    private void jButtonSearchIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchIDActionPerformed
+        // TODO add your handling code here:
+        
+       // admin.searchUserData(employeeDatabase, jTextFieldIDtoSearch.getText());
+        employeeToCompute = setEmployeeData(jTextFieldIDtoSearch.getText());
+        
+        if (employeeToCompute!=null){
+                jTextSalaryLastName.setText(employeeToCompute.getLastName());
+        }
+                
+        
+    }//GEN-LAST:event_jButtonSearchIDActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2011,6 +2082,7 @@ public class AdminDashboard extends javax.swing.JFrame {
     private javax.swing.JButton jButtonLogout;
     private javax.swing.JButton jButtonRefresh;
     private javax.swing.JButton jButtonReject1;
+    private javax.swing.JButton jButtonSearchID;
     private com.toedter.calendar.JCalendar jCalendarBirthday;
     private com.toedter.calendar.JCalendar jCalendarBirthday2;
     private javax.swing.JComboBox<String> jComboBoxEditPosition;
@@ -2112,7 +2184,6 @@ public class AdminDashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel78;
     private javax.swing.JLabel jLabel79;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel85;
     private javax.swing.JLabel jLabel86;
     private javax.swing.JLabel jLabel88;
     private javax.swing.JLabel jLabel89;
@@ -2168,7 +2239,6 @@ public class AdminDashboard extends javax.swing.JFrame {
     private javax.swing.JTextField jTextDashboardStatus;
     private javax.swing.JTextField jTextDashboardSupervisor;
     private javax.swing.JTextField jTextDashboardTinNum;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextFieldAddress;
     private javax.swing.JTextField jTextFieldBasicSalary;
     private javax.swing.JTextField jTextFieldBasicSalary1;
@@ -2196,6 +2266,7 @@ public class AdminDashboard extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldGrossPay;
     private javax.swing.JTextField jTextFieldGrossSemiMonthlyRate;
     private javax.swing.JTextField jTextFieldHourlyRate;
+    private javax.swing.JTextField jTextFieldIDtoSearch;
     private javax.swing.JTextField jTextFieldLastName;
     private javax.swing.JTextField jTextFieldLastName1;
     private javax.swing.JTextField jTextFieldNetPay;
