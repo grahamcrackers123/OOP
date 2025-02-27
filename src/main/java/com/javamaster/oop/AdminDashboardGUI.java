@@ -106,6 +106,7 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
         if (userData == null) {
             JOptionPane.showMessageDialog(jButtonSearchID, "User with that ID does not exist");
             throw new IllegalArgumentException("User data not found for index: " + employeeID);
+            
         }else{
             Employee emp = new Employee(
             userData[0], // employeeId
@@ -1752,9 +1753,21 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
         
         if(employeeToCompute!=null){
             double[] payrollData= admin.CalculatePayroll(employeeToCompute, (String)jComboBoxMonth.getSelectedItem());
+           jTextFieldSSSContribution.setText(Double.toString(payrollData[3]));
+           jTextFieldPhilHealthContribution.setText(Double.toString(payrollData[4]));
+           jTextFieldPagIBIGContribution.setText(Double.toString(payrollData[5]));
+           
+           jTextFieldGrossPay.setText(Double.toString(payrollData[0]));
             jTextFieldNetPay.setText(Double.toString(payrollData[9]));
+            
         }else{
-             JOptionPane.showMessageDialog(this, "Employee searched does not exist");
+            //If search is empty, displlay "please search"
+            if(jTextFieldIDtoSearch.getText().trim().isEmpty()){
+              JOptionPane.showMessageDialog(this, "Please search an employee ID first");
+            //If the text box has any input but not found, disaply "That doesnt exist"  
+            }else{
+               JOptionPane.showMessageDialog(this, "Employee searched does not exist");
+            }    
         }
     }//GEN-LAST:event_jButtonComputeSalaryActionPerformed
 
@@ -2010,13 +2023,17 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
         
        // search user data then turn it into an object
         employeeToCompute = setEmployeeData(jTextFieldIDtoSearch.getText());
-        //If not null, proceed as normal. No else statement because it's already done in the Compute button. see the event for more details
+        //If not null, proceed as normal. 
         if (employeeToCompute!=null){
                 jTextSalaryEmpNo.setText(employeeToCompute.getEmployeeId());
                 jTextSalaryFirstName.setText(employeeToCompute.getFirstName());
                 jTextSalaryLastName.setText(employeeToCompute.getLastName());
-              // Dito jc
+             
               
+        }else if(jButtonSearchID.getText().trim().isEmpty()){
+            JOptionPane.showConfirmDialog(this, "Please input Employee ID first");
+        }else{
+             JOptionPane.showConfirmDialog(this, "Employee with ID "+ jButtonSearchID.getText()+" not found");
         }
                 
         

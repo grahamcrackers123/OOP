@@ -940,7 +940,7 @@ public class EmployeeDashboardGUI extends javax.swing.JFrame {
     jTextFieldPagIBIGContribution.setText(Double.toString(payrollData[5]));
     jTextFieldGrossPay.setText(Double.toString(payrollData[0]));
     jTextFieldNetPay.setText(Double.toString(payrollData[9]));
-       System.out.println("Witholding tax: " + payrollData[6]);
+      // System.out.println("Witholding tax: " + payrollData[6]);
        
        
        
@@ -997,6 +997,8 @@ public class EmployeeDashboardGUI extends javax.swing.JFrame {
         jTextFieldRiceSubsidy.setText(Double.toString(emp.getRiceSubsidy()));
         jTextFieldPhoneAllowance.setText(Double.toString(emp.getPhoneAllowance()));
         jTextFieldClothingAllowance.setText(Double.toString(emp.getClothingAllowance()));
+        
+        
     }//GEN-LAST:event_salaryCalculationMenuMouseClicked
 
     private void fileLeaveMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fileLeaveMenuMouseClicked
