@@ -934,9 +934,6 @@ public class EmployeeDashboardGUI extends javax.swing.JFrame {
     double[] payrollData = emp.CalculatePayroll(emp, month);  // Ensure payroll is recalculated
 
     // Update text fields
-    jTextFieldBasicSalary.setText(Double.toString(emp.getBasicSalary()));
-    jTextFieldGrossSemiMonthlyRate.setText(Double.toString(emp.getGrossSemiMonthlyRate()));
-    jTextFieldHourlyRate.setText(Double.toString(emp.getHourlyRate()));
 
     jTextFieldSSSContribution.setText(Double.toString(payrollData[3]));
     jTextFieldPhilHealthContribution.setText(Double.toString(payrollData[4]));
@@ -969,7 +966,7 @@ public class EmployeeDashboardGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_dashboardMenuMouseClicked
 
     private void salaryCalculationMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salaryCalculationMenuMouseClicked
-        // TODO add your handling code here:
+        // TODO add your handling code here:    
         salaryCalculationMenu.setBackground(new Color (51,51,51));
         dashboardMenu.setBackground(new Color (153,0,0));
         fileLeaveMenu.setBackground(new Color (153,0,0));
@@ -994,6 +991,12 @@ public class EmployeeDashboardGUI extends javax.swing.JFrame {
         jTextSalaryPhilhealthNum.setText(emp.getPhilhealthNumber());
         jTextSalaryPagibigNum.setText(emp.getPagIbigNumber());
         jTextSalaryTin.setText(emp.getTinNumber());
+        jTextFieldBasicSalary.setText(Double.toString(emp.getBasicSalary()));
+        jTextFieldGrossSemiMonthlyRate.setText(Double.toString(emp.getGrossSemiMonthlyRate()));
+        jTextFieldHourlyRate.setText(Double.toString(emp.getHourlyRate()));
+        jTextFieldRiceSubsidy.setText(Double.toString(emp.getRiceSubsidy()));
+        jTextFieldPhoneAllowance.setText(Double.toString(emp.getPhoneAllowance()));
+        jTextFieldClothingAllowance.setText(Double.toString(emp.getClothingAllowance()));
     }//GEN-LAST:event_salaryCalculationMenuMouseClicked
 
     private void fileLeaveMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fileLeaveMenuMouseClicked
