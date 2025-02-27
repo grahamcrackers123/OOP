@@ -39,13 +39,12 @@ public class Employee extends User {
   
    @Override
    public void accessLeave(User user){
-       FileLeave fl = new FileLeave((Employee)user);
-        fl.setVisible(true);
+      //parevise in the future
    }
    //2. GO TO DASHBOARD 
    @Override
     public void accessDashboard(User emp){
-        EmployeeDashboard ed = new EmployeeDashboard((Employee)emp);
+        EmployeeDashboardGUI ed = new EmployeeDashboardGUI((Employee)emp);
            ed.setVisible(true);
     }
    //3. GO TO SALARY CALC FOR EMPLOYEES  
@@ -53,8 +52,7 @@ public class Employee extends User {
     public void accessSalaryCalculation(User user){
        
         
-        EmpSalaryCalculation esc = new EmpSalaryCalculation((Employee)user);
-        esc.setVisible(true);
+       //parevise in the future
     }
     
     
