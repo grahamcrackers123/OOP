@@ -1752,9 +1752,21 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
         
         if(employeeToCompute!=null){
             double[] payrollData= admin.CalculatePayroll(employeeToCompute, (String)jComboBoxMonth.getSelectedItem());
+           jTextFieldSSSContribution.setText(Double.toString(payrollData[3]));
+           jTextFieldPhilHealthContribution.setText(Double.toString(payrollData[4]));
+           jTextFieldPagIBIGContribution.setText(Double.toString(payrollData[5]));
+           
+           jTextFieldGrossPay.setText(Double.toString(payrollData[0]));
             jTextFieldNetPay.setText(Double.toString(payrollData[9]));
+            
         }else{
-             JOptionPane.showMessageDialog(this, "Employee searched does not exist");
+            //If search is empty, displlay "please search"
+            if(jTextFieldIDtoSearch.getText().trim().isEmpty()){
+              JOptionPane.showMessageDialog(this, "Please search an employee ID first");
+            //If the text box has any input but not found, disaply "That doesnt exist"  
+            }else{
+               JOptionPane.showMessageDialog(this, "Employee searched does not exist");
+            }    
         }
     }//GEN-LAST:event_jButtonComputeSalaryActionPerformed
 
@@ -2038,6 +2050,10 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
                 jTextFieldRiceSubsidy.setText(Double.toString(employeeToCompute.getPhoneAllowance()));
                 jTextFieldPhoneAllowance.setText(Double.toString(employeeToCompute.getPhoneAllowance()));
                 jTextFieldClothingAllowance.setText(Double.toString(employeeToCompute.getClothingAllowance()));
+                jTextSalarySssNum.setText(employeeToCompute.getSssNumber());
+                jTextSalaryPhilhealthNum.setText(employeeToCompute.getPhilhealthNumber());
+                jTextSalaryTin.setText(employeeToCompute.getTinNumber());
+                jTextSalaryPagibigNum.setText(employeeToCompute.getPagIbigNumber());
               // Dito cj
               
         }
