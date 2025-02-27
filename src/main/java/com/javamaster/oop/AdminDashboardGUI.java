@@ -107,6 +107,7 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(jButtonSearchID, "User with that ID does not exist");
             throw new IllegalArgumentException("User data not found for index: " + employeeID);
             
+            
         }else{
             Employee emp = new Employee(
             userData[0], // employeeId
