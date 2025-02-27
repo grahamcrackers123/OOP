@@ -2015,7 +2015,19 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
                 jTextSalaryEmpNo.setText(employeeToCompute.getEmployeeId());
                 jTextSalaryFirstName.setText(employeeToCompute.getFirstName());
                 jTextSalaryLastName.setText(employeeToCompute.getLastName());
-              // Dito jc
+                jAreaSalaryAddress.setText(employeeToCompute.getAddress());
+                jTextSalaryPhoneNo.setText(employeeToCompute.getPhoneNumber());
+                jTextSalaryBirthday.setText(employeeToCompute.getBirthday());
+                jTextSalaryStatus.setText(employeeToCompute.getStatus());
+                jTextSalaryPosition.setText(employeeToCompute.getPosition());
+                jTextSalarySupervisor.setText(employeeToCompute.getImmediateSupervisor());
+                jTextFieldBasicSalary.setText(Double.toString(employeeToCompute.getBasicSalary()));
+                jTextFieldGrossSemiMonthlyRate.setText(Double.toString(employeeToCompute.getGrossSemiMonthlyRate()));
+                jTextFieldHourlyRate.setText(Double.toString(employeeToCompute.getHourlyRate()));
+                jTextFieldRiceSubsidy.setText(Double.toString(employeeToCompute.getPhoneAllowance()));
+                jTextFieldPhoneAllowance.setText(Double.toString(employeeToCompute.getPhoneAllowance()));
+                jTextFieldClothingAllowance.setText(Double.toString(employeeToCompute.getClothingAllowance()));
+              // Dito cj
               
         }
                 
