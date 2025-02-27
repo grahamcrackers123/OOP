@@ -1800,6 +1800,17 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
 
     private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButtonActionPerformed
         // TODO add your handling code here:
+        
+        editButton.setEnabled(false);
+        deleteButton.setEnabled(false);
+        jTextFieldEmpNum.setText("");
+        jTextFieldLastName.setText("");
+        jTextFieldFirstName.setText("");
+        jTextFieldPhoneNum.setText("");
+        jAreaSalaryAddress1.setText("");
+        jTextFieldSupervisor.setText("");
+        jTextFieldPosition.setText("");
+        jTextFieldStatus.setText("");
     }//GEN-LAST:event_clearButtonActionPerformed
 
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
