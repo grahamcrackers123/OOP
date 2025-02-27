@@ -11,7 +11,7 @@ package com.javamaster.oop;
 public class OOP {
 
     public static void main(String[] args) {
-        Login login = new Login();
+        LoginGUI login = new LoginGUI();
         login.setVisible(true);
      
         

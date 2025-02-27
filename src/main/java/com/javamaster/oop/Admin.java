@@ -41,29 +41,25 @@ public class Admin extends User{
 //ACCESS ROLES
     
     void accessDatabase(){
-        Database db = new Database();
-        db.setVisible(true);
+       //parevise in the future
     }
     
 
     @Override
     public void accessLeave(User user){
-        //beware FL has no parameters
-        FileManagement fm = new FileManagement();
-        fm.setVisible(true);
+      //parevise in the future
     }
     
    @Override
     public void accessDashboard(User admin){
-        AdminDashboard adb = new AdminDashboard((Admin)admin);
+        AdminDashboardGUI adb = new AdminDashboardGUI((Admin)admin);
            adb.setVisible(true);
     }
     
     @Override
     public void accessSalaryCalculation(User user) {
         
-        AdminSalaryCalculation asc = new AdminSalaryCalculation((Admin)user);
-            asc.setVisible(true);
+       //parevise in the future
        
     }
     

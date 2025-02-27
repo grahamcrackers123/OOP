@@ -13,7 +13,7 @@ import java.text.ParseException;
 import java.util.Date;
 
 
-public class AdminDashboard extends javax.swing.JFrame {
+public class AdminDashboardGUI extends javax.swing.JFrame {
     Admin admin;
     private List<String[]> leaveDatabase;
     private List<String[]> employeeDatabase;
@@ -24,7 +24,7 @@ public class AdminDashboard extends javax.swing.JFrame {
     /**
      * Creates new form AdminDashboard
      */
-    public AdminDashboard(Admin admin) {
+    public AdminDashboardGUI(Admin admin) {
         initComponents();
         this.admin=admin;
 
@@ -1706,7 +1706,7 @@ public class AdminDashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         this.setVisible(false);
-        Login login = new Login();
+        LoginGUI login = new LoginGUI();
         login.setVisible(true);
     }//GEN-LAST:event_jButtonLogoutActionPerformed
 
@@ -2035,14 +2035,15 @@ public class AdminDashboard extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AdminDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminDashboardGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AdminDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminDashboardGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AdminDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminDashboardGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AdminDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminDashboardGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */

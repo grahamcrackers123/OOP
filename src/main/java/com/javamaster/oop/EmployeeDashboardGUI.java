@@ -15,13 +15,13 @@ import javax.swing.JOptionPane;
  *
  * @author denise, aira, zach
  */
-public class EmployeeDashboard extends javax.swing.JFrame {
+public class EmployeeDashboardGUI extends javax.swing.JFrame {
     private Employee emp;
     private List<String[]> leaveDatabase;
     /**
      * Creates new form EmployeeDashboard
      */
-    public EmployeeDashboard(Employee emp) {
+    public EmployeeDashboardGUI(Employee emp) {
         this.emp=emp;
         initComponents();
         
@@ -1028,7 +1028,7 @@ public class EmployeeDashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         this.setVisible(false);
-        Login login = new Login();
+        LoginGUI login = new LoginGUI();
         login.setVisible(true);
     }//GEN-LAST:event_jButtonLogoutActionPerformed
 
@@ -1096,14 +1096,15 @@ public class EmployeeDashboard extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EmployeeDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EmployeeDashboardGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EmployeeDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EmployeeDashboardGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EmployeeDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EmployeeDashboardGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EmployeeDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EmployeeDashboardGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
