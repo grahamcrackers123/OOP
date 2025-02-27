@@ -2008,11 +2008,15 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
     private void jButtonSearchIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchIDActionPerformed
         // TODO add your handling code here:
         
-       // admin.searchUserData(employeeDatabase, jTextFieldIDtoSearch.getText());
+       // search user data then turn it into an object
         employeeToCompute = setEmployeeData(jTextFieldIDtoSearch.getText());
-        
+        //If not null, proceed as normal. No else statement because it's already done in the Compute button. see the event for more details
         if (employeeToCompute!=null){
+                jTextSalaryEmpNo.setText(employeeToCompute.getEmployeeId());
+                jTextSalaryFirstName.setText(employeeToCompute.getFirstName());
                 jTextSalaryLastName.setText(employeeToCompute.getLastName());
+              // Dito jc
+              
         }
                 
         
