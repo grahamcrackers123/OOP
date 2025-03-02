@@ -1679,27 +1679,39 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
 
     private void adminSalaryCalculationMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminSalaryCalculationMenuMouseClicked
         // TODO add your handling code here:
-        adminSalaryCalculationMenu.setBackground(new Color (51,51,51));
-        adminDashboardMenu.setBackground(new Color (153,0,0));
-        adminDatabaseMenu.setBackground(new Color (153,0,0));
-        adminLeaveMenu.setBackground(new Color (153,0,0));
-        jPanelParent.removeAll();
-        jPanelParent.add(adminSalaryCalculation);
-        jPanelParent.repaint();
-        jPanelParent.revalidate();
-
+        
+//        
+//        adminSalaryCalculationMenu.setBackground(new Color (51,51,51));
+//        adminDashboardMenu.setBackground(new Color (153,0,0));
+//        adminDatabaseMenu.setBackground(new Color (153,0,0));
+//        adminLeaveMenu.setBackground(new Color (153,0,0));
+//        jPanelParent.removeAll();
+//        jPanelParent.add(adminSalaryCalculation);
+//        jPanelParent.repaint();
+//        jPanelParent.revalidate();
+//        
+        AccessParameters accessParameters = new AccessParameters();
+            accessParameters.setAdminPageParameters(adminLeaveMenu, adminDashboardMenu, adminSalaryCalculationMenu, adminDatabaseMenu, jPanelParent, adminSalaryCalculation);
+            admin.accessSalaryCalculation(accessParameters);
+            
     }//GEN-LAST:event_adminSalaryCalculationMenuMouseClicked
 
     private void adminLeaveMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminLeaveMenuMouseClicked
         // TODO add your handling code here:
-        adminLeaveMenu.setBackground(new Color (51,51,51));
-        adminDashboardMenu.setBackground(new Color (153,0,0));
-        adminSalaryCalculationMenu.setBackground(new Color (153,0,0));
-        adminDatabaseMenu.setBackground(new Color (153,0,0));
-        jPanelParent.removeAll();
-        jPanelParent.add(adminLeaveManagement);
-        jPanelParent.repaint();
-        jPanelParent.revalidate();
+//        adminLeaveMenu.setBackground(new Color (51,51,51));
+//        adminDashboardMenu.setBackground(new Color (153,0,0));
+//        adminSalaryCalculationMenu.setBackground(new Color (153,0,0));
+//        adminDatabaseMenu.setBackground(new Color (153,0,0));
+//        jPanelParent.removeAll();
+//        jPanelParent.add(adminLeaveManagement);
+//        jPanelParent.repaint();
+//        jPanelParent.revalidate();
+        
+        
+         AccessParameters accessParameters = new AccessParameters();
+             accessParameters.setAdminPageParameters(adminLeaveMenu, adminDashboardMenu, adminSalaryCalculationMenu, adminDatabaseMenu, jPanelParent, adminLeaveManagement);
+         
+             admin.accessLeave(accessParameters);
     }//GEN-LAST:event_adminLeaveMenuMouseClicked
 
     private void jButtonLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLogoutActionPerformed
@@ -1721,7 +1733,8 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
 //        jPanelParent.repaint();
 //        jPanelParent.revalidate();
         
-        admin.accessDatabase(jPanelParent, adminDatabase, adminDatabaseMenu, adminDashboardMenu, adminLeaveMenu, adminSalaryCalculationMenu);
+        admin.accessDatabase(jPanelParent, adminDatabase, adminDatabaseMenu, 
+                adminDashboardMenu, adminLeaveMenu, adminSalaryCalculationMenu);
 
         
     }//GEN-LAST:event_adminDatabaseMenuMouseClicked

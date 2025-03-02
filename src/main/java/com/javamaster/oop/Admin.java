@@ -17,7 +17,6 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JMenuItem;
 import java.awt.Color;
 /*
 *
@@ -56,8 +55,15 @@ public class Admin extends User{
     
 
     @Override
-    public void accessLeave(User user){
-      //parevise in the future
+    public void accessLeave(AccessParameters accessParameters){
+        accessParameters.getLeaveMenu().setBackground(new Color (51,51,51));
+        accessParameters.getDashboardMenu().setBackground(new Color (153,0,0));
+        accessParameters.getSalaryCalculationMenu().setBackground(new Color (153,0,0));
+        accessParameters.getAdminDatabaseMenu().setBackground(new Color (153,0,0));
+        accessParameters.getjPanelParent().removeAll();
+        accessParameters.getjPanelParent().add(accessParameters.getDestination());
+        accessParameters.getjPanelParent().repaint();
+        accessParameters.getjPanelParent().revalidate();
     }
     
    @Override
@@ -67,9 +73,18 @@ public class Admin extends User{
     }
     
     @Override
-    public void accessSalaryCalculation(User user) {
+    public void accessSalaryCalculation(AccessParameters accessParameters) {
         
-       //parevise in the future
+              
+        accessParameters.getSalaryCalculationMenu().setBackground(new Color (51,51,51));
+        accessParameters.getDashboardMenu().setBackground(new Color (153,0,0));
+        accessParameters.getAdminDatabaseMenu().setBackground(new Color (153,0,0));
+        accessParameters.getLeaveMenu().setBackground(new Color (153,0,0));
+        accessParameters.getjPanelParent().removeAll();
+        accessParameters.getjPanelParent().add(accessParameters.getDestination());
+        accessParameters.getjPanelParent().repaint();
+        accessParameters.getjPanelParent().revalidate();
+        
        
     }
     
