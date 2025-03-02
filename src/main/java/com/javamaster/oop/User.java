@@ -58,9 +58,9 @@ public abstract class User {
   
     public abstract void accessDashboard(User user);
     
-    public abstract void accessSalaryCalculation(User user);
+    public abstract void accessSalaryCalculation(AccessParameters accessParameters);
     
-    public abstract void accessLeave(User user);
+    public abstract void accessLeave(AccessParameters accessParameters);
     
     
     public double[] CalculatePayroll(Employee emp, String month){

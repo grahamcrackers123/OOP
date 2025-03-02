@@ -967,14 +967,17 @@ public class EmployeeDashboardGUI extends javax.swing.JFrame {
 
     private void salaryCalculationMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salaryCalculationMenuMouseClicked
         // TODO add your handling code here:    
-        salaryCalculationMenu.setBackground(new Color (51,51,51));
-        dashboardMenu.setBackground(new Color (153,0,0));
-        fileLeaveMenu.setBackground(new Color (153,0,0));
-        jPanelParent.removeAll();
-        jPanelParent.add(jPanelSalaryCalculation);
-        jPanelParent.repaint();
-        jPanelParent.revalidate();
-        
+//        salaryCalculationMenu.setBackground(new Color (51,51,51));
+//        dashboardMenu.setBackground(new Color (153,0,0));
+//        fileLeaveMenu.setBackground(new Color (153,0,0));
+//        jPanelParent.removeAll();
+//        jPanelParent.add(jPanelSalaryCalculation);
+//        jPanelParent.repaint();
+//        jPanelParent.revalidate();
+////        
+        AccessParameters accessParameters = new AccessParameters();
+            accessParameters.setEmployeePageParameters(fileLeaveMenu, dashboardMenu, salaryCalculationMenu, jPanelParent, jPanelSalaryCalculation);
+            emp.accessSalaryCalculation(accessParameters);
         //Salary Calculation Panel
         jTextSalaryEmpNo.setText(emp.getEmployeeId());
         jTextSalaryFirstName.setText(emp.getFirstName());
@@ -1001,13 +1004,18 @@ public class EmployeeDashboardGUI extends javax.swing.JFrame {
 
     private void fileLeaveMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fileLeaveMenuMouseClicked
         // TODO add your handling code here:
-        fileLeaveMenu.setBackground(new Color (51,51,51));
-        dashboardMenu.setBackground(new Color (153,0,0));
-        salaryCalculationMenu.setBackground(new Color (153,0,0));
-        jPanelParent.removeAll();
-        jPanelParent.add(jPanelFileLeave);
-        jPanelParent.repaint();
-        jPanelParent.revalidate();
+//        fileLeaveMenu.setBackground(new Color (51,51,51));
+//        dashboardMenu.setBackground(new Color (153,0,0));
+//        salaryCalculationMenu.setBackground(new Color (153,0,0));
+//        jPanelParent.removeAll();
+//        jPanelParent.add(jPanelFileLeave);
+//        jPanelParent.repaint();
+//        jPanelParent.revalidate();
+        
+        
+        AccessParameters accessParameters = new AccessParameters();
+         accessParameters.setEmployeePageParameters(fileLeaveMenu, dashboardMenu, salaryCalculationMenu, jPanelParent, jPanelFileLeave);
+         emp.accessLeave(accessParameters);
         
         //Salary Calculation Panel
         jTextSalaryEmpNo.setText(emp.getEmployeeId());
