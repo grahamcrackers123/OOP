@@ -1712,14 +1712,17 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
 
     private void adminDatabaseMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminDatabaseMenuMouseClicked
         // TODO add your handling code here:
-        adminDatabaseMenu.setBackground(new Color (51,51,51));
-        adminDashboardMenu.setBackground(new Color (153,0,0));
-        adminLeaveMenu.setBackground(new Color (153,0,0));
-        adminSalaryCalculationMenu.setBackground(new Color (153,0,0));
-        jPanelParent.removeAll();
-        jPanelParent.add(adminDatabase);
-        jPanelParent.repaint();
-        jPanelParent.revalidate();
+//        adminDatabaseMenu.setBackground(new Color (51,51,51));
+//        adminDashboardMenu.setBackground(new Color (153,0,0));
+//        adminLeaveMenu.setBackground(new Color (153,0,0));
+//        adminSalaryCalculationMenu.setBackground(new Color (153,0,0));
+//        jPanelParent.removeAll();
+//        jPanelParent.add(adminDatabase);
+//        jPanelParent.repaint();
+//        jPanelParent.revalidate();
+        
+        admin.accessDatabase(jPanelParent, adminDatabase, adminDatabaseMenu, adminDashboardMenu, adminLeaveMenu, adminSalaryCalculationMenu);
+
         
     }//GEN-LAST:event_adminDatabaseMenuMouseClicked
 

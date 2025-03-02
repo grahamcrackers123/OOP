@@ -16,6 +16,9 @@ import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JMenuItem;
+import java.awt.Color;
 /*
 *
  *
@@ -40,8 +43,15 @@ public class Admin extends User{
 //-----------------------------------------------------------------
 //ACCESS ROLES
     
-    void accessDatabase(){
-       //parevise in the future
+    void accessDatabase(JPanel parentPanel, JPanel databasePanel, JPanel databaseMenu, JPanel dashboardMenu, JPanel leaveMenu, JPanel salaryMenu){
+        databaseMenu.setBackground(new Color (51,51,51));
+        dashboardMenu.setBackground(new Color (153,0,0));
+        leaveMenu.setBackground(new Color (153,0,0));
+        salaryMenu.setBackground(new Color (153,0,0));
+        parentPanel.removeAll();
+        parentPanel.add(databasePanel);
+        parentPanel.repaint();
+        parentPanel.revalidate();
     }
     
 
