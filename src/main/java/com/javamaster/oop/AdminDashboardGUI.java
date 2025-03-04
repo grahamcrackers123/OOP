@@ -1952,6 +1952,20 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
          jTextFieldEditGrossSemiMonthly.setText(infoToUpdate[17]);
          jTextFieldEditHourlyRateAllowance.setText(infoToUpdate[18]);
          
+         String birthday = infoToUpdate[3];
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+        Date birthdayDate;
+        try {
+            birthdayDate = sdf.parse(birthday);
+        } catch (ParseException e) {
+            // handle parsing error
+            JOptionPane.showMessageDialog(this, "Error parsing birthday: " + e.getMessage());
+            return;
+        }
+        jCalendarBirthday2.setDate(birthdayDate);
+        jCalendarBirthday2.repaint();
+         
+        //dito cj
          
     }//GEN-LAST:event_jTableDatabaseMouseClicked
 
