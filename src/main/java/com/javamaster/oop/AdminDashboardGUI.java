@@ -119,6 +119,26 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
         //Populate the array into an employee object
         if (userData == null) {
             JOptionPane.showMessageDialog(jButtonSearchID, "User with that ID does not exist");
+            jTextSalaryEmpNo.setText("");
+            jTextSalaryLastName.setText("");
+            jTextSalaryFirstName.setText("");
+            jAreaSalaryAddress.setText("");
+            jTextSalaryPhoneNo.setText("");
+            jTextSalaryBirthday.setText("");
+            jTextSalaryStatus.setText("");
+            jTextSalarySupervisor.setText("");
+            jTextSalaryPosition.setText("");
+            jTextSalarySssNum.setText("");
+            jTextSalaryTin.setText("");
+            jTextSalaryPagibigNum.setText("");
+            jTextFieldBasicSalary.setText("");
+            jTextFieldGrossSemiMonthlyRate.setText("");
+            jTextFieldHourlyRate.setText("");
+            jTextFieldRiceSubsidy.setText("");
+            jTextFieldPhoneAllowance.setText("");
+            jTextFieldClothingAllowance.setText("");
+            jTextSalaryPhilhealthNum.setText("");
+            
             throw new IllegalArgumentException("User data not found for index: " + employeeID);
         }else{
             Employee emp = new Employee(
@@ -1360,6 +1380,11 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
         adminSalaryCalculation.add(jTextFieldPhoneAllowance, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 530, 270, -1));
 
         jTextFieldClothingAllowance.setEditable(false);
+        jTextFieldClothingAllowance.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldClothingAllowanceActionPerformed(evt);
+            }
+        });
         adminSalaryCalculation.add(jTextFieldClothingAllowance, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 560, 270, -1));
 
         jLabel26.setForeground(new java.awt.Color(255, 255, 255));
@@ -1781,7 +1806,8 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
     private void jButtonComputeSalaryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonComputeSalaryActionPerformed
         // TODO add your handling code here:
         
-        if(employeeToCompute!=null){
+        if(!jTextFieldIDtoSearch.getText().trim().isEmpty()){
+            
             double[] payrollData= admin.CalculatePayroll(employeeToCompute, (String)jComboBoxMonth.getSelectedItem());
            jTextFieldSSSContribution.setText(Double.toString(payrollData[3]));
            jTextFieldPhilHealthContribution.setText(Double.toString(payrollData[4]));
@@ -2125,6 +2151,10 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
                 
         
     }//GEN-LAST:event_jButtonSearchIDActionPerformed
+
+    private void jTextFieldClothingAllowanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldClothingAllowanceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldClothingAllowanceActionPerformed
 
     /**
      * @param args the command line arguments
