@@ -1496,7 +1496,6 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
         createButton.setForeground(new java.awt.Color(255, 255, 255));
         createButton.setText("Create Record");
         createButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        createButton.setEnabled(false);
         createButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 createButtonActionPerformed(evt);
@@ -2009,6 +2008,19 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
     private void cancelCreateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelCreateButtonActionPerformed
         // TODO add your handling code here:
         createRecord.setVisible(false);
+
+        jTextFieldFirstName2.setText("");
+        jTextFieldLastName1.setText("");
+        jTextFieldAddress.setText("");
+        jTextFieldPhoneNum1.setText("");
+        jTextFieldSSSNum.setText("");
+        jTextFieldPhilHealthNum.setText("");
+        jTextFieldTINNum.setText("");
+        jTextFieldPagibigNum.setText("");
+        jTextFieldBasicSalary1.setText("");
+        jTextFieldPhoneAllowance1.setText("");
+        jTextFieldRiceSubsidy1.setText("");
+        jTextFieldClothingAllowance1.setText("");
     }//GEN-LAST:event_cancelCreateButtonActionPerformed
 
     private void jTextFieldEditEmpNumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldEditEmpNumActionPerformed
