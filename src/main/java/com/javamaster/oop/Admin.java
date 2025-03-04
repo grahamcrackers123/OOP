@@ -304,6 +304,8 @@ public class Admin extends User{
     Validator validator = new Validator();
 
     // Validate inputs
+    
+    
     if (firstName.trim().isEmpty()) {
         JOptionPane.showMessageDialog(parent, "First Name is required.");
         isValidEdit=false;
@@ -338,6 +340,7 @@ public class Admin extends User{
         JOptionPane.showMessageDialog(parent, "Please format SSS as xx-xxxxxxx-x.");
         return;
     }
+    
 
     if (!validator.isValidPhilhealthNumber(philHealthNum)) {
         JOptionPane.showMessageDialog(parent, "Please format PhilHealth as xxxxxxxxxxxx (12 digits).");

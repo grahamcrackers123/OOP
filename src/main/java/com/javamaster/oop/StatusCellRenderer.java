@@ -26,7 +26,7 @@ public  class StatusCellRenderer extends DefaultTableCellRenderer {
 
             // Handle selection color
             if (isSelected) {
-                cell.setBackground(Color.BLUE); // Example selected color
+                cell.setBackground(Color.blue); // Example selected color
                 //cell.setForeground(Color.WHITE);
             }
 
