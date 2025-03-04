@@ -52,8 +52,21 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
         populateDatabaseTable("MotorPH.csv");
         
         employeeDatabase = admin.loadCSV("MotorPH.csv");
-        int ID = employeeDatabase.size() + 1;
-        jTextFieldEmpNum1.setText(Integer.toString(ID));
+        //Set new ID in create GUI
+        
+        //Execute this if csv is not empty and does not have 1 element, do this
+        if (!employeeDatabase.isEmpty() && employeeDatabase.get(employeeDatabase.size()-1).length>0){
+            
+             //get the ID of the last employee of the list
+             String lastID = employeeDatabase.get(employeeDatabase.size()-1)[0];
+             //Add 1
+             int ID = Integer.parseInt(lastID)+1;
+             //set it as ID
+             jTextFieldEmpNum1.setText(Integer.toString(ID));
+        }
+       
+        
+        
         
         
        //
@@ -77,6 +90,7 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
         }
 
         jTableLeaveManagement.setModel(model);
+        jTableLeaveManagement.getColumnModel().getColumn(8).setCellRenderer(new StatusCellRenderer());
     }
 
     private void populateDatabaseTable(String file) {
@@ -1550,6 +1564,7 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTableDatabase.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         jTableDatabase.setMaximumSize(new java.awt.Dimension(0, 0));
         jTableDatabase.setMinimumSize(new java.awt.Dimension(0, 0));
         jTableDatabase.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1679,27 +1694,39 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
 
     private void adminSalaryCalculationMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminSalaryCalculationMenuMouseClicked
         // TODO add your handling code here:
-        adminSalaryCalculationMenu.setBackground(new Color (51,51,51));
-        adminDashboardMenu.setBackground(new Color (153,0,0));
-        adminDatabaseMenu.setBackground(new Color (153,0,0));
-        adminLeaveMenu.setBackground(new Color (153,0,0));
-        jPanelParent.removeAll();
-        jPanelParent.add(adminSalaryCalculation);
-        jPanelParent.repaint();
-        jPanelParent.revalidate();
-
+        
+//        
+//        adminSalaryCalculationMenu.setBackground(new Color (51,51,51));
+//        adminDashboardMenu.setBackground(new Color (153,0,0));
+//        adminDatabaseMenu.setBackground(new Color (153,0,0));
+//        adminLeaveMenu.setBackground(new Color (153,0,0));
+//        jPanelParent.removeAll();
+//        jPanelParent.add(adminSalaryCalculation);
+//        jPanelParent.repaint();
+//        jPanelParent.revalidate();
+//        
+        AccessParameters accessParameters = new AccessParameters();
+            accessParameters.setAdminPageParameters(adminLeaveMenu, adminDashboardMenu, adminSalaryCalculationMenu, adminDatabaseMenu, jPanelParent, adminSalaryCalculation);
+            admin.accessSalaryCalculation(accessParameters);
+            
     }//GEN-LAST:event_adminSalaryCalculationMenuMouseClicked
 
     private void adminLeaveMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminLeaveMenuMouseClicked
         // TODO add your handling code here:
-        adminLeaveMenu.setBackground(new Color (51,51,51));
-        adminDashboardMenu.setBackground(new Color (153,0,0));
-        adminSalaryCalculationMenu.setBackground(new Color (153,0,0));
-        adminDatabaseMenu.setBackground(new Color (153,0,0));
-        jPanelParent.removeAll();
-        jPanelParent.add(adminLeaveManagement);
-        jPanelParent.repaint();
-        jPanelParent.revalidate();
+//        adminLeaveMenu.setBackground(new Color (51,51,51));
+//        adminDashboardMenu.setBackground(new Color (153,0,0));
+//        adminSalaryCalculationMenu.setBackground(new Color (153,0,0));
+//        adminDatabaseMenu.setBackground(new Color (153,0,0));
+//        jPanelParent.removeAll();
+//        jPanelParent.add(adminLeaveManagement);
+//        jPanelParent.repaint();
+//        jPanelParent.revalidate();
+        
+        
+        AccessParameters accessParameters = new AccessParameters();
+        accessParameters.setAdminPageParameters(adminLeaveMenu, adminDashboardMenu, adminSalaryCalculationMenu, adminDatabaseMenu, jPanelParent, adminLeaveManagement);
+         
+        admin.accessLeave(accessParameters);
     }//GEN-LAST:event_adminLeaveMenuMouseClicked
 
     private void jButtonLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLogoutActionPerformed
@@ -1712,14 +1739,18 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
 
     private void adminDatabaseMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminDatabaseMenuMouseClicked
         // TODO add your handling code here:
-        adminDatabaseMenu.setBackground(new Color (51,51,51));
-        adminDashboardMenu.setBackground(new Color (153,0,0));
-        adminLeaveMenu.setBackground(new Color (153,0,0));
-        adminSalaryCalculationMenu.setBackground(new Color (153,0,0));
-        jPanelParent.removeAll();
-        jPanelParent.add(adminDatabase);
-        jPanelParent.repaint();
-        jPanelParent.revalidate();
+//        adminDatabaseMenu.setBackground(new Color (51,51,51));
+//        adminDashboardMenu.setBackground(new Color (153,0,0));
+//        adminLeaveMenu.setBackground(new Color (153,0,0));
+//        adminSalaryCalculationMenu.setBackground(new Color (153,0,0));
+//        jPanelParent.removeAll();
+//        jPanelParent.add(adminDatabase);
+//        jPanelParent.repaint();
+//        jPanelParent.revalidate();
+        
+        admin.accessDatabase(jPanelParent, adminDatabase, adminDatabaseMenu, 
+                adminDashboardMenu, adminLeaveMenu, adminSalaryCalculationMenu);
+
         
     }//GEN-LAST:event_adminDatabaseMenuMouseClicked
 
@@ -1845,17 +1876,35 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
 
     private void jButtonApproveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonApproveActionPerformed
         int selectedRowIndex = jTableLeaveManagement.getSelectedRow();
-        String employeeID = model.getValueAt(selectedRowIndex, 0).toString();
-        
-        admin.approveLeave(employeeID);
+        if (selectedRowIndex == -1) {
+            JOptionPane.showMessageDialog(this, "No row selected. Please select a leave record.");
+            return;
+        }
+        if (model.getValueAt(selectedRowIndex, 8).toString().equals("Pending")) {
+            String employeeID = model.getValueAt(selectedRowIndex, 0).toString();
+            admin.approveLeave(employeeID);
+           populateLeaveTable("LeaveManagement.csv");
+        }
+        else {
+            JOptionPane.showMessageDialog(this, "Leave record cannot be edited anymore.");
+        }
         
     }//GEN-LAST:event_jButtonApproveActionPerformed
 
     private void jButtonReject1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReject1ActionPerformed
         int selectedRowIndex = jTableLeaveManagement.getSelectedRow();
-        String employeeID = model.getValueAt(selectedRowIndex, 0).toString();
         
-        admin.denyLeave(employeeID);
+         if (selectedRowIndex == -1) {
+            JOptionPane.showMessageDialog(this, "No row selected. Please select a leave record.");
+            return;
+        }       
+        if (model.getValueAt(selectedRowIndex, 8).toString().equals("Pending")) {
+            String employeeID = model.getValueAt(selectedRowIndex, 0).toString();
+            admin.denyLeave(employeeID);
+            populateLeaveTable("LeaveManagement.csv");
+        } else {
+            JOptionPane.showMessageDialog(this, "Leave record cannot be edited anymore.");
+        }
 
     }//GEN-LAST:event_jButtonReject1ActionPerformed
 
@@ -2004,6 +2053,10 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
                 jComboBoxEditSupervisor.getSelectedItem().toString(), jTextFieldEditBasicSalary.getText(), 
                 jTextFieldEditRiceSubsidy.getText(), jTextFieldEditPhoneAllowance.getText(), jTextFieldEditClothingAllowance.getText(), jTextFieldEditGrossSemiMonthly.getText(), 
                 jTextFieldEditHourlyRateAllowance.getText(), editRecord);
+        
+        if(admin.getIsValidEditInput()){
+            editRecord.setVisible(false);
+        }
     }//GEN-LAST:event_saveEditButtonActionPerformed
 
     private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed

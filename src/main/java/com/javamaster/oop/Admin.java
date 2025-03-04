@@ -16,6 +16,8 @@ import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
+import java.awt.Color;
 /*
 *
  *
@@ -40,14 +42,28 @@ public class Admin extends User{
 //-----------------------------------------------------------------
 //ACCESS ROLES
     
-    void accessDatabase(){
-       //parevise in the future
+    void accessDatabase(JPanel parentPanel, JPanel databasePanel, JPanel databaseMenu, JPanel dashboardMenu, JPanel leaveMenu, JPanel salaryMenu){
+        databaseMenu.setBackground(new Color (51,51,51));
+        dashboardMenu.setBackground(new Color (153,0,0));
+        leaveMenu.setBackground(new Color (153,0,0));
+        salaryMenu.setBackground(new Color (153,0,0));
+        parentPanel.removeAll();
+        parentPanel.add(databasePanel);
+        parentPanel.repaint();
+        parentPanel.revalidate();
     }
     
 
     @Override
-    public void accessLeave(User user){
-      //parevise in the future
+    public void accessLeave(AccessParameters accessParameters){
+        accessParameters.getLeaveMenu().setBackground(new Color (51,51,51));
+        accessParameters.getDashboardMenu().setBackground(new Color (153,0,0));
+        accessParameters.getSalaryCalculationMenu().setBackground(new Color (153,0,0));
+        accessParameters.getAdminDatabaseMenu().setBackground(new Color (153,0,0));
+        accessParameters.getjPanelParent().removeAll();
+        accessParameters.getjPanelParent().add(accessParameters.getDestination());
+        accessParameters.getjPanelParent().repaint();
+        accessParameters.getjPanelParent().revalidate();
     }
     
    @Override
@@ -57,9 +73,18 @@ public class Admin extends User{
     }
     
     @Override
-    public void accessSalaryCalculation(User user) {
+    public void accessSalaryCalculation(AccessParameters accessParameters) {
         
-       //parevise in the future
+              
+        accessParameters.getSalaryCalculationMenu().setBackground(new Color (51,51,51));
+        accessParameters.getDashboardMenu().setBackground(new Color (153,0,0));
+        accessParameters.getAdminDatabaseMenu().setBackground(new Color (153,0,0));
+        accessParameters.getLeaveMenu().setBackground(new Color (153,0,0));
+        accessParameters.getjPanelParent().removeAll();
+        accessParameters.getjPanelParent().add(accessParameters.getDestination());
+        accessParameters.getjPanelParent().repaint();
+        accessParameters.getjPanelParent().revalidate();
+        
        
     }
     
@@ -113,7 +138,19 @@ public class Admin extends User{
     //------------------------------------C R E A T E -- E M P L O Y E E-----------------------------------------
     private boolean isValid;
    
-   
+    private boolean alreadyExists(String input, int index){
+         
+         for (String[] row : csvArrayList) {
+           //this is to avoid IndexOutOfBounds
+            if (row.length >= index) {
+                // Check the index of each array
+                if (row[index].equals(input)) {
+                    return true;
+                }
+            }
+        }
+         return false;
+     }
     
 
      public void createEmployee(String empNum, String firstName, String lastName, String birthday, String address,
@@ -132,6 +169,8 @@ public class Admin extends User{
             riceSubsidy.trim().isEmpty() || phoneAllowance.trim().isEmpty() || clothingAllowance.trim().isEmpty()) {
             JOptionPane.showMessageDialog(parent, "Please fill in all fields");
             
+            isValid=false;
+            //if switch case:break = ifElse:return
             return;
         }
 
@@ -180,15 +219,30 @@ public class Admin extends User{
             isValid = false;
             return;
         } else {
-            newRow[6] = sssNum;
+            if(alreadyExists(sssNum, 6)){
+                JOptionPane.showMessageDialog(parent, "SSS already exists, please try again");
+                isValid = false;
+                return;
+            }else{
+                newRow[6] = sssNum;
+            }
         }
+        
+        
 
         if (!validator.isValidPhilhealthNumber(philHealthNum)) {
             JOptionPane.showMessageDialog(parent, "Please format PhilHealth as xxxxxxxxxxxx (12 digits)");
             isValid = false;
             return;
         } else {
-            newRow[7] = philHealthNum;
+            if(alreadyExists(philHealthNum, 7)){
+                JOptionPane.showMessageDialog(parent, "PhilHealth already exists, please try again");
+                isValid = false;
+                return;
+            }else{
+                 newRow[7] = philHealthNum;
+            }
+           
         }
 
         if (!validator.isValidTin(tinNum)) {
@@ -196,7 +250,14 @@ public class Admin extends User{
             isValid = false;
             return;
         } else {
-            newRow[8] = tinNum;
+            if(alreadyExists(tinNum, 8)){
+                JOptionPane.showMessageDialog(parent, "Tin Number already exists, please try again");
+                isValid = false;
+                return;
+            }else{
+                 newRow[8] = tinNum;
+            }
+            
         }
 
         if (!validator.isValidPagibigNumber(pagibigNum)) {
@@ -204,7 +265,14 @@ public class Admin extends User{
             isValid = false;
             return;
         } else {
-            newRow[9] = pagibigNum;
+            if(alreadyExists(pagibigNum, 9)){
+                JOptionPane.showMessageDialog(parent, "Pagibig already exists, please try again");
+                isValid = false;
+                return;
+            }else{
+                 newRow[9] = pagibigNum;
+            }
+            
         }
 
         newRow[10] = status;
@@ -264,39 +332,50 @@ public class Admin extends User{
      public boolean isInputValid(){
          return isValid;
      }
+     
+    
      //--------------------------------E D I T -- E M P L O Y E E-------------------------------------------
+    
+   private boolean isValidEdit;
    public void updateEmployee(String employeeID, String firstName, String lastName, Date birthday,
                            String address, String phoneNum, String sssNum, String philHealthNum,
                            String tinNum, String pagibigNum, String status, String position,
                            String supervisor, String basicSalary, String riceSubsidy,
                            String phoneAllowance, String clothingAllowance, String grossSemiMonthly,
                            String hourlyRate, JFrame parent) {
-
+       isValidEdit=true;
     Validator validator = new Validator();
 
     // Validate inputs
+    
+    
     if (firstName.trim().isEmpty()) {
         JOptionPane.showMessageDialog(parent, "First Name is required.");
+        isValidEdit=false;
         return;
     }
 
     if (lastName.trim().isEmpty()) {
         JOptionPane.showMessageDialog(parent, "Last Name is required.");
+        isValidEdit=false;
         return;
     }
 
     if (address.trim().isEmpty()) {
         JOptionPane.showMessageDialog(parent, "Address is required.");
+        isValidEdit=false;
         return;
     }
 
     if (phoneNum.trim().isEmpty()) {
         JOptionPane.showMessageDialog(parent, "Phone Number is required.");
+        isValidEdit=false;
         return;
     }
 
     if (!validator.isValidPhoneNumber(phoneNum)) {
         JOptionPane.showMessageDialog(parent, "Please input a valid Phone Number (xxx-xxx-xxx).");
+        isValidEdit=false;
         return;
     }
 
@@ -304,56 +383,68 @@ public class Admin extends User{
         JOptionPane.showMessageDialog(parent, "Please format SSS as xx-xxxxxxx-x.");
         return;
     }
+    
 
     if (!validator.isValidPhilhealthNumber(philHealthNum)) {
         JOptionPane.showMessageDialog(parent, "Please format PhilHealth as xxxxxxxxxxxx (12 digits).");
+        isValidEdit=false;
         return;
     }
 
     if (!validator.isValidTin(tinNum)) {
         JOptionPane.showMessageDialog(parent, "Please format TIN as xxx-xxx-xxx-xxx.");
+        isValidEdit=false;
         return;
     }
 
     if (!validator.isValidPagibigNumber(pagibigNum)) {
         JOptionPane.showMessageDialog(parent, "Please format Pagibig as xxxxxxxxxxxx (12 digits).");
+        isValidEdit=false;
         return;
     }
 
     if (!validator.isValidNumber(basicSalary)) {
         JOptionPane.showMessageDialog(parent, "Please input a valid Basic Salary.");
+        isValidEdit=false;
         return;
     }
 
     if (!validator.isValidNumber(riceSubsidy)) {
         JOptionPane.showMessageDialog(parent, "Please input a valid Rice Subsidy.");
+        isValidEdit=false;
         return;
     }
 
     if (!validator.isValidNumber(phoneAllowance)) {
         JOptionPane.showMessageDialog(parent, "Please input a valid Phone Allowance.");
+        isValidEdit=false;
         return;
     }
 
     if (!validator.isValidNumber(clothingAllowance)) {
         JOptionPane.showMessageDialog(parent, "Please input a valid Clothing Allowance.");
+        isValidEdit=false;
         return;
     }
 
     if (!validator.isValidNumber(grossSemiMonthly)) {
         JOptionPane.showMessageDialog(parent, "Please input a valid Gross Semi Monthly.");
+        isValidEdit=false;
         return;
     }
 
     if (!validator.isValidNumber(hourlyRate)) {
         JOptionPane.showMessageDialog(parent, "Please input a valid Hourly Rate.");
+        isValidEdit=false;
         return;
     }
 
     // Find and update the employee record
     boolean employeeFound = false;
     for (String[] employee : csvArrayList) {
+        //If the input's id is found, edit that employee
         if (employee[0].equals(employeeID)) {
+            isValidEdit=true;
             employee[1] = lastName;
             employee[2] = firstName;
             SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
@@ -391,7 +482,11 @@ public class Admin extends User{
     if (!employeeFound) {
         JOptionPane.showMessageDialog(parent, "Employee not found.");
     }
+    
 }
+   public boolean getIsValidEditInput(){
+       return isValidEdit;
+   }
    
    
    public void deleteEmployee(int index){
@@ -427,7 +522,7 @@ public class Admin extends User{
                      }
                      
                      //Denise, palitan mo ng pangalan ng approve button yung "null"
-                    JOptionPane.showMessageDialog(null, "Succesfully Approved! Please Refresh");
+                    JOptionPane.showMessageDialog(null, "Succesfully Approved!");
                     
                 } else {
                     // handle the case where employeeData is null
@@ -450,7 +545,7 @@ public class Admin extends User{
                      }
                      
                      //Denise, palitan mo ng pangalan ng approve button yung "null"
-                    JOptionPane.showMessageDialog(null, "Succesfully Denied! Please Refresh");
+                    JOptionPane.showMessageDialog(null, "Succesfully Denied!");
                     
                 } else {
                     // handle the case where employeeData is null

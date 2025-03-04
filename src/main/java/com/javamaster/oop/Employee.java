@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.javamaster.oop;
+import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -38,8 +39,17 @@ public class Employee extends User {
 
   
    @Override
-   public void accessLeave(User user){
-      //parevise in the future
+   public void accessLeave(AccessParameters accessParameters){
+        accessParameters.getLeaveMenu().setBackground(new Color (51,51,51));
+        accessParameters.getDashboardMenu().setBackground(new Color (153,0,0));
+        accessParameters.getSalaryCalculationMenu().setBackground(new Color (153,0,0));
+        accessParameters.getjPanelParent().removeAll();
+        accessParameters.getjPanelParent().add(accessParameters.getDestination());
+        accessParameters.getjPanelParent().repaint();
+        accessParameters.getjPanelParent().revalidate();
+       
+       
+       
    }
    //2. GO TO DASHBOARD 
    @Override
@@ -49,8 +59,14 @@ public class Employee extends User {
     }
    //3. GO TO SALARY CALC FOR EMPLOYEES  
     @Override
-    public void accessSalaryCalculation(User user){
-       
+    public void accessSalaryCalculation(AccessParameters accessParameters){
+        accessParameters.getSalaryCalculationMenu().setBackground(new Color (51,51,51));
+        accessParameters.getDashboardMenu().setBackground(new Color (153,0,0));
+        accessParameters.getLeaveMenu().setBackground(new Color (153,0,0));
+        accessParameters.getjPanelParent().removeAll();
+        accessParameters.getjPanelParent().add(accessParameters.getDestination());
+        accessParameters.getjPanelParent().repaint();
+        accessParameters.getjPanelParent().revalidate();
         
        //parevise in the future
     }
