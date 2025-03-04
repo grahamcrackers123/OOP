@@ -1962,8 +1962,8 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Error parsing birthday: " + e.getMessage());
             return;
         }
-        jCalendarBirthday.setDate(birthdayDate);
-        jCalendarBirthday.repaint();
+        jCalendarBirthday2.setDate(birthdayDate);
+        jCalendarBirthday2.repaint();
          
         //dito cj
          
