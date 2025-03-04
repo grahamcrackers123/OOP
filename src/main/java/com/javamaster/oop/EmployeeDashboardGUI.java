@@ -228,7 +228,7 @@ public class EmployeeDashboardGUI extends javax.swing.JFrame {
         jCalendarEnd = new com.toedter.calendar.JCalendar();
         jButtonSubmit = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setSize(new java.awt.Dimension(1250, 775));
 
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
