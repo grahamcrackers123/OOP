@@ -2038,7 +2038,10 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
                 jComboBoxSupervisor.getSelectedItem().toString(), jTextFieldBasicSalary1.getText(), jTextFieldRiceSubsidy1.getText(), 
                 jTextFieldPhoneAllowance1.getText(), jTextFieldClothingAllowance1.getText(), createRecord);
 
-            jTextFieldFirstName2.setText("");
+ 
+        if(admin.isInputValid()){
+            createRecord.setVisible(false);
+           jTextFieldFirstName2.setText("");
            jTextFieldLastName1.setText("");
            jTextFieldAddress.setText("");
            jTextFieldPhoneNum1.setText("");
@@ -2050,8 +2053,6 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
            jTextFieldPhoneAllowance1.setText("");
            jTextFieldRiceSubsidy1.setText("");
            jTextFieldClothingAllowance1.setText("");
-        if(admin.isInputValid()){
-            createRecord.setVisible(false);
         }
                   
     }//GEN-LAST:event_saveCreateButtonActionPerformed
