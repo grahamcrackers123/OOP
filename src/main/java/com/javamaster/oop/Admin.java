@@ -18,6 +18,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.Color;
+import javax.swing.JButton;
 /*
 *
  *
@@ -138,7 +139,19 @@ public class Admin extends User{
     //------------------------------------C R E A T E -- E M P L O Y E E-----------------------------------------
     private boolean isValid;
    
-   
+    private boolean alreadyExists(String input, int index){
+         
+         for (String[] row : csvArrayList) {
+           //this is to avoid IndexOutOfBounds
+            if (row.length >= index) {
+                // Check the index of each array
+                if (row[index].equals(input)) {
+                    return true;
+                }
+            }
+        }
+         return false;
+     }
     
 
      public void createEmployee(String empNum, String firstName, String lastName, String birthday, String address,
@@ -207,15 +220,30 @@ public class Admin extends User{
             isValid = false;
             return;
         } else {
-            newRow[6] = sssNum;
+            if(alreadyExists(sssNum, 6)){
+                JOptionPane.showMessageDialog(parent, "SSS already exists, please try again");
+                isValid = false;
+                return;
+            }else{
+                newRow[6] = sssNum;
+            }
         }
+        
+        
 
         if (!validator.isValidPhilhealthNumber(philHealthNum)) {
             JOptionPane.showMessageDialog(parent, "Please format PhilHealth as xxxxxxxxxxxx (12 digits)");
             isValid = false;
             return;
         } else {
-            newRow[7] = philHealthNum;
+            if(alreadyExists(philHealthNum, 7)){
+                JOptionPane.showMessageDialog(parent, "PhilHealth already exists, please try again");
+                isValid = false;
+                return;
+            }else{
+                 newRow[7] = philHealthNum;
+            }
+           
         }
 
         if (!validator.isValidTin(tinNum)) {
@@ -223,7 +251,14 @@ public class Admin extends User{
             isValid = false;
             return;
         } else {
-            newRow[8] = tinNum;
+            if(alreadyExists(tinNum, 8)){
+                JOptionPane.showMessageDialog(parent, "Tin Number already exists, please try again");
+                isValid = false;
+                return;
+            }else{
+                 newRow[8] = tinNum;
+            }
+            
         }
 
         if (!validator.isValidPagibigNumber(pagibigNum)) {
@@ -231,7 +266,14 @@ public class Admin extends User{
             isValid = false;
             return;
         } else {
-            newRow[9] = pagibigNum;
+            if(alreadyExists(pagibigNum, 9)){
+                JOptionPane.showMessageDialog(parent, "Pagibig already exists, please try again");
+                isValid = false;
+                return;
+            }else{
+                 newRow[9] = pagibigNum;
+            }
+            
         }
 
         newRow[10] = status;
@@ -291,6 +333,8 @@ public class Admin extends User{
      public boolean isInputValid(){
          return isValid;
      }
+     
+    
      //--------------------------------E D I T -- E M P L O Y E E-------------------------------------------
     
    private boolean isValidEdit;
@@ -304,6 +348,8 @@ public class Admin extends User{
     Validator validator = new Validator();
 
     // Validate inputs
+    
+    
     if (firstName.trim().isEmpty()) {
         JOptionPane.showMessageDialog(parent, "First Name is required.");
         isValidEdit=false;
@@ -338,6 +384,7 @@ public class Admin extends User{
         JOptionPane.showMessageDialog(parent, "Please format SSS as xx-xxxxxxx-x.");
         return;
     }
+    
 
     if (!validator.isValidPhilhealthNumber(philHealthNum)) {
         JOptionPane.showMessageDialog(parent, "Please format PhilHealth as xxxxxxxxxxxx (12 digits).");
@@ -476,7 +523,7 @@ public class Admin extends User{
                      }
                      
                      //Denise, palitan mo ng pangalan ng approve button yung "null"
-                    JOptionPane.showMessageDialog(null, "Succesfully Approved! Please Refresh");
+                    JOptionPane.showMessageDialog(null, "Succesfully Approved!");
                     
                 } else {
                     // handle the case where employeeData is null
@@ -485,7 +532,7 @@ public class Admin extends User{
         
     }
     
-    public void denyLeave(String index){
+    public void denyLeave(String index, JButton parent){
         leaveArrayList = csva.loadCSV("LeaveManagement.csv");
         String[] empLeaveData = csva.searchUserData(leaveArrayList, index);
                 if (empLeaveData != null) {
@@ -499,11 +546,11 @@ public class Admin extends User{
                      }
                      
                      //Denise, palitan mo ng pangalan ng approve button yung "null"
-                    JOptionPane.showMessageDialog(null, "Succesfully Denied! Please Refresh");
+                    JOptionPane.showMessageDialog(parent, "Succesfully Denied!");
                     
                 } else {
                     // handle the case where employeeData is null
-                    JOptionPane.showMessageDialog(null, "Employee not found!");
+                    JOptionPane.showMessageDialog(parent, "Employee not found!");
                 } 
         
     }

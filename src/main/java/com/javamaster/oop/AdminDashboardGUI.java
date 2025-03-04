@@ -48,23 +48,10 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
         jTextDashboardGrossSemiMonthlyRate.setText(Double.toString(admin.getGrossSemiMonthlyRate()));
         jTextDashboardBasicSalary.setText(Double.toString(admin.getBasicSalary()));
         
-        populateLeaveTable("LeaveManagement.csv");
+        
         populateDatabaseTable("MotorPH.csv");
         
-        employeeDatabase = admin.loadCSV("MotorPH.csv");
-        //Set new ID in create GUI
         
-        //Execute this if csv is not empty and does not have 1 element, do this
-        if (!employeeDatabase.isEmpty() && employeeDatabase.get(employeeDatabase.size()-1).length>0){
-            
-             //get the ID of the last employee of the list
-             String lastID = employeeDatabase.get(employeeDatabase.size()-1)[0];
-             //Add 1
-             int ID = Integer.parseInt(lastID)+1;
-             //set it as ID
-             jTextFieldEmpNum1.setText(Integer.toString(ID));
-        }
-       
         
         
         
@@ -121,6 +108,32 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
         //Populate the array into an employee object
         if (userData == null) {
             JOptionPane.showMessageDialog(jButtonSearchID, "User with that ID does not exist");
+            jTextSalaryEmpNo.setText("");
+            jTextSalaryLastName.setText("");
+            jTextSalaryFirstName.setText("");
+            jAreaSalaryAddress.setText("");
+            jTextSalaryPhoneNo.setText("");
+            jTextSalaryBirthday.setText("");
+            jTextSalaryStatus.setText("");
+            jTextSalarySupervisor.setText("");
+            jTextSalaryPosition.setText("");
+            jTextSalarySssNum.setText("");
+            jTextSalaryTin.setText("");
+            jTextSalaryPagibigNum.setText("");
+            jTextFieldBasicSalary.setText("");
+            jTextFieldGrossSemiMonthlyRate.setText("");
+            jTextFieldHourlyRate.setText("");
+            jTextFieldRiceSubsidy.setText("");
+            jTextFieldPhoneAllowance.setText("");
+            jTextFieldClothingAllowance.setText("");
+            jTextSalaryPhilhealthNum.setText("");
+            jTextFieldSSSContribution.setText("");
+            jTextFieldPhilHealthContribution.setText("");
+            jTextFieldPagIBIGContribution.setText("");
+            jTextFieldGrossPay.setText("");
+            jTextFieldNetPay.setText("");
+            jButtonComputeSalary.setEnabled(false);
+            
             throw new IllegalArgumentException("User data not found for index: " + employeeID);
         }else{
             Employee emp = new Employee(
@@ -406,6 +419,7 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
         jButtonReject1 = new javax.swing.JButton();
         jLabel66 = new javax.swing.JLabel();
 
+        createRecord.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         createRecord.setTitle("Create Employee Record");
         createRecord.setAlwaysOnTop(true);
         createRecord.setBackground(new java.awt.Color(51, 51, 51));
@@ -782,7 +796,7 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
 
         editRecord.getContentPane().add(jScrollPane8, java.awt.BorderLayout.CENTER);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
         jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
@@ -1361,6 +1375,11 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
         adminSalaryCalculation.add(jTextFieldPhoneAllowance, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 530, 270, -1));
 
         jTextFieldClothingAllowance.setEditable(false);
+        jTextFieldClothingAllowance.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldClothingAllowanceActionPerformed(evt);
+            }
+        });
         adminSalaryCalculation.add(jTextFieldClothingAllowance, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 560, 270, -1));
 
         jLabel26.setForeground(new java.awt.Color(255, 255, 255));
@@ -1412,7 +1431,7 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
                 jTextFieldEmpNumActionPerformed(evt);
             }
         });
-        adminDatabase.add(jTextFieldEmpNum, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, 70, 30));
+        adminDatabase.add(jTextFieldEmpNum, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, 50, 30));
 
         jLabel36.setForeground(new java.awt.Color(255, 255, 255));
         jLabel36.setText("Employee Number: ");
@@ -1428,7 +1447,7 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
                 jTextFieldLastNameActionPerformed(evt);
             }
         });
-        adminDatabase.add(jTextFieldLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, 190, 30));
+        adminDatabase.add(jTextFieldLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, 250, 30));
 
         jLabel38.setForeground(new java.awt.Color(255, 255, 255));
         jLabel38.setText("First Name:");
@@ -1440,7 +1459,7 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
                 jTextFieldFirstNameActionPerformed(evt);
             }
         });
-        adminDatabase.add(jTextFieldFirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 170, 190, 30));
+        adminDatabase.add(jTextFieldFirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 170, 250, 30));
 
         jLabel39.setForeground(new java.awt.Color(255, 255, 255));
         jLabel39.setText("Phone No.:");
@@ -1452,7 +1471,7 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
                 jTextFieldPhoneNumActionPerformed(evt);
             }
         });
-        adminDatabase.add(jTextFieldPhoneNum, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 210, 190, 30));
+        adminDatabase.add(jTextFieldPhoneNum, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 210, 250, 30));
 
         jLabel40.setForeground(new java.awt.Color(255, 255, 255));
         jLabel40.setText("Address:");
@@ -1498,7 +1517,6 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
         createButton.setForeground(new java.awt.Color(255, 255, 255));
         createButton.setText("Create Record");
         createButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        createButton.setEnabled(false);
         createButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 createButtonActionPerformed(evt);
@@ -1553,7 +1571,7 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
         jAreaSalaryAddress1.setRows(5);
         jScrollPane5.setViewportView(jAreaSalaryAddress1);
 
-        adminDatabase.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 250, 210, 70));
+        adminDatabase.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 250, 250, 70));
 
         jTableDatabase.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1711,6 +1729,8 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
             accessParameters.setAdminPageParameters(adminLeaveMenu, adminDashboardMenu, adminSalaryCalculationMenu, adminDatabaseMenu, jPanelParent, adminSalaryCalculation);
             admin.accessSalaryCalculation(accessParameters);
             
+            jButtonComputeSalary.setEnabled(false);
+            
     }//GEN-LAST:event_adminSalaryCalculationMenuMouseClicked
 
     private void adminLeaveMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminLeaveMenuMouseClicked
@@ -1729,6 +1749,9 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
         accessParameters.setAdminPageParameters(adminLeaveMenu, adminDashboardMenu, adminSalaryCalculationMenu, adminDatabaseMenu, jPanelParent, adminLeaveManagement);
          
         admin.accessLeave(accessParameters);
+        
+        populateLeaveTable("LeaveManagement.csv");
+       
     }//GEN-LAST:event_adminLeaveMenuMouseClicked
 
     private void jButtonLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLogoutActionPerformed
@@ -1783,7 +1806,8 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
     private void jButtonComputeSalaryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonComputeSalaryActionPerformed
         // TODO add your handling code here:
         
-        if(employeeToCompute!=null){
+        if(!jTextFieldIDtoSearch.getText().trim().isEmpty()){
+            
             double[] payrollData= admin.CalculatePayroll(employeeToCompute, (String)jComboBoxMonth.getSelectedItem());
            jTextFieldSSSContribution.setText(Double.toString(payrollData[3]));
            jTextFieldPhilHealthContribution.setText(Double.toString(payrollData[4]));
@@ -1817,6 +1841,21 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
         createRecord.setVisible(true);
         createRecord.pack();
         createRecord.setLocationRelativeTo(this);
+        
+        employeeDatabase = admin.loadCSV("MotorPH.csv");
+        //Set new ID in create GUI
+        
+        //Execute this if csv is not empty and does not have 1 element, do this
+        if (!employeeDatabase.isEmpty() && employeeDatabase.get(employeeDatabase.size()-1).length>0){
+            
+             //get the ID of the last employee of the list
+             String lastID = employeeDatabase.get(employeeDatabase.size()-1)[0];
+             //Add 1
+             int ID = Integer.parseInt(lastID)+1;
+             //set it as ID
+             jTextFieldEmpNum1.setText(Integer.toString(ID));
+        }
+       
     }//GEN-LAST:event_createButtonActionPerformed
 
     private void jTextFieldStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldStatusActionPerformed
@@ -1877,23 +1916,33 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonRefreshActionPerformed
 
     private void jButtonApproveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonApproveActionPerformed
+      
         int selectedRowIndex = jTableLeaveManagement.getSelectedRow();
-
-        if (model.getValueAt(selectedRowIndex, 8).toString().equals("Pending")) {
+        if (selectedRowIndex == -1) {
+            JOptionPane.showMessageDialog(this, "No row selected. Please select a leave record.");
+            
+        }else if  (model.getValueAt(selectedRowIndex, 8).toString().equals("Pending")) {
             String employeeID = model.getValueAt(selectedRowIndex, 0).toString();
             admin.approveLeave(employeeID);
-        } else {
+           populateLeaveTable("LeaveManagement.csv");
+        }
+        else {
             JOptionPane.showMessageDialog(this, "Leave record cannot be edited anymore.");
         }
         
     }//GEN-LAST:event_jButtonApproveActionPerformed
 
     private void jButtonReject1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReject1ActionPerformed
+       
         int selectedRowIndex = jTableLeaveManagement.getSelectedRow();
         
-        if (model.getValueAt(selectedRowIndex, 8).toString().equals("Pending")) {
-        String employeeID = model.getValueAt(selectedRowIndex, 0).toString();
-        admin.denyLeave(employeeID);
+         if (selectedRowIndex == -1) {
+            JOptionPane.showMessageDialog(this, "No row selected. Please select a leave record.");
+            
+        }else if (model.getValueAt(selectedRowIndex, 8).toString().equals("Pending")) {
+            String employeeID = model.getValueAt(selectedRowIndex, 0).toString();
+            admin.denyLeave(employeeID, jButtonReject1);
+             populateLeaveTable("LeaveManagement.csv");
         } else {
             JOptionPane.showMessageDialog(this, "Leave record cannot be edited anymore.");
         }
@@ -1954,8 +2003,8 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Error parsing birthday: " + e.getMessage());
             return;
         }
-        jCalendarBirthday.setDate(birthdayDate);
-        jCalendarBirthday.repaint();
+        jCalendarBirthday2.setDate(birthdayDate);
+        jCalendarBirthday2.repaint();
          
         //dito cj
          
@@ -1991,9 +2040,21 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
                 jComboBoxSupervisor.getSelectedItem().toString(), jTextFieldBasicSalary1.getText(), jTextFieldRiceSubsidy1.getText(), 
                 jTextFieldPhoneAllowance1.getText(), jTextFieldClothingAllowance1.getText(), createRecord);
 
-
+ 
         if(admin.isInputValid()){
             createRecord.setVisible(false);
+           jTextFieldFirstName2.setText("");
+           jTextFieldLastName1.setText("");
+           jTextFieldAddress.setText("");
+           jTextFieldPhoneNum1.setText("");
+           jTextFieldSSSNum.setText("");
+           jTextFieldPhilHealthNum.setText("");
+           jTextFieldTINNum.setText("");
+           jTextFieldPagibigNum.setText("");
+           jTextFieldBasicSalary1.setText("");
+           jTextFieldPhoneAllowance1.setText("");
+           jTextFieldRiceSubsidy1.setText("");
+           jTextFieldClothingAllowance1.setText("");
         }
                   
     }//GEN-LAST:event_saveCreateButtonActionPerformed
@@ -2001,6 +2062,18 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
     private void cancelCreateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelCreateButtonActionPerformed
         // TODO add your handling code here:
         createRecord.setVisible(false);
+        jTextFieldFirstName2.setText("");
+        jTextFieldLastName1.setText("");
+        jTextFieldAddress.setText("");
+        jTextFieldPhoneNum1.setText("");
+        jTextFieldSSSNum.setText("");
+        jTextFieldPhilHealthNum.setText("");
+        jTextFieldTINNum.setText("");
+        jTextFieldPagibigNum.setText("");
+        jTextFieldBasicSalary1.setText("");
+        jTextFieldPhoneAllowance1.setText("");
+        jTextFieldRiceSubsidy1.setText("");
+        jTextFieldClothingAllowance1.setText("");
     }//GEN-LAST:event_cancelCreateButtonActionPerformed
 
     private void jTextFieldEditEmpNumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldEditEmpNumActionPerformed
@@ -2046,6 +2119,8 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
                 jTextFieldEditRiceSubsidy.getText(), jTextFieldEditPhoneAllowance.getText(), jTextFieldEditClothingAllowance.getText(), jTextFieldEditGrossSemiMonthly.getText(), 
                 jTextFieldEditHourlyRateAllowance.getText(), editRecord);
         
+ 
+        
         if(admin.getIsValidEditInput()){
             editRecord.setVisible(false);
         }
@@ -2080,6 +2155,8 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
         employeeToCompute = setEmployeeData(jTextFieldIDtoSearch.getText());
         //If not null, proceed as normal. No else statement because it's already done in the Compute button. see the event for more details
         if (employeeToCompute!=null){
+                jButtonComputeSalary.setEnabled(true);
+                
                 jTextSalaryEmpNo.setText(employeeToCompute.getEmployeeId());
                 jTextSalaryFirstName.setText(employeeToCompute.getFirstName());
                 jTextSalaryLastName.setText(employeeToCompute.getLastName());
@@ -2100,11 +2177,15 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
                 jTextSalaryTin.setText(employeeToCompute.getTinNumber());
                 jTextSalaryPagibigNum.setText(employeeToCompute.getPagIbigNumber());
               // Dito cj
-              
-        }
+         
+        }else{jButtonComputeSalary.setEnabled(false);} 
                 
         
     }//GEN-LAST:event_jButtonSearchIDActionPerformed
+
+    private void jTextFieldClothingAllowanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldClothingAllowanceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldClothingAllowanceActionPerformed
 
     /**
      * @param args the command line arguments
