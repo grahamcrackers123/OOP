@@ -20,14 +20,16 @@ public  class StatusCellRenderer extends DefaultTableCellRenderer {
                 cell.setBackground(Color.GREEN);
             } else if ("Denied".equalsIgnoreCase(status)) {
                 cell.setBackground(Color.RED);
+                cell.setForeground(Color.WHITE);
             } else {
                 cell.setBackground(Color.WHITE); // Default background for other statuses
+                cell.setForeground(Color.BLACK);
             }
 
             // Handle selection color
             if (isSelected) {
                 cell.setBackground(Color.BLUE); // Example selected color
-                //cell.setForeground(Color.WHITE);
+                cell.setForeground(Color.WHITE);
             }
 
             return cell;

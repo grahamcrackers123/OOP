@@ -90,7 +90,9 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
         }
 
         jTableLeaveManagement.setModel(model);
-        jTableLeaveManagement.getColumnModel().getColumn(8).setCellRenderer(new StatusCellRenderer());
+        // jTableLeaveManagement.getColumnModel().getColumn(8).setCellRenderer(new StatusCellRenderer());
+        jTableLeaveManagement.setDefaultRenderer(model.getColumnClass(8), new StatusCellRenderer());
+        // jTableLeaveManagement.setDefaultRenderer(String.class, new StatusCellRenderer());
     }
 
     private void populateDatabaseTable(String file) {
