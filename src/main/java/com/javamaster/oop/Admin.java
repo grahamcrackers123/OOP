@@ -157,6 +157,8 @@ public class Admin extends User{
             riceSubsidy.trim().isEmpty() || phoneAllowance.trim().isEmpty() || clothingAllowance.trim().isEmpty()) {
             JOptionPane.showMessageDialog(parent, "Please fill in all fields");
             
+            isValid=false;
+            //if switch case:break = ifElse:return
             return;
         }
 
@@ -290,38 +292,45 @@ public class Admin extends User{
          return isValid;
      }
      //--------------------------------E D I T -- E M P L O Y E E-------------------------------------------
+    
+   private boolean isValidEdit;
    public void updateEmployee(String employeeID, String firstName, String lastName, Date birthday,
                            String address, String phoneNum, String sssNum, String philHealthNum,
                            String tinNum, String pagibigNum, String status, String position,
                            String supervisor, String basicSalary, String riceSubsidy,
                            String phoneAllowance, String clothingAllowance, String grossSemiMonthly,
                            String hourlyRate, JFrame parent) {
-
+       isValidEdit=true;
     Validator validator = new Validator();
 
     // Validate inputs
     if (firstName.trim().isEmpty()) {
         JOptionPane.showMessageDialog(parent, "First Name is required.");
+        isValidEdit=false;
         return;
     }
 
     if (lastName.trim().isEmpty()) {
         JOptionPane.showMessageDialog(parent, "Last Name is required.");
+        isValidEdit=false;
         return;
     }
 
     if (address.trim().isEmpty()) {
         JOptionPane.showMessageDialog(parent, "Address is required.");
+        isValidEdit=false;
         return;
     }
 
     if (phoneNum.trim().isEmpty()) {
         JOptionPane.showMessageDialog(parent, "Phone Number is required.");
+        isValidEdit=false;
         return;
     }
 
     if (!validator.isValidPhoneNumber(phoneNum)) {
         JOptionPane.showMessageDialog(parent, "Please input a valid Phone Number (xxx-xxx-xxx).");
+        isValidEdit=false;
         return;
     }
 
@@ -332,53 +341,64 @@ public class Admin extends User{
 
     if (!validator.isValidPhilhealthNumber(philHealthNum)) {
         JOptionPane.showMessageDialog(parent, "Please format PhilHealth as xxxxxxxxxxxx (12 digits).");
+        isValidEdit=false;
         return;
     }
 
     if (!validator.isValidTin(tinNum)) {
         JOptionPane.showMessageDialog(parent, "Please format TIN as xxx-xxx-xxx-xxx.");
+        isValidEdit=false;
         return;
     }
 
     if (!validator.isValidPagibigNumber(pagibigNum)) {
         JOptionPane.showMessageDialog(parent, "Please format Pagibig as xxxxxxxxxxxx (12 digits).");
+        isValidEdit=false;
         return;
     }
 
     if (!validator.isValidNumber(basicSalary)) {
         JOptionPane.showMessageDialog(parent, "Please input a valid Basic Salary.");
+        isValidEdit=false;
         return;
     }
 
     if (!validator.isValidNumber(riceSubsidy)) {
         JOptionPane.showMessageDialog(parent, "Please input a valid Rice Subsidy.");
+        isValidEdit=false;
         return;
     }
 
     if (!validator.isValidNumber(phoneAllowance)) {
         JOptionPane.showMessageDialog(parent, "Please input a valid Phone Allowance.");
+        isValidEdit=false;
         return;
     }
 
     if (!validator.isValidNumber(clothingAllowance)) {
         JOptionPane.showMessageDialog(parent, "Please input a valid Clothing Allowance.");
+        isValidEdit=false;
         return;
     }
 
     if (!validator.isValidNumber(grossSemiMonthly)) {
         JOptionPane.showMessageDialog(parent, "Please input a valid Gross Semi Monthly.");
+        isValidEdit=false;
         return;
     }
 
     if (!validator.isValidNumber(hourlyRate)) {
         JOptionPane.showMessageDialog(parent, "Please input a valid Hourly Rate.");
+        isValidEdit=false;
         return;
     }
 
     // Find and update the employee record
     boolean employeeFound = false;
     for (String[] employee : csvArrayList) {
+        //If the input's id is found, edit that employee
         if (employee[0].equals(employeeID)) {
+            isValidEdit=true;
             employee[1] = lastName;
             employee[2] = firstName;
             SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
@@ -416,7 +436,11 @@ public class Admin extends User{
     if (!employeeFound) {
         JOptionPane.showMessageDialog(parent, "Employee not found.");
     }
+    
 }
+   public boolean getIsValidEditInput(){
+       return isValidEdit;
+   }
    
    
    public void deleteEmployee(int index){

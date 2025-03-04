@@ -52,8 +52,21 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
         populateDatabaseTable("MotorPH.csv");
         
         employeeDatabase = admin.loadCSV("MotorPH.csv");
-        int ID = employeeDatabase.size() + 1;
-        jTextFieldEmpNum1.setText(Integer.toString(ID));
+        //Set new ID in create GUI
+        
+        //Execute this if csv is not empty and does not have 1 element, do this
+        if (!employeeDatabase.isEmpty() && employeeDatabase.get(employeeDatabase.size()-1).length>0){
+            
+             //get the ID of the last employee of the list
+             String lastID = employeeDatabase.get(employeeDatabase.size()-1)[0];
+             //Add 1
+             int ID = Integer.parseInt(lastID)+1;
+             //set it as ID
+             jTextFieldEmpNum1.setText(Integer.toString(ID));
+        }
+       
+        
+        
         
         
        //
@@ -1550,6 +1563,7 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTableDatabase.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         jTableDatabase.setMaximumSize(new java.awt.Dimension(0, 0));
         jTableDatabase.setMinimumSize(new java.awt.Dimension(0, 0));
         jTableDatabase.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -2020,6 +2034,10 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
                 jComboBoxEditSupervisor.getSelectedItem().toString(), jTextFieldEditBasicSalary.getText(), 
                 jTextFieldEditRiceSubsidy.getText(), jTextFieldEditPhoneAllowance.getText(), jTextFieldEditClothingAllowance.getText(), jTextFieldEditGrossSemiMonthly.getText(), 
                 jTextFieldEditHourlyRateAllowance.getText(), editRecord);
+        
+        if(admin.getIsValidEditInput()){
+            editRecord.setVisible(false);
+        }
     }//GEN-LAST:event_saveEditButtonActionPerformed
 
     private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
