@@ -48,23 +48,10 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
         jTextDashboardGrossSemiMonthlyRate.setText(Double.toString(admin.getGrossSemiMonthlyRate()));
         jTextDashboardBasicSalary.setText(Double.toString(admin.getBasicSalary()));
         
-        populateLeaveTable("LeaveManagement.csv");
+        
         populateDatabaseTable("MotorPH.csv");
         
-        employeeDatabase = admin.loadCSV("MotorPH.csv");
-        //Set new ID in create GUI
         
-        //Execute this if csv is not empty and does not have 1 element, do this
-        if (!employeeDatabase.isEmpty() && employeeDatabase.get(employeeDatabase.size()-1).length>0){
-            
-             //get the ID of the last employee of the list
-             String lastID = employeeDatabase.get(employeeDatabase.size()-1)[0];
-             //Add 1
-             int ID = Integer.parseInt(lastID)+1;
-             //set it as ID
-             jTextFieldEmpNum1.setText(Integer.toString(ID));
-        }
-       
         
         
         
@@ -138,6 +125,12 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
             jTextFieldPhoneAllowance.setText("");
             jTextFieldClothingAllowance.setText("");
             jTextSalaryPhilhealthNum.setText("");
+            jTextFieldSSSContribution.setText("");
+            jTextFieldPhilHealthContribution.setText("");
+            jTextFieldPagIBIGContribution.setText("");
+            jTextFieldGrossPay.setText("");
+            jTextFieldNetPay.setText("");
+            jButtonComputeSalary.setEnabled(false);
             
             throw new IllegalArgumentException("User data not found for index: " + employeeID);
         }else{
@@ -1436,7 +1429,7 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
                 jTextFieldEmpNumActionPerformed(evt);
             }
         });
-        adminDatabase.add(jTextFieldEmpNum, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, 70, 30));
+        adminDatabase.add(jTextFieldEmpNum, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, 50, 30));
 
         jLabel36.setForeground(new java.awt.Color(255, 255, 255));
         jLabel36.setText("Employee Number: ");
@@ -1452,7 +1445,7 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
                 jTextFieldLastNameActionPerformed(evt);
             }
         });
-        adminDatabase.add(jTextFieldLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, 190, 30));
+        adminDatabase.add(jTextFieldLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, 250, 30));
 
         jLabel38.setForeground(new java.awt.Color(255, 255, 255));
         jLabel38.setText("First Name:");
@@ -1464,7 +1457,7 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
                 jTextFieldFirstNameActionPerformed(evt);
             }
         });
-        adminDatabase.add(jTextFieldFirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 170, 190, 30));
+        adminDatabase.add(jTextFieldFirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 170, 250, 30));
 
         jLabel39.setForeground(new java.awt.Color(255, 255, 255));
         jLabel39.setText("Phone No.:");
@@ -1476,7 +1469,7 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
                 jTextFieldPhoneNumActionPerformed(evt);
             }
         });
-        adminDatabase.add(jTextFieldPhoneNum, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 210, 190, 30));
+        adminDatabase.add(jTextFieldPhoneNum, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 210, 250, 30));
 
         jLabel40.setForeground(new java.awt.Color(255, 255, 255));
         jLabel40.setText("Address:");
@@ -1576,7 +1569,7 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
         jAreaSalaryAddress1.setRows(5);
         jScrollPane5.setViewportView(jAreaSalaryAddress1);
 
-        adminDatabase.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 250, 210, 70));
+        adminDatabase.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 250, 250, 70));
 
         jTableDatabase.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1734,6 +1727,8 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
             accessParameters.setAdminPageParameters(adminLeaveMenu, adminDashboardMenu, adminSalaryCalculationMenu, adminDatabaseMenu, jPanelParent, adminSalaryCalculation);
             admin.accessSalaryCalculation(accessParameters);
             
+            jButtonComputeSalary.setEnabled(false);
+            
     }//GEN-LAST:event_adminSalaryCalculationMenuMouseClicked
 
     private void adminLeaveMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminLeaveMenuMouseClicked
@@ -1752,6 +1747,9 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
         accessParameters.setAdminPageParameters(adminLeaveMenu, adminDashboardMenu, adminSalaryCalculationMenu, adminDatabaseMenu, jPanelParent, adminLeaveManagement);
          
         admin.accessLeave(accessParameters);
+        
+        populateLeaveTable("LeaveManagement.csv");
+       
     }//GEN-LAST:event_adminLeaveMenuMouseClicked
 
     private void jButtonLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLogoutActionPerformed
@@ -1841,6 +1839,21 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
         createRecord.setVisible(true);
         createRecord.pack();
         createRecord.setLocationRelativeTo(this);
+        
+        employeeDatabase = admin.loadCSV("MotorPH.csv");
+        //Set new ID in create GUI
+        
+        //Execute this if csv is not empty and does not have 1 element, do this
+        if (!employeeDatabase.isEmpty() && employeeDatabase.get(employeeDatabase.size()-1).length>0){
+            
+             //get the ID of the last employee of the list
+             String lastID = employeeDatabase.get(employeeDatabase.size()-1)[0];
+             //Add 1
+             int ID = Integer.parseInt(lastID)+1;
+             //set it as ID
+             jTextFieldEmpNum1.setText(Integer.toString(ID));
+        }
+       
     }//GEN-LAST:event_createButtonActionPerformed
 
     private void jTextFieldStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldStatusActionPerformed
@@ -1901,12 +1914,12 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonRefreshActionPerformed
 
     private void jButtonApproveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonApproveActionPerformed
+      
         int selectedRowIndex = jTableLeaveManagement.getSelectedRow();
         if (selectedRowIndex == -1) {
             JOptionPane.showMessageDialog(this, "No row selected. Please select a leave record.");
-            return;
-        }
-        if (model.getValueAt(selectedRowIndex, 8).toString().equals("Pending")) {
+            
+        }else if  (model.getValueAt(selectedRowIndex, 8).toString().equals("Pending")) {
             String employeeID = model.getValueAt(selectedRowIndex, 0).toString();
             admin.approveLeave(employeeID);
            populateLeaveTable("LeaveManagement.csv");
@@ -1918,16 +1931,16 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonApproveActionPerformed
 
     private void jButtonReject1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReject1ActionPerformed
+       
         int selectedRowIndex = jTableLeaveManagement.getSelectedRow();
         
          if (selectedRowIndex == -1) {
             JOptionPane.showMessageDialog(this, "No row selected. Please select a leave record.");
-            return;
-        }       
-        if (model.getValueAt(selectedRowIndex, 8).toString().equals("Pending")) {
+            
+        }else if (model.getValueAt(selectedRowIndex, 8).toString().equals("Pending")) {
             String employeeID = model.getValueAt(selectedRowIndex, 0).toString();
-            admin.denyLeave(employeeID);
-            populateLeaveTable("LeaveManagement.csv");
+            admin.denyLeave(employeeID, jButtonReject1);
+             populateLeaveTable("LeaveManagement.csv");
         } else {
             JOptionPane.showMessageDialog(this, "Leave record cannot be edited anymore.");
         }
@@ -2025,7 +2038,18 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
                 jComboBoxSupervisor.getSelectedItem().toString(), jTextFieldBasicSalary1.getText(), jTextFieldRiceSubsidy1.getText(), 
                 jTextFieldPhoneAllowance1.getText(), jTextFieldClothingAllowance1.getText(), createRecord);
 
-
+            jTextFieldFirstName2.setText("");
+           jTextFieldLastName1.setText("");
+           jTextFieldAddress.setText("");
+           jTextFieldPhoneNum1.setText("");
+           jTextFieldSSSNum.setText("");
+           jTextFieldPhilHealthNum.setText("");
+           jTextFieldTINNum.setText("");
+           jTextFieldPagibigNum.setText("");
+           jTextFieldBasicSalary1.setText("");
+           jTextFieldPhoneAllowance1.setText("");
+           jTextFieldRiceSubsidy1.setText("");
+           jTextFieldClothingAllowance1.setText("");
         if(admin.isInputValid()){
             createRecord.setVisible(false);
         }
@@ -2092,6 +2116,8 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
                 jTextFieldEditRiceSubsidy.getText(), jTextFieldEditPhoneAllowance.getText(), jTextFieldEditClothingAllowance.getText(), jTextFieldEditGrossSemiMonthly.getText(), 
                 jTextFieldEditHourlyRateAllowance.getText(), editRecord);
         
+ 
+        
         if(admin.getIsValidEditInput()){
             editRecord.setVisible(false);
         }
@@ -2126,6 +2152,8 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
         employeeToCompute = setEmployeeData(jTextFieldIDtoSearch.getText());
         //If not null, proceed as normal. No else statement because it's already done in the Compute button. see the event for more details
         if (employeeToCompute!=null){
+                jButtonComputeSalary.setEnabled(true);
+                
                 jTextSalaryEmpNo.setText(employeeToCompute.getEmployeeId());
                 jTextSalaryFirstName.setText(employeeToCompute.getFirstName());
                 jTextSalaryLastName.setText(employeeToCompute.getLastName());
@@ -2146,8 +2174,8 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
                 jTextSalaryTin.setText(employeeToCompute.getTinNumber());
                 jTextSalaryPagibigNum.setText(employeeToCompute.getPagIbigNumber());
               // Dito cj
-              
-        }
+         
+        }else{jButtonComputeSalary.setEnabled(false);} 
                 
         
     }//GEN-LAST:event_jButtonSearchIDActionPerformed

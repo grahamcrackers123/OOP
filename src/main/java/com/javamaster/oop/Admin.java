@@ -18,6 +18,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.Color;
+import javax.swing.JButton;
 /*
 *
  *
@@ -531,7 +532,7 @@ public class Admin extends User{
         
     }
     
-    public void denyLeave(String index){
+    public void denyLeave(String index, JButton parent){
         leaveArrayList = csva.loadCSV("LeaveManagement.csv");
         String[] empLeaveData = csva.searchUserData(leaveArrayList, index);
                 if (empLeaveData != null) {
@@ -545,11 +546,11 @@ public class Admin extends User{
                      }
                      
                      //Denise, palitan mo ng pangalan ng approve button yung "null"
-                    JOptionPane.showMessageDialog(null, "Succesfully Denied!");
+                    JOptionPane.showMessageDialog(parent, "Succesfully Denied!");
                     
                 } else {
                     // handle the case where employeeData is null
-                    JOptionPane.showMessageDialog(null, "Employee not found!");
+                    JOptionPane.showMessageDialog(parent, "Employee not found!");
                 } 
         
     }
