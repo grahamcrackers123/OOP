@@ -404,6 +404,7 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
         jButtonReject1 = new javax.swing.JButton();
         jLabel66 = new javax.swing.JLabel();
 
+        createRecord.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         createRecord.setTitle("Create Employee Record");
         createRecord.setAlwaysOnTop(true);
         createRecord.setBackground(new java.awt.Color(51, 51, 51));
@@ -780,7 +781,7 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
 
         editRecord.getContentPane().add(jScrollPane8, java.awt.BorderLayout.CENTER);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
         jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
@@ -2008,7 +2009,6 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
     private void cancelCreateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelCreateButtonActionPerformed
         // TODO add your handling code here:
         createRecord.setVisible(false);
-
         jTextFieldFirstName2.setText("");
         jTextFieldLastName1.setText("");
         jTextFieldAddress.setText("");
