@@ -12,7 +12,7 @@
 12,30,Maceda,Emelia,Account Rank and File,Vacation,05/28/2025,06/04/2025,Pending
 13,25,Tolentino,Jacklyn,Account Rank and File,Sick,10/30/2024,11/07/2024,Pending
 14,2,Lim,Antonio,Chief Operating Officer,Vacation,06/28/2024,06/29/2024,Approved
-15,3,Aquino,Bianca Sofia,Chief Finance Officer,Vacation,06/29/2024,06/30/2024,Pending
+15,3,Aquino,Bianca Sofia,Chief Finance Officer,Vacation,06/29/2024,06/30/2024,Denied
 16,4,Reyes,Isabella,Chief Marketing Officer,Vacation,06/28/2024,06/29/2024,Approved
 17,5,Hernandez,Eduard,IT Operations and Systems,Sick,06/30/2024,07/01/2024,Pending
 18,1,Garcia,Manuel III,Chief Executive Officer,Sick,06/29/2024,06/30/2024,Pending
@@ -23,6 +23,6 @@
 23,5,Hernandez,Eduard,IT Operations and Systems,Vacation,07/01/2024,07/01/2024,Pending
 24,3,Aquino,Bianca Sofia,Chief Finance Officer,Vacation,07/24/2024,07/25/2024,Pending
 25,1,Garcia,Manuel III,Chief Executive Officer,Vacation,12/12/2024,12/24/2024,Pending
-26,1,Garcia,Manuel III,Chief Executive Officer,Sick,01/14/2025,01/15/2025,Pending
-27,2,Antonio,Lim,Chief Operating Officer,Sick Leave,02/27/2025,02/28/2025,Pending
+26,1,Garcia,Manuel III,Chief Executive Officer,Sick,01/14/2025,01/15/2025,Approved
+27,2,Antonio,Lim,Chief Operating Officer,Sick Leave,02/27/2025,02/28/2025,Denied
 28,2,Antonio,Lim,Chief Operating Officer,Sick Leave,02/28/2025,02/27/2025,Approved

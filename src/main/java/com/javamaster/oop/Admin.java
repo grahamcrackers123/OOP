@@ -522,7 +522,7 @@ public class Admin extends User{
                      }
                      
                      //Denise, palitan mo ng pangalan ng approve button yung "null"
-                    JOptionPane.showMessageDialog(null, "Succesfully Approved! Please Refresh");
+                    JOptionPane.showMessageDialog(null, "Succesfully Approved!");
                     
                 } else {
                     // handle the case where employeeData is null
@@ -545,7 +545,7 @@ public class Admin extends User{
                      }
                      
                      //Denise, palitan mo ng pangalan ng approve button yung "null"
-                    JOptionPane.showMessageDialog(null, "Succesfully Denied! Please Refresh");
+                    JOptionPane.showMessageDialog(null, "Succesfully Denied!");
                     
                 } else {
                     // handle the case where employeeData is null

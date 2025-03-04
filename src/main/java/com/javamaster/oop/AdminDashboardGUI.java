@@ -1876,11 +1876,16 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
 
     private void jButtonApproveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonApproveActionPerformed
         int selectedRowIndex = jTableLeaveManagement.getSelectedRow();
-
+        if (selectedRowIndex == -1) {
+            JOptionPane.showMessageDialog(this, "No row selected. Please select a leave record.");
+            return;
+        }
         if (model.getValueAt(selectedRowIndex, 8).toString().equals("Pending")) {
             String employeeID = model.getValueAt(selectedRowIndex, 0).toString();
             admin.approveLeave(employeeID);
-        } else {
+           populateLeaveTable("LeaveManagement.csv");
+        }
+        else {
             JOptionPane.showMessageDialog(this, "Leave record cannot be edited anymore.");
         }
         
@@ -1889,9 +1894,14 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
     private void jButtonReject1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReject1ActionPerformed
         int selectedRowIndex = jTableLeaveManagement.getSelectedRow();
         
+         if (selectedRowIndex == -1) {
+            JOptionPane.showMessageDialog(this, "No row selected. Please select a leave record.");
+            return;
+        }       
         if (model.getValueAt(selectedRowIndex, 8).toString().equals("Pending")) {
-        String employeeID = model.getValueAt(selectedRowIndex, 0).toString();
-        admin.denyLeave(employeeID);
+            String employeeID = model.getValueAt(selectedRowIndex, 0).toString();
+            admin.denyLeave(employeeID);
+            populateLeaveTable("LeaveManagement.csv");
         } else {
             JOptionPane.showMessageDialog(this, "Leave record cannot be edited anymore.");
         }
