@@ -1722,10 +1722,10 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
 //        jPanelParent.revalidate();
         
         
-         AccessParameters accessParameters = new AccessParameters();
-             accessParameters.setAdminPageParameters(adminLeaveMenu, adminDashboardMenu, adminSalaryCalculationMenu, adminDatabaseMenu, jPanelParent, adminLeaveManagement);
+        AccessParameters accessParameters = new AccessParameters();
+        accessParameters.setAdminPageParameters(adminLeaveMenu, adminDashboardMenu, adminSalaryCalculationMenu, adminDatabaseMenu, jPanelParent, adminLeaveManagement);
          
-             admin.accessLeave(accessParameters);
+        admin.accessLeave(accessParameters);
     }//GEN-LAST:event_adminLeaveMenuMouseClicked
 
     private void jButtonLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLogoutActionPerformed
@@ -1875,17 +1875,25 @@ public class AdminDashboardGUI extends javax.swing.JFrame {
 
     private void jButtonApproveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonApproveActionPerformed
         int selectedRowIndex = jTableLeaveManagement.getSelectedRow();
-        String employeeID = model.getValueAt(selectedRowIndex, 0).toString();
-        
-        admin.approveLeave(employeeID);
+
+        if (model.getValueAt(selectedRowIndex, 8).toString().equals("Pending")) {
+            String employeeID = model.getValueAt(selectedRowIndex, 0).toString();
+            admin.approveLeave(employeeID);
+        } else {
+            JOptionPane.showMessageDialog(this, "Leave record cannot be edited anymore.");
+        }
         
     }//GEN-LAST:event_jButtonApproveActionPerformed
 
     private void jButtonReject1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReject1ActionPerformed
         int selectedRowIndex = jTableLeaveManagement.getSelectedRow();
-        String employeeID = model.getValueAt(selectedRowIndex, 0).toString();
         
+        if (model.getValueAt(selectedRowIndex, 8).toString().equals("Pending")) {
+        String employeeID = model.getValueAt(selectedRowIndex, 0).toString();
         admin.denyLeave(employeeID);
+        } else {
+            JOptionPane.showMessageDialog(this, "Leave record cannot be edited anymore.");
+        }
 
     }//GEN-LAST:event_jButtonReject1ActionPerformed
 
